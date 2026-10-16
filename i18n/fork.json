@@ -1,0 +1,50 @@
+{
+    "name": "siyuan-plugin-task-horizon-en",
+    "repoUrl": "https://github.com/5pyd3r1/siyuan-plugin-task-horizon-en",
+    "upstreamRepoUrl": "https://github.com/5kyfkr/siyuan-plugin-task-horizon",
+    "author": "5pyd3r1",
+    "versionSuffix": "en.1",
+    "displayName": {
+        "default": "Task Horizon (English)",
+        "zh_CN": "任务管理器（英文版）"
+    },
+    "description": {
+        "default": "Unofficial English version of Task Horizon, the task manager for SiYuan by 5kyfkr — the same features as the original plugin with an English UI.",
+        "zh_CN": "任务管理器（非官方英文版）：5kyfkr 为思源笔记开发的任务管理插件，功能与原版一致，界面为英文。"
+    },
+    "readme": {
+        "default": "README.md",
+        "zh_CN": "README_zh_CN.md"
+    },
+    "keywordsExtra": [
+        "task horizon",
+        "english",
+        "tasks",
+        "todo",
+        "kanban",
+        "calendar",
+        "pomodoro",
+        "focus",
+        "timeline",
+        "whiteboard"
+    ],
+    "identity": {
+        "protect": [
+            "APP_ID = 'siyuan-plugin-task-horizon'"
+        ],
+        "replacements": [
+            {
+                "from": "https://github.com/5kyfkr/siyuan-plugin-task-horizon",
+                "to": "https://github.com/5pyd3r1/siyuan-plugin-task-horizon-en"
+            },
+            {
+                "from": "siyuan-plugin-task-horizon",
+                "to": "siyuan-plugin-task-horizon-en"
+            },
+            {
+                "from": "siyuan_plugin_task_horizon",
+                "to": "siyuan_plugin_task_horizon_en"
+            }
+        ]
+    }
+}

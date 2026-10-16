@@ -4,22 +4,27 @@
 //
 // Mirrors upstream packaging semantics (build.ps1):
 //   1. copy every shipped file (same top-level excludes as packaging)
-//   2. rebuild task.js by concatenating src/task-horizon per manifest.main.json
-//   3. drop src/task-horizon from the package (task.js replaces it)
-//   4. run apply.js over the staged tree (task.js included)   [--lang en only]
-//   5. syntax-verify every staged .js file with vm.Script
+//   2. run apply.js over the staged tree (task.js included)   [--lang en only]
+//   3. rebuild task.js by concatenating src/task-horizon per manifest.main.json
+//   4. drop src/task-horizon from the package (task.js replaces it)
+//   5. apply the fork identity (unique plugin name / links)   [--identity fork]
+//   6. syntax-verify every staged .js file with vm.Script
 //
 // Usage:
-//   node tools/i18n/stage.js [--lang en|zh] [--quiet]
+//   node tools/i18n/stage.js [--lang en|zh] [--identity fork|upstream] [--quiet]
 //
-// --lang zh builds the pristine Chinese plugin (translation step skipped);
-// --lang en (default) builds the fully translated English plugin.
+// --lang zh builds the pristine Chinese plugin (translation step skipped).
+// --lang en (default) builds the fully translated English plugin; with
+// --identity fork (default) it is renamed to the standalone published package
+// siyuan-plugin-task-horizon-en (see i18n/fork.json), with --identity upstream
+// it keeps the original plugin id (drop-in replacement of the original).
 
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const { execFileSync } = require('node:child_process');
 const { ROOT, listShippedFiles } = require('./lib/targets');
+const { applyForkIdentity } = require('./lib/fork');
 
 const STAGE = path.join(ROOT, 'output', 'i18n', 'stage');
 const APPLY = path.join(__dirname, 'apply.js');
@@ -28,6 +33,12 @@ const LANG = (() => {
     const index = process.argv.indexOf('--lang');
     const value = index >= 0 ? String(process.argv[index + 1] || '').trim().toLowerCase() : 'en';
     if (!['en', 'zh'].includes(value)) throw new Error(`Unknown --lang value: ${value} (expected en or zh)`);
+    return value;
+})();
+const IDENTITY = (() => {
+    const index = process.argv.indexOf('--identity');
+    const value = index >= 0 ? String(process.argv[index + 1] || '').trim().toLowerCase() : 'fork';
+    if (!['fork', 'upstream'].includes(value)) throw new Error(`Unknown --identity value: ${value} (expected fork or upstream)`);
     return value;
 })();
 
@@ -107,6 +118,17 @@ function main() {
     const fragmentCount = buildTaskMain(STAGE);
     rmrf(path.join(STAGE, 'src', 'task-horizon'));
     log(`stage: built task.js from ${fragmentCount} fragments (language: ${LANG})`);
+
+    // Fold the staged build into the standalone published package: unique
+    // plugin name, own storage directory, English links. Applied to the stage
+    // only - upstream sources in the repository are never modified.
+    if (LANG === 'en' && IDENTITY === 'fork') {
+        const identity = applyForkIdentity(STAGE);
+        log(`stage: fork identity applied - ${identity.replacedTotal} reference(s) in ${identity.changedFiles} of ${identity.filesTotal} files, ${identity.protectedHits} protected`);
+        log(`stage: package identity ${identity.manifest.version} (${identity.config.name})`);
+    } else if (LANG === 'zh' && IDENTITY === 'fork') {
+        log('stage: language zh is always pristine/upstream identity - --identity fork ignored');
+    }
 
     // Syntax-verify everything that ships as JS.
     let verified = 0;

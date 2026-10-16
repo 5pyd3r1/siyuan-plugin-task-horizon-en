@@ -20,8 +20,10 @@ const EXCLUDE_TOP = [
     'node_modules', 'docs', 'GUIDE_zh_CN.md', 'REPRO_SYNC.md', 'PRODUCT.md',
     'CHANGELOG.md', 'LICENSE', 'package.zip', 'build.sh', 'build.bat',
     'build.ps1', '.hotreload',
-    // Our tooling additions on the i18n branch - never shipped.
-    'tools', 'i18n',
+    // Our additions on the fork branch - never shipped. The bazaar check
+    // rejects dot-prefixed entries in packages (they would not sync); upstream
+    // excludes .gitignore for the same reason.
+    'tools', 'i18n', '.gitattributes',
 ].map((name) => name.toLowerCase());
 
 const TRANSLATE_EXTS = new Set(['.js', '.css']);

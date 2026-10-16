@@ -14,8 +14,12 @@ on the deploy artifact, driven by curated dictionaries.
 | `tools/i18n/lib/tokenize.js` | String/template literal scanner (nesting-aware, comment/regex aware). |
 | `tools/i18n/extract.js` | Writes `output/i18n/catalog.json` + `unique.json` (string inventory). |
 | `tools/i18n/apply.js` | The translation engine; `--dry` produces the coverage report. |
-| `tools/i18n/stage.js` | Builds `output/i18n/stage`: copy shipped files, rebuild `task.js`, apply translations, syntax-verify. |
-| `tools/i18n/deploy.ps1` | stage -> backup -> mirror into the SiYuan plugin folder. |
+| `tools/i18n/stage.js` | Builds `output/i18n/stage`: copy shipped files, rebuild `task.js`, apply translations, apply the fork identity, syntax-verify. |
+| `i18n/fork.json` | Published English package identity: name/url/author, displayName/description/readme, `versionSuffix`, identity replacement + protect rules. |
+| `tools/i18n/lib/fork.js` | Applies `i18n/fork.json` to the staged build (rename + manifest rewrite + leftover scan). |
+| `tools/i18n/pack.js` | Verifies the stage, writes `output/i18n/package.zip` (pure-Node zip) + `RELEASE_BODY.md`. |
+| `tools/i18n/deploy.ps1` | stage -> backup -> mirror into the SiYuan plugin folder (folder derived from the staged manifest). |
+| `tools/i18n/migrate-data.ps1` | One-time petal-storage copy from the original plugin id to the fork id. |
 
 ## Matching model (apply.js)
 
@@ -35,8 +39,11 @@ node tools/i18n/apply.js --dry
 
 # 2. translate the delta into i18n/dictionary.zh-en.json (or spot-patches)
 
-# 3. build + inspect
-node tools/i18n/stage.js
+# 3. build + inspect (published English package identity by default)
+node tools/i18n/stage.js --lang en            # add --identity upstream for the drop-in build
+
+# 3b. marketplace release artifact (verifies identity + translation report)
+node tools/i18n/pack.js --tag v3.2.4-en.1     # writes output/i18n/package.zip
 
 # 4. deploy (backs up the current install, mirrors the stage)
 pwsh -File tools/i18n/deploy.ps1
@@ -58,6 +65,9 @@ node tools/i18n/apply.js --dry    # translate the new/changed strings
   needs no special treatment.
 - Never create single-character keys for particles such as `的`; use full
   literal content or distinctive multi-character runs.
+- Checkout line endings matter: `.gitattributes` pins `*.js`/`*.css` to CRLF
+  because some dictionary keys and raw patches match `\r\n` inside multi-line
+  template literals. Do not change it.
 
 ## Reports
 

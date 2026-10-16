@@ -1,11 +1,21 @@
 name: release
 
+# Fork release pipeline for the unofficial English build.
+#
+# Unlike upstream's workflow (which packaged the Chinese sources), this runs
+# the i18n staging pipeline: copy the shipped files, translate from the
+# curated dictionaries, apply the fork identity (unique plugin name
+# siyuan-plugin-task-horizon-en, own storage/links) and rebuild task.js, then
+# zip the verified stage as package.zip and attach it to the GitHub Release.
+#
+# Trigger: tags of the form v<version>-en.<n>, e.g. v3.2.4-en.1. The workflow
+# refuses to build when the tag does not match the staged manifest version
+# (enforced by tools/i18n/pack.js).
+
 on:
   push:
     tags:
-      - "v*.*.*"
-  release:
-    types: [published]
+      - 'v*.*.*-en.*'
 
 permissions:
   contents: write
@@ -13,27 +23,20 @@ permissions:
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
-    if: |
-      (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
-      (github.event_name == 'release' && startsWith(github.event.release.tag_name, 'v'))
     steps:
       - uses: actions/checkout@v4
-      - name: Cache test dependencies and Chromium
-        uses: actions/cache@v4
+      - uses: actions/setup-node@v4
         with:
-          path: |
-            /tmp/task-horizon-release-tests-1.63.0
-            ~/.cache/ms-playwright
-          key: ${{ runner.os }}-task-horizon-playwright-1.63.0
-      - name: Verify
-        run: pwsh -ExecutionPolicy Bypass -File ./scripts/verify-release.ps1
-      - name: Package
-        run: pwsh -ExecutionPolicy Bypass -File ./build.ps1
-      - name: Verify packaged artifact
-        run: pwsh -ExecutionPolicy Bypass -File ./scripts/verify-package.ps1
-      - name: Release
+          node-version: '20'
+      - name: Build English stage (translate + rename + syntax verify)
+        run: node tools/i18n/stage.js --lang en
+      - name: Package and verify
+        run: node tools/i18n/pack.js --tag "${{ github.ref_name }}"
+      - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          files: package.zip
-          generate_release_notes: true
+          files: output/i18n/package.zip
+          body_path: output/i18n/RELEASE_BODY.md
           fail_on_unmatched_files: true
+          prerelease: false
+          make_latest: true

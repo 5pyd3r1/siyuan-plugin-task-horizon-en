@@ -1,0 +1,12 @@
+# Line-ending policy.
+#
+# The translation dictionaries and spot patches match literal source content
+# byte-for-byte, including CRLF sequences inside multi-line template literals
+# (26 dictionary keys, 4 raw patches and 1 keep entry depend on it). Pin JS/CSS
+# checkouts to CRLF on every platform so Windows builds and Linux CI produce
+# the exact same translated artifact. Git still stores LF in the repository.
+*.js  text eol=crlf
+*.css text eol=crlf
+
+# Binary assets
+*.png binary
