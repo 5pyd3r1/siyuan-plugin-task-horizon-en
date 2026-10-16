@@ -5,8 +5,12 @@
 # (26 dictionary keys, 4 raw patches and 1 keep entry depend on it). Pin JS/CSS
 # checkouts to CRLF on every platform so Windows builds and Linux CI produce
 # the exact same translated artifact. Git still stores LF in the repository.
+#
+# Markdown is pinned to LF so packaged READMEs/skills are byte-identical on
+# every platform as well.
 *.js  text eol=crlf
 *.css text eol=crlf
+*.md  text eol=lf
 
 # Binary assets
 *.png binary
