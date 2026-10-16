@@ -10,16 +10,22 @@
 
     Usage:
       powershell -NoProfile -ExecutionPolicy Bypass -File tools/i18n/migrate-data.ps1
-      powershell ... -DataRoot 'X:\siyuan\data' -From siyuan-plugin-task-horizon -To siyuan-plugin-task-horizon-en [-Force]
+      powershell ... -DataRoot '<workspace data dir>' -From siyuan-plugin-task-horizon -To siyuan-plugin-task-horizon-en [-Force]
+
+    Pass -DataRoot, or set SIYUAN_DATA_DIR once in the environment.
 #>
 param(
-    [string]$DataRoot = 'X:\siyuan\data',
+    [string]$DataRoot = '',
     [string]$From = 'siyuan-plugin-task-horizon',
     [string]$To = 'siyuan-plugin-task-horizon-en',
     [switch]$Force
 )
 
 $ErrorActionPreference = 'Stop'
+if (-not $DataRoot) {
+    if ($env:SIYUAN_DATA_DIR) { $DataRoot = $env:SIYUAN_DATA_DIR }
+    else { throw "Data directory unknown. Pass -DataRoot '<workspace data dir>', or set SIYUAN_DATA_DIR." }
+}
 $src = Join-Path $DataRoot "storage\petal\$From"
 $dst = Join-Path $DataRoot "storage\petal\$To"
 

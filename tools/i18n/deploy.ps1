@@ -22,11 +22,14 @@
       powershell ... -Lang zh                      # pristine Chinese build
       powershell ... -StageOnly                    # build stage only
       powershell ... -NoBackup                     # skip the zip backup
+
+    SiYuan locations are user-specific: pass -SiYuanPluginsRoot, or set
+    SIYUAN_DATA_DIR / SIYUAN_PLUGINS_ROOT once in the environment.
 #>
 param(
     [ValidateSet('en', 'zh')][string]$Lang = 'en',
     [ValidateSet('fork', 'upstream')][string]$Identity = 'fork',
-    [string]$SiYuanPluginsRoot = 'X:\siyuan\data\plugins',
+    [string]$SiYuanPluginsRoot = '',
     [string]$SiYuanPluginDir = '',
     [switch]$StageOnly,
     [switch]$NoBackup
@@ -43,12 +46,22 @@ if ($LASTEXITCODE -ne 0) { throw "stage.js failed with exit code $LASTEXITCODE" 
 if (-not (Test-Path (Join-Path $stage 'task.js'))) { throw "stage is missing task.js" }
 
 $manifest = Get-Content -Raw -Encoding UTF8 (Join-Path $stage 'plugin.json') | ConvertFrom-Json
-if (-not $SiYuanPluginDir) { $SiYuanPluginDir = Join-Path $SiYuanPluginsRoot $manifest.name }
 
 if ($StageOnly) {
     Write-Host "stage only; skipping deploy. Stage: $stage" -ForegroundColor Yellow
     Write-Host "staged plugin: $($manifest.name) v$($manifest.version)" -ForegroundColor Yellow
     exit 0
+}
+
+if (-not $SiYuanPluginDir) {
+    if (-not $SiYuanPluginsRoot) {
+        if ($env:SIYUAN_DATA_DIR) { $SiYuanPluginsRoot = Join-Path $env:SIYUAN_DATA_DIR 'plugins' }
+        elseif ($env:SIYUAN_PLUGINS_ROOT) { $SiYuanPluginsRoot = $env:SIYUAN_PLUGINS_ROOT }
+        else {
+            throw "Plugin location unknown. Pass -SiYuanPluginsRoot '<data>\plugins', or set SIYUAN_DATA_DIR / SIYUAN_PLUGINS_ROOT."
+        }
+    }
+    $SiYuanPluginDir = Join-Path $SiYuanPluginsRoot $manifest.name
 }
 
 if (Test-Path -LiteralPath $SiYuanPluginDir) {

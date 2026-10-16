@@ -1,2 +1,4 @@
 package.zip
 /output/
+# Local operator manual (never published)
+tools/i18n/STATUS.md
