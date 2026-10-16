@@ -10,6 +10,258 @@
     {
       "text": "[设置] 刷新文档列表失败:",
       "files": ["src/task-horizon/main/task-runtime/53-list-render-and-document-loader.js"]
+    },
+    {
+      "text": "[文档] 获取文档列表失败:",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "[查询] 文档 ${did.slice(0, 8)} 查询失败:",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "[查询] 批量查询失败:",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "[提醒联动] 提醒同步任务状态失败:",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "[番茄钟联动] 完成任务后停止番茄钟失败:",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "[提醒联动] 完成任务后同步提醒失败:",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "识别到${token}",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "识别到“${dur[0]}”",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "识别到${weekday[1]}",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "识别到${token}时间，日期按今天处理",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "识别到“${match[0]}”",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "识别到${match[1]}",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "农历",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "打卡",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "${hour0}点${suffix || ''}${cn[1] ? `（${cn[1]}）` : ''}",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "(?:\\\\d{1,2}\\\\s*[:：]\\\\s*\\\\d{1,2}|(?:\\\\d{1,2}|[零〇一二两三四五六七八九十]{1,3})\\\\s*点\\\\s*(?:半|一刻|三刻|整|\\\\d{1,2}\\\\s*分?)?)?",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "^\\\\s*${timeThen}\\\\s*(开始|起)",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "^\\\\s*${timeThen}\\\\s*(截止到|截止|到期|完成|交付|之前|前|deadline|due)",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "一",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "二",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "三",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "四",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "五",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "六",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "七",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "八",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "九",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "十",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "十一",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "十二",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "零",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "〇",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "两",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "正",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "冬",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "腊",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "廿",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "卅",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "日",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "天",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "半",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "一刻",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "三刻",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "明",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "大后天",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "下下周",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "凌晨",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "上午",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "早上",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "早晨",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "清晨",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "今早",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "今晨",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "明早",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "明晨",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "早",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "中午",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "下午",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "傍晚",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "晚上",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "今晚",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "明晚",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+    },
+    {
+      "text": "晚",
+      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
     }
   ]
 }
