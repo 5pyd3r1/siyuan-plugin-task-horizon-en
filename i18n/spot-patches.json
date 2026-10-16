@@ -38,6 +38,188 @@
         "new": "|| 'Monday'",
         "count": 1
       }
+    },
+    "calendar-view.js": {
+      "const CALENDAR_ZH_CN_LOCALE = {\r\n        code: 'zh-cn',\r\n        week: { dow: 1, doy: 4 },\r\n        prevText: '上月',\r\n        nextText: '下月',\r\n        todayText: '今天',\r\n        yearText: '年',\r\n        monthText: '月',\r\n        weekTextLong: '周',\r\n        weekTextShort: '周',\r\n        dayText: '日',\r\n        listText: '日程',\r\n        allDayText: '全天',\r\n        moreLinkText: (n) => `另外 ${n} 个`,\r\n        noEventsText: '没有事件显示',\r\n    };": {
+        "new": "const CALENDAR_ZH_CN_LOCALE = {\r\n        code: 'en',\r\n        week: { dow: 1, doy: 4 },\r\n        prevText: 'Prev month',\r\n        nextText: 'Next month',\r\n        todayText: 'Today',\r\n        yearText: 'Year',\r\n        monthText: 'Month',\r\n        weekTextLong: 'Week',\r\n        weekTextShort: 'Week',\r\n        dayText: 'Day',\r\n        listText: 'List',\r\n        allDayText: 'All-day',\r\n        moreLinkText: (n) => `${n} more`,\r\n        noEventsText: 'No events to display',\r\n    };",
+        "count": 1
+      },
+      "const MAIN_CALENDAR_VIEW_OPTIONS = [\r\n        { value: 'timeGridDay', label: '日' },\r\n        { value: 'timeGrid3Day', label: '3日' },\r\n        { value: 'timeGridWorkdays', label: '工作日' },\r\n        { value: 'timeGridWeek', label: '周' },\r\n        { value: 'dayGridWeek', label: '周格' },\r\n        { value: 'dayGridMonth', label: '月' },\r\n        { value: 'listMonth', label: '列表' },\r\n    ];": {
+        "new": "const MAIN_CALENDAR_VIEW_OPTIONS = [\r\n        { value: 'timeGridDay', label: 'Day' },\r\n        { value: 'timeGrid3Day', label: '3-day' },\r\n        { value: 'timeGridWorkdays', label: 'Workdays' },\r\n        { value: 'timeGridWeek', label: 'Week' },\r\n        { value: 'dayGridWeek', label: 'Week grid' },\r\n        { value: 'dayGridMonth', label: 'Month' },\r\n        { value: 'listMonth', label: 'List' },\r\n    ];",
+        "count": 1
+      },
+      "const MAIN_CALENDAR_MONTH_DAY_HEADER_LABELS = Object.freeze(['日', '一', '二', '三', '四', '五', '六']);": {
+        "new": "const MAIN_CALENDAR_MONTH_DAY_HEADER_LABELS = Object.freeze(['S', 'M', 'T', 'W', 'T', 'F', 'S']);",
+        "count": 1
+      },
+      "const MAIN_CALENDAR_WEEK_DAY_HEADER_LABELS = Object.freeze(['周日', '周一', '周二', '周三', '周四', '周五', '周六']);": {
+        "new": "const MAIN_CALENDAR_WEEK_DAY_HEADER_LABELS = Object.freeze(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);",
+        "count": 1
+      },
+      "const MAIN_CALENDAR_WEEK_DAY_HEADER_LABELS_COMPACT = Object.freeze(['日', '一', '二', '三', '四', '五', '六']);": {
+        "new": "const MAIN_CALENDAR_WEEK_DAY_HEADER_LABELS_COMPACT = Object.freeze(['S', 'M', 'T', 'W', 'T', 'F', 'S']);",
+        "count": 1
+      },
+      "1}月${date.getDate()}日 周${['日', '一', '二', '三', '四', '五', '六'][date.getDay()]}": {
+        "new": "1}/${date.getDate()} ${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()]}",
+        "count": 1
+      },
+      "<span>${['日', '一', '二', '三', '四', '五', '六'][date.getDay()]}</span>": {
+        "new": "<span>${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()]}</span>",
+        "count": 1
+      },
+      "safeDate.getMonth() + 1}月${safeDate.getDate()}日${statusMarkup}</b><span>周${['日', '一', '二', '三', '四', '五', '六'][safeDate.getDay()]}</span>": {
+        "new": "safeDate.getMonth() + 1}/${safeDate.getDate()}${statusMarkup}</b><span>${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][safeDate.getDay()]}</span>",
+        "count": 1
+      },
+      "'‹', '前一天')": {
+        "new": "'‹', 'Previous day')",
+        "count": 1
+      },
+      "'›', '后一天')": {
+        "new": "'›', 'Next day')",
+        "count": 1
+      },
+      "[[1,'一'],[2,'二'],[3,'三'],[4,'四'],[5,'五'],[6,'六'],[0,'日']]": {
+        "new": "[[1,'Mon'],[2,'Tue'],[3,'Wed'],[4,'Thu'],[5,'Fri'],[6,'Sat'],[0,'Sun']]",
+        "count": 2
+      },
+      "? ['日', '一', '二', '三', '四', '五', '六']": {
+        "new": "? ['S', 'M', 'T', 'W', 'T', 'F', 'S']",
+        "count": 1
+      },
+      ": ['一', '二', '三', '四', '五', '六', '日'];": {
+        "new": ": ['M', 'T', 'W', 'T', 'F', 'S', 'S'];",
+        "count": 1
+      },
+      "const protoWeekLabels = ['日', '一', '二', '三', '四', '五', '六'];": {
+        "new": "const protoWeekLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];",
+        "count": 1
+      },
+      "const labels = ['日', '一', '二', '三', '四', '五', '六'];": {
+        "new": "const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];",
+        "count": 1
+      },
+      "const weekdays = ['日', '一', '二', '三', '四', '五', '六'];": {
+        "new": "const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];",
+        "count": 1
+      },
+      "const label = ['一', '二', '三', '四', '五', '六', '日'][index] || '';": {
+        "new": "const label = ['M', 'T', 'W', 'T', 'F', 'S', 'S'][index] || '';",
+        "count": 1
+      },
+      "${['一', '二', '三', '四', '五', '六', '日'].map((item) => `<span>${item}</span>`).join('')}": {
+        "new": "${['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((item) => `<span>${item}</span>`).join('')}",
+        "count": 1
+      },
+      "const labels = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];": {
+        "new": "const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];",
+        "count": 1
+      },
+      "const weekDays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];": {
+        "new": "const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];",
+        "count": 1
+      },
+      "function getScheduleRepeatUnitLabel(repeatType, every) {\r\n        const type = normalizeScheduleRepeatType(repeatType);\r\n        normalizeScheduleRepeatEvery(every, type);\r\n        if (type === 'daily') return '天';\r\n        if (type === 'workday') return '个工作日';\r\n        if (type === 'weekly') return '周';\r\n        if (type === 'monthly') return '个月';\r\n        if (type === 'yearly') return '年';\r\n        return '次';\r\n    }": {
+        "new": "function getScheduleRepeatUnitLabel(repeatType, every) {\r\n        const type = normalizeScheduleRepeatType(repeatType);\r\n        const interval = normalizeScheduleRepeatEvery(every, type);\r\n        if (type === 'daily') return interval > 1 ? 'days' : 'day';\r\n        if (type === 'workday') return interval > 1 ? 'workdays' : 'workday';\r\n        if (type === 'weekly') return interval > 1 ? 'weeks' : 'week';\r\n        if (type === 'monthly') return interval > 1 ? 'months' : 'month';\r\n        if (type === 'yearly') return interval > 1 ? 'years' : 'year';\r\n        return interval > 1 ? 'times' : 'time';\r\n    }",
+        "count": 1
+      },
+      "return `${y}年${mm}月`;": {
+        "new": "return `${y}-${String(mm).padStart(2, '0')}`;",
+        "count": 1
+      },
+      "return `${d.getMonth() + 1} 月 ${d.getDate()} 日 ${weekDays[d.getDay()] || ''}`.trim();": {
+        "new": "return `${d.getMonth() + 1}/${d.getDate()} ${weekDays[d.getDay()] || ''}`.trim();",
+        "count": 1
+      },
+      "`跳转到${year}年${index + 1}月`": {
+        "new": "`Go to ${new Date(2000, index, 1).toLocaleDateString('en', { month: 'long' })} ${year}`",
+        "count": 1
+      },
+      ">${index + 1}月</button>": {
+        "new": ">${new Date(2000, index, 1).toLocaleDateString('en', { month: 'short' })}</button>",
+        "count": 1
+      },
+      "return labels[idx] || '周?';": {
+        "new": "return labels[idx] || '?';",
+        "count": 1
+      },
+      "每 ${getScheduleRepeatUnitLabel(": {
+        "new": "Every ${getScheduleRepeatUnitLabel(",
+        "count": 1
+      },
+      "const repeatNames = { daily: '每日', day: '每日', weekly: '每周', week: '每周', monthly: '每月', month: '每月', yearly: '每年', year: '每年' };": {
+        "new": "const repeatNames = { daily: 'Daily', day: 'Daily', weekly: 'Weekly', week: 'Weekly', monthly: 'Monthly', month: 'Monthly', yearly: 'Yearly', year: 'Yearly' };",
+        "count": 1
+      },
+      "`每${repeatEvery}${repeatRaw === 'week' ? '周' : repeatRaw === 'month' ? '月' : '天'}` : '重复')}": {
+        "new": "`Every ${repeatEvery} ${repeatRaw === 'week' ? 'weeks' : repeatRaw === 'month' ? 'months' : 'days'}` : 'Repeats')}",
+        "count": 1
+      },
+      "`，共${repeatMaxOccurrences}次`": {
+        "new": "`, ${repeatMaxOccurrences} times`",
+        "count": 1
+      },
+      "                ? `（${[1, 2, 3, 4, 5, 6, 0].filter((weekday) => repeatWeekdays.includes(weekday)).map((weekday) => `周${['日', '一', '二', '三', '四', '五', '六'][weekday]}`).join('、')}）`": {
+        "new": "                ? ` (${[1, 2, 3, 4, 5, 6, 0].filter((weekday) => repeatWeekdays.includes(weekday)).map((weekday) => `${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][weekday]}`).join(', ')})`",
+        "count": 1
+      },
+      "1}月${date.getDate()}日 周${protoWeekLabels[date.getDay()]}": {
+        "new": "1}/${date.getDate()} ${protoWeekLabels[date.getDay()]}",
+        "count": 1
+      },
+      "weekTextLong: '周',\r\n            weekTextShort: '周',\r\n            allDayText: '全天',\r\n            noEventsText: '暂无记录',": {
+        "new": "weekTextLong: 'W',\r\n            weekTextShort: 'W',\r\n            allDayText: 'All-day',\r\n            noEventsText: 'No records',",
+        "count": 1
+      },
+      "|| `${info.month}月`": {
+        "new": "|| `${info.month}`",
+        "count": 1
+      },
+      "localeCompare(eventTitle(b), 'zh-CN')": {
+        "new": "localeCompare(eventTitle(b), 'en')",
+        "count": 1
+      },
+      ", 'zh-Hans-CN')": {
+        "new": ", 'en')",
+        "count": 2
+      },
+      "? `折叠 ${label.slice(3)}` : `展开 ${label.slice(3)}`": {
+        "new": "? `Collapse ${label.slice(label.indexOf(' ') + 1)}` : `Expand ${label.slice(label.indexOf(' ') + 1)}`",
+        "count": 1
+      },
+      "raw === 'lunar' || raw === '农历'": {
+        "new": "raw === 'lunar' || raw === '\\u519c\\u5386'",
+        "count": 1
+      },
+      "`${safeBody}\\n\\n系统提醒失败：${reason}`": {
+        "new": "`${safeBody}\\n\\nSystem notification failed: ${reason}`",
+        "count": 2
+      },
+      ">${year}年${month}月</strong>": {
+        "new": ">${new Date(2000, month - 1, 1).toLocaleDateString('en', { month: 'long' })} ${year}</strong>",
+        "count": 1
+      },
+      "'\\n状态: 已尝试预约，但接口未返回通知ID'": {
+        "new": "'\\nStatus: scheduling was attempted, but the API did not return a notification ID'",
+        "count": 1
+      },
+      ">${year} 年已修改 ${countCalendarCustomHolidayOverrides(year, draft)} 天</div>": {
+        "new": ">${year}: ${countCalendarCustomHolidayOverrides(year, draft)} days modified</div>",
+        "count": 1
+      },
+      ">${year} 年 ${month + 1} 月</span>": {
+        "new": ">${new Date(year, month, 1).toLocaleDateString('en', { month: 'long' })} ${year}</span>",
+        "count": 1
+      },
+      ">已修改记录（${modified.length}）</button>": {
+        "new": ">Modified records (${modified.length})</button>",
+        "count": 1
+      },
+      "共 ${modified.length} 天，恢复官方后请在管理页保存。": {
+        "new": "${modified.length} days in total - save on the management page after restoring.",
+        "count": 1
+      }
     }
   }
 }

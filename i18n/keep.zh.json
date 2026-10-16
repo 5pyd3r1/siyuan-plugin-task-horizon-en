@@ -5,271 +5,985 @@
   "exact": [
     {
       "text": "[QuickAdd] 加载分组文档失败",
-      "files": ["src/task-horizon/main/task-runtime/53b-task-create-and-quick-add-runtime.js"]
+      "files": [
+        "src/task-horizon/main/task-runtime/53b-task-create-and-quick-add-runtime.js"
+      ]
     },
     {
       "text": "[设置] 刷新文档列表失败:",
-      "files": ["src/task-horizon/main/task-runtime/53-list-render-and-document-loader.js"]
+      "files": [
+        "src/task-horizon/main/task-runtime/53-list-render-and-document-loader.js"
+      ]
     },
     {
       "text": "[文档] 获取文档列表失败:",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "[查询] 文档 ${did.slice(0, 8)} 查询失败:",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "[查询] 批量查询失败:",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "[提醒联动] 提醒同步任务状态失败:",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "[番茄钟联动] 完成任务后停止番茄钟失败:",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "[提醒联动] 完成任务后同步提醒失败:",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "[TickTick 导入] 任务块就绪校验超时，继续使用当前 ID:",
-      "files": ["src/task-horizon/main/settings/61-settings-appearance-and-import.js"]
+      "files": [
+        "src/task-horizon/main/settings/61-settings-appearance-and-import.js"
+      ]
     },
     {
       "text": "[TickTick 导入] 标题块就绪校验超时，继续使用当前 ID:",
-      "files": ["src/task-horizon/main/settings/61-settings-appearance-and-import.js"]
+      "files": [
+        "src/task-horizon/main/settings/61-settings-appearance-and-import.js"
+      ]
     },
     {
       "text": "识别到${token}",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "识别到“${dur[0]}”",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "识别到${weekday[1]}",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "识别到${token}时间，日期按今天处理",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "识别到“${match[0]}”",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "识别到${match[1]}",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
-    },
-    {
-      "text": "农历",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "打卡",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "${hour0}点${suffix || ''}${cn[1] ? `（${cn[1]}）` : ''}",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "(?:\\\\d{1,2}\\\\s*[:：]\\\\s*\\\\d{1,2}|(?:\\\\d{1,2}|[零〇一二两三四五六七八九十]{1,3})\\\\s*点\\\\s*(?:半|一刻|三刻|整|\\\\d{1,2}\\\\s*分?)?)?",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "^\\\\s*${timeThen}\\\\s*(开始|起)",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "^\\\\s*${timeThen}\\\\s*(截止到|截止|到期|完成|交付|之前|前|deadline|due)",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "一",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "二",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "三",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "四",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "五",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "六",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "七",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "八",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "九",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "十",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "十一",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js",
+        "calendar-view.js"
+      ]
     },
     {
       "text": "十二",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js",
+        "calendar-view.js"
+      ]
     },
     {
       "text": "零",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "〇",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "两",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "正",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "冬",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "腊",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "廿",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "卅",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "日",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "天",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "半",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "一刻",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "三刻",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "明",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "大后天",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "下下周",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "凌晨",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "上午",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "早上",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "早晨",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "清晨",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "今早",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "今晨",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "明早",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "明晨",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "早",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "中午",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "下午",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "傍晚",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "晚上",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "今晚",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "明晚",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     },
     {
       "text": "晚",
-      "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
+    },
+    {
+      "text": ", ",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": ",\r\n        ",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "正月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "二月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "三月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "四月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "五月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "六月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "七月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "八月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "九月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "十月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "冬月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "腊月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "小寒",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "大寒",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "立春",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "雨水",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "惊蛰",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "春分",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "清明",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "谷雨",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "立夏",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "小满",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "芒种",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "夏至",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "小暑",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "大暑",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "立秋",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "处暑",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "白露",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "秋分",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "寒露",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "霜降",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "立冬",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "小雪",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "大雪",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "冬至",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "正月初一",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "五月初五",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "八月十五",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "正月十五",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "个人休息日",
+      "files": [
+        "calendar-view.js",
+        "calendar-subscription-core.js"
+      ]
+    },
+    {
+      "text": "个人调休工作日",
+      "files": [
+        "calendar-view.js",
+        "calendar-subscription-core.js"
+      ]
+    },
+    {
+      "text": "班",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "休",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "调休（班）",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "节假日（休）",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "闰",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "元旦",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "除夕",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "春节",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "元宵节",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "清明节",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "劳动节",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "端午节",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "中秋节",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "国庆节",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初一",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初二",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初三",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初四",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初五",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初六",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初七",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初八",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初九",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "初十",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "十三",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "十四",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "十五",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "十六",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "十七",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "十八",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "十九",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "二十",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "廿一",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "廿二",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "廿三",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "廿四",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "廿五",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "廿六",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "廿七",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "廿八",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "廿九",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "三十",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "月",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "[task-horizon] 微信提醒同步失败",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "[task-horizon] 微信提醒对账失败",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "节",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "假期",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "官",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "个",
+      "files": [
+        "calendar-view.js"
+      ]
+    },
+    {
+      "text": "${start.getFullYear()}年${start.getMonth() + 1}月",
+      "files": [
+        "src/calendar/calendar-date.js"
+      ]
+    },
+    {
+      "text": "${start.getMonth() + 1}月${start.getDate()}日",
+      "files": [
+        "src/calendar/calendar-date.js"
+      ]
+    },
+    {
+      "text": "${start.getFullYear()}年${start.getMonth() + 1}月${start.getDate()}-${last.getDate()}日",
+      "files": [
+        "src/calendar/calendar-date.js"
+      ]
+    },
+    {
+      "text": "${start.getFullYear()}年${start.getMonth() + 1}月${start.getDate()}日 - ${last.getMonth() + 1}月${last.getDate()}日",
+      "files": [
+        "src/calendar/calendar-date.js"
+      ]
     }
   ]
 }
