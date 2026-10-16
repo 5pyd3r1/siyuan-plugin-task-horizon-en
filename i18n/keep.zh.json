@@ -984,6 +984,36 @@
       "files": [
         "src/calendar/calendar-date.js"
       ]
+    },
+    {
+      "text": "高优先级",
+      "files": [
+        "ai.js"
+      ]
+    },
+    {
+      "text": "紧急",
+      "files": [
+        "ai.js"
+      ]
+    },
+    {
+      "text": "中优先级",
+      "files": [
+        "ai.js"
+      ]
+    },
+    {
+      "text": "普通",
+      "files": [
+        "ai.js"
+      ]
+    },
+    {
+      "text": "低优先级",
+      "files": [
+        "ai.js"
+      ]
     }
   ]
 }

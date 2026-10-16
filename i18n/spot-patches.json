@@ -220,6 +220,12 @@
         "new": "${modified.length} days in total - save on the management page after restoring.",
         "count": 1
       }
+    },
+    "ai.js": {
+      "<div>第 ${Number(round?.round || 0) || 1} 轮</div>": {
+        "new": "<div>Round ${Number(round?.round || 0) || 1}</div>",
+        "count": 1
+      }
     }
   }
 }
