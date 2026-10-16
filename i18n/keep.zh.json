@@ -1,6 +1,11 @@
 {
   "meta": {
-    "note": "Literal content that must NOT be translated (functional strings such as natural-language date parser synonyms). Entries are exact literal content matches; optionally scoped to files."
+    "note": "Literal content that must NOT be translated (functional strings such as natural-language date parser synonyms, console-only log messages). Entries are exact literal content matches; optionally scoped to files."
   },
-  "exact": []
+  "exact": [
+    {
+      "text": "[QuickAdd] 加载分组文档失败",
+      "files": ["src/task-horizon/main/task-runtime/53b-task-create-and-quick-add-runtime.js"]
+    }
+  ]
 }

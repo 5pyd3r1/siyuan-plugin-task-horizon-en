@@ -13,7 +13,8 @@
     "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6868": "❌ Failed to queue ${label}",
     "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6870": "✅ ${label} succeeded (${ok} items)",
     "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6871": "⚠ ${label} finished: ${ok} succeeded, ${fail} failed",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6872": "❌ ${label} failed"
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6872": "❌ ${label} failed",
+    "src/task-horizon/main/task-runtime/53b-task-create-and-quick-add-runtime.js:5217": "⚠ Created ${createdTaskIds.length} tasks, ${createFailures.length} failed${message ? `: ${message}` : ''}"
   },
   "raw": {
     "src/task-horizon/main/30-dialogs-and-ui-foundation.js": {
