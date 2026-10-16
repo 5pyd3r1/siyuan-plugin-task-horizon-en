@@ -5899,6 +5899,233 @@
     "durationDefaults.rules.${index}.name 不能为空": "durationDefaults.rules.${index}.name cannot be empty",
     "durationDefaults.rules.${index}.keywords 不能为空": "durationDefaults.rules.${index}.keywords cannot be empty",
     "目标文档、列表或父任务 ID": "Target document, list, or parent task ID",
-    "重新关联循环虚拟实例时必填的当前任务范围令牌": "Current task scope token, required when relinking a recurring virtual instance"
+    "重新关联循环虚拟实例时必填的当前任务范围令牌": "Current task scope token, required when relinking a recurring virtual instance",
+    "当前分组色系：${__tmResolveDocGroupName(currentGroup)}": "Document group color scheme: ${__tmResolveDocGroupName(currentGroup)}",
+    "⚠ 当前没有可批量设置的自定义选项列": "⚠ No batch-settable custom option columns",
+    "选择自定义列": "Select custom column",
+    "⚠ 未找到对应自定义列": "⚠ Matching custom column not found",
+    "批量设置 ${String(field?.name || fieldId).trim()}": "Batch set ${String(field?.name || fieldId).trim()}",
+    "修改时长": "Edit duration",
+    "开始专注": "Start focus",
+    "⚠ 复制功能尚未初始化": "⚠ Clipboard feature is not initialized yet",
+    "从${__TM_OTHER_BLOCK_TAB_NAME}页签移除": "Remove from ${__TM_OTHER_BLOCK_TAB_NAME} tab",
+    "✅ 已从“${__TM_OTHER_BLOCK_TAB_NAME}”页签移除": "✅ Removed from the “${__TM_OTHER_BLOCK_TAB_NAME}” tab",
+    ">暂无规则，点击\"添加规则\"创建</div>": ">No rules yet; click \"Add rule\" to create one</div>",
+    "${Math.floor(days)}天前": "${Math.floor(days)} days ago",
+    "${Math.floor(days)}天后": "${Math.floor(days)} days ahead",
+    "${field?.label || c.field} 今天至${valueDisplay}": "${field?.label || c.field} today to ${valueDisplay}",
+    "无条件": "Unconditional",
+    "无排序": "No sorting",
+    ">(当前应用)</span>": ">(currently applied)</span>",
+    "上移规则：${rule.name}": "Move rule up: ${rule.name}",
+    "下移规则：${rule.name}": "Move rule down: ${rule.name}",
+    ">暂无筛选条件</div>": ">No filter conditions yet</div>",
+    ">当</span>": ">when</span>",
+    ">无需填写</span>": ">No input needed</span>",
+    ">所有状态(忽略显示已完成开关)</option>": ">All statuses (ignores the show-completed switch)</option>",
+    ">匹配方式</span>": ">Match mode</span>",
+    ">匹配任一（或）</span>": ">Match any (OR)</span>",
+    ">全部匹配（与）</span>": ">Match all (AND)</span>",
+    "placeholder=\"开始值\"": "placeholder=\"Start value\"",
+    "placeholder=\"结束值\"": "placeholder=\"End value\"",
+    "placeholder=\"输入值\"": "placeholder=\"Value\"",
+    ">暂无排序规则</div>": ">No sort rules yet</div>",
+    ">升序</option>": ">Ascending</option>",
+    ">降序</option>": ">Descending</option>",
+    " · 已设置 ${configuredCount}": " · ${configuredCount} configured",
+    ">暂无单选或多选自定义列</div>": ">No single/multi-select custom columns</div>",
+    ">自定义列加减分</div>": ">Custom column score adjustments</div>",
+    "单选 / 多选自定义列按选项加分，展开列名逐项设置。": "Single/multi-select custom columns add points per option; expand a column to configure each one.",
+    "title=\"点击选择分段颜色\"": "title=\"Click to choose segment color\"",
+    ">最低分</span>": ">Min score</span>",
+    ">最高分</span>": ">Max score</span>",
+    ">透明度</span>": ">Opacity</span>",
+    "分值分段显示任务名称颜色和透明度": "Score segments set task title color and opacity",
+    "按优先级分值匹配区间，只改变任务名称颜色和透明度，不影响排序和奖励分值。": "Match ranges by priority score; only task title color and opacity change, not sorting or score rewards.",
+    ">+ 添加</button>": ">+ Add</button>",
+    ">暂无配置</div>": ">No configuration yet</div>",
+    "≤ 小时": "≤ hours",
+    "≤ 分钟": "≤ minutes",
+    ">暂无自定义状态</div>": ">No custom statuses yet</div>",
+    ">基础分</div>": ">Base score</div>",
+    ">权重（微调）</div>": ">Weights (fine tuning)</div>",
+    "用于所有任务的起始分，之后按下面的加减分累加。": "The starting score for every task; the adjustments below are added on top.",
+    "调整置顶、重要性、状态、截止日期、时长和文档的相对权重，默认均为 1。": "Adjust the relative weights of pinned, importance, status, due date, duration, and document; all default to 1.",
+    ">置顶加减分</div>": ">Pinned score adjustment</div>",
+    "任务置顶时按此分值加减分，取消置顶后移除。设为 0 时不影响分值。": "Adds or subtracts this score while the task is pinned and removes it when unpinned. 0 does not affect the score.",
+    ">重要性加减分</div>": ">Importance score adjustment</div>",
+    "任务上直接标注的重要性对应的加减分。": "Score adjustment for the importance marked directly on the task.",
+    ">状态加减分</div>": ">Status score adjustment</div>",
+    "为每个自定义状态设置加分或减分。": "Set an add or subtract score for each custom status.",
+    ">截止日期接近度（按“≤ 天数”匹配）</div>": ">Due-date proximity (matched by “≤ days”)</div>",
+    "离截止日期越近加分越多，每行可改天数或加分，也可以删除。": "The closer to the due date, the more points; each row can change its days or points, and can be deleted.",
+    ">时长分段</div>": ">Duration segments</div>",
+    "按预计时长分档加减分，单位可选分钟或小时（支持小数）。": "Score by estimated-duration bucket; units can be minutes or hours (decimals allowed).",
+    ">分钟</option>": ">Minutes</option>",
+    ">小时（可小数）</option>": ">Hours (decimals allowed)</option>",
+    ">文档加减分</div>": ">Document score adjustment</div>",
+    "对单个文档统一加分或减分。": "Add or subtract a uniform score for a single document.",
+    ">文档分组加减分</div>": ">Document group score adjustment</div>",
+    "给整个文档分组内的文档统一加减分，支持笔记本分组和包含子文档的分组。": "Uniform score adjustments for documents in a whole document group; notebook groups and subdocument groups are supported.",
+    ">返回</button>": ">Back</button>",
+    "✅ 优先级算法已保存": "✅ Priority algorithm saved",
+    "${rule.name}象限规则": "${rule.name} quadrant rule",
+    "设置重要性与截止日期条件，支持编辑与重置。": "Set importance and due-date conditions; editing and resetting are supported.",
+    ">重要性</div>": ">Importance</div>",
+    ">截止日期</div>": ">Due date</div>",
+    ">编辑规则</button>": ">Edit rule</button>",
+    ">重置</button>": ">Reset</button>",
+    ">📌 使用说明</div>": ">📌 Usage notes</div>",
+    "在顶部工具栏启用「四象限分组」即可按此规则分组显示": "Enable \"Quadrant grouping\" in the top toolbar to group by these rules",
+    "任务会根据「重要性」和「截止日期」自动分配到对应象限": "Tasks are assigned to quadrants automatically by \"importance\" and \"due date\"",
+    "点击「编辑规则」可自定义每个象限的条件": "Click \"Edit rule\" to customize each quadrant's conditions",
+    "点击「重置」可恢复该象限的默认配置": "Click \"Reset\" to restore that quadrant's default configuration",
+    ">重要性（可多选）</div>": ">Importance (multi-select)</div>",
+    ">截止日期范围（可多选）</div>": ">Due-date range (multi-select)</div>",
+    "⚠ 请至少选择一个重要性条件": "⚠ Select at least one importance condition",
+    "⚠ 请至少选择一个时间范围条件": "⚠ Select at least one time-range condition",
+    "✅ 已重置为默认值": "✅ Reset to defaults",
+    "分段颜色": "Segment color",
+    "暂无文档分组，请先到文档分组与管理中添加分组。": "No document groups yet; add one in Document groups & management first.",
+    "来源项 ${entryCount} 个": "Source items: ${entryCount}",
+    "空分组": "Empty group",
+    "✅ 规则已保存": "✅ Rule saved",
+    "自定义排序不能叠加其他排序规则": "Custom sorting cannot be combined with other sort rules",
+    "确定要删除这个规则吗？": "Delete this rule?",
+    "删除规则失败：${e?.message || e}": "Failed to delete the rule: ${e?.message || e}",
+    "✅ 规则已删除": "✅ Rule deleted",
+    "✅ 已应用规则: ${rule.name}": "✅ Rule applied: ${rule.name}",
+    "✅ 所有规则已保存": "✅ All rules saved",
+    ">📋 筛选规则管理器</div>": ">📋 Filter rule manager</div>",
+    "添加规则": "Add rule",
+    ">筛选条件：</strong>": ">Filter conditions:</strong>",
+    ">排序规则：</strong>": ">Sort rules:</strong>",
+    "placeholder=\"规则名称\"": "placeholder=\"Rule name\"",
+    ">筛选条件</span>": ">Filter conditions</span>",
+    ">排序规则</span>": ">Sort rules</span>",
+    "重来": {
+      "en": "Again",
+      "exactOnly": true
+    },
+    "困难": {
+      "en": "Hard",
+      "exactOnly": true
+    },
+    "良好": {
+      "en": "Good",
+      "exactOnly": true
+    },
+    "简单": {
+      "en": "Easy",
+      "exactOnly": true
+    },
+    "0天前": {
+      "en": "0 days ago",
+      "exactOnly": true
+    },
+    "0天后": {
+      "en": "0 days ahead",
+      "exactOnly": true
+    },
+    "天前": {
+      "en": "days ago",
+      "exactOnly": true
+    },
+    "天后": {
+      "en": "days ahead",
+      "exactOnly": true
+    },
+    "否": {
+      "en": "No",
+      "exactOnly": true
+    },
+    "重要紧急": {
+      "en": "Important & urgent",
+      "exactOnly": true
+    },
+    "重要不紧急": {
+      "en": "Important, not urgent",
+      "exactOnly": true
+    },
+    "不重要紧急": {
+      "en": "Not important, urgent",
+      "exactOnly": true
+    },
+    "不重要不紧急": {
+      "en": "Not important, not urgent",
+      "exactOnly": true
+    },
+    "无日期": {
+      "en": "No date",
+      "exactOnly": true
+    },
+    "🔴 红色": {
+      "en": "🔴 Red",
+      "exactOnly": true
+    },
+    "🟡 黄色": {
+      "en": "🟡 Yellow",
+      "exactOnly": true
+    },
+    "🔵 蓝色": {
+      "en": "🔵 Blue",
+      "exactOnly": true
+    },
+    "🟢 绿色": {
+      "en": "🟢 Green",
+      "exactOnly": true
+    },
+    "余1天以内": {
+      "en": "Due within 1 day",
+      "exactOnly": true
+    },
+    "余3天以内": {
+      "en": "Due within 3 days",
+      "exactOnly": true
+    },
+    "余3天以上": {
+      "en": "Due in 3+ days",
+      "exactOnly": true
+    },
+    "余7天以内": {
+      "en": "Due within 7 days",
+      "exactOnly": true
+    },
+    "余7天以上": {
+      "en": "Due in 7+ days",
+      "exactOnly": true
+    },
+    "余15天以内": {
+      "en": "Due within 15 days",
+      "exactOnly": true
+    },
+    "余15天以上": {
+      "en": "Due in 15+ days",
+      "exactOnly": true
+    },
+    "余30天以内": {
+      "en": "Due within 30 days",
+      "exactOnly": true
+    },
+    "余30天以上": {
+      "en": "Due in 30+ days",
+      "exactOnly": true
+    },
+    "${String(field?.name || field?.id || '').trim() || '未命名字段'}（${String(field?.type || '').trim() === 'multi' ? '多选' : '单选'}）": "${String(field?.name || field?.id || '').trim() || 'Unnamed field'}（${String(field?.type || '').trim() === 'multi' ? 'Multi-select' : 'Single-select'}）",
+    "${i + 1}. ${fieldLabel} (${s.order === 'desc' ? '降序' : '升序'})": "${i + 1}. ${fieldLabel} (${s.order === 'desc' ? 'Descending' : 'Ascending'})",
+    "<select class=\"tm-rule-condition-join tm-rule-condition-operator\" data-tm-change=\"updateConditionJoin\" data-index=\"${index}\">\r\n                        <option value=\"and\" ${join === 'and' ? 'selected' : ''}>且</option>\r\n                        <option value=\"or\" ${join === 'or' ? 'selected' : ''}>或</option>\r\n                    </select>": "<select class=\"tm-rule-condition-join tm-rule-condition-operator\" data-tm-change=\"updateConditionJoin\" data-index=\"${index}\">\r\n                        <option value=\"and\" ${join === 'and' ? 'selected' : ''}>AND</option>\r\n                        <option value=\"or\" ${join === 'or' ? 'selected' : ''}>OR</option>\r\n                    </select>",
+    "\r\n                <label class=\"tm-rule-condition-value\" style=\"display:flex; align-items:center; gap:6px; min-width:160px;\">\r\n                    <span style=\"white-space:nowrap;\">今天至</span>\r\n                    <input type=\"number\"\r\n                           min=\"0\"\r\n                           step=\"1\"\r\n                           class=\"tm-time-input\"\r\n                           style=\"width:80px;\"\r\n                           value=\"${esc(normalizedDays)}\"\r\n                           data-tm-change=\"updateConditionValue\"\r\n                           data-index=\"${index}\">\r\n                    <span style=\"white-space:nowrap;\">${suffix}</span>\r\n                </label>\r\n            ": "\r\n                <label class=\"tm-rule-condition-value\" style=\"display:flex; align-items:center; gap:6px; min-width:160px;\">\r\n                    <span style=\"white-space:nowrap;\">today to</span>\r\n                    <input type=\"number\"\r\n                           min=\"0\"\r\n                           step=\"1\"\r\n                           class=\"tm-time-input\"\r\n                           style=\"width:80px;\"\r\n                           value=\"${esc(normalizedDays)}\"\r\n                           data-tm-change=\"updateConditionValue\"\r\n                           data-index=\"${index}\">\r\n                    <span style=\"white-space:nowrap;\">${suffix}</span>\r\n                </label>\r\n            ",
+    "\r\n            <div style=\"display:flex;gap:8px;align-items:center;margin-bottom:6px;\">\r\n                <span style=\"width:70px;color:var(--tm-secondary-text);\">≤ 天数</span>\r\n                <input class=\"b3-text-field tm-priority-number-input\" type=\"number\" value=\"${Number(r.days) || 0}\" data-tm-call=\"tmSetPriorityDueRange\" data-tm-args='[${i},\"days\"]'>\r\n                <span style=\"width:40px;color:var(--tm-secondary-text);\">加分</span>\r\n                <input class=\"b3-text-field tm-priority-number-input\" type=\"number\" value=\"${Number(r.delta) || 0}\" data-tm-call=\"tmSetPriorityDueRange\" data-tm-args='[${i},\"delta\"]'>\r\n                <button class=\"tm-btn tm-btn-gray\" data-tm-call=\"tmRemovePriorityDueRange\" data-tm-args='[${i}]'>删除</button>\r\n            </div>\r\n        ": "\r\n            <div style=\"display:flex;gap:8px;align-items:center;margin-bottom:6px;\">\r\n                <span style=\"width:70px;color:var(--tm-secondary-text);\">≤ days</span>\r\n                <input class=\"b3-text-field tm-priority-number-input\" type=\"number\" value=\"${Number(r.days) || 0}\" data-tm-call=\"tmSetPriorityDueRange\" data-tm-args='[${i},\"days\"]'>\r\n                <span style=\"width:40px;color:var(--tm-secondary-text);\">Score</span>\r\n                <input class=\"b3-text-field tm-priority-number-input\" type=\"number\" value=\"${Number(r.delta) || 0}\" data-tm-call=\"tmSetPriorityDueRange\" data-tm-args='[${i},\"delta\"]'>\r\n                <button class=\"tm-btn tm-btn-gray\" data-tm-call=\"tmRemovePriorityDueRange\" data-tm-args='[${i}]'>Delete</button>\r\n            </div>\r\n        ",
+    "\r\n            <div style=\"display:flex;gap:8px;align-items:center;margin-bottom:6px;\">\r\n                <span style=\"width:70px;color:var(--tm-secondary-text);\">${durationLabel}</span>\r\n                <input class=\"b3-text-field tm-priority-number-input\" type=\"number\" value=\"${__tmDurationBucketToInputValue(b.maxMinutes)}\" data-tm-call=\"tmSetPriorityDurationBucket\" data-tm-args='[${i},\"maxMinutes\"]'>\r\n                <span style=\"width:40px;color:var(--tm-secondary-text);\">加分</span>\r\n                <input class=\"b3-text-field tm-priority-number-input\" type=\"number\" value=\"${Number(b.delta) || 0}\" data-tm-call=\"tmSetPriorityDurationBucket\" data-tm-args='[${i},\"delta\"]'>\r\n                <button class=\"tm-btn tm-btn-gray\" data-tm-call=\"tmRemovePriorityDurationBucket\" data-tm-args='[${i}]'>删除</button>\r\n            </div>\r\n        ": "\r\n            <div style=\"display:flex;gap:8px;align-items:center;margin-bottom:6px;\">\r\n                <span style=\"width:70px;color:var(--tm-secondary-text);\">${durationLabel}</span>\r\n                <input class=\"b3-text-field tm-priority-number-input\" type=\"number\" value=\"${__tmDurationBucketToInputValue(b.maxMinutes)}\" data-tm-call=\"tmSetPriorityDurationBucket\" data-tm-args='[${i},\"maxMinutes\"]'>\r\n                <span style=\"width:40px;color:var(--tm-secondary-text);\">Score</span>\r\n                <input class=\"b3-text-field tm-priority-number-input\" type=\"number\" value=\"${Number(b.delta) || 0}\" data-tm-call=\"tmSetPriorityDurationBucket\" data-tm-args='[${i},\"delta\"]'>\r\n                <button class=\"tm-btn tm-btn-gray\" data-tm-call=\"tmRemovePriorityDurationBucket\" data-tm-args='[${i}]'>Delete</button>\r\n            </div>\r\n        ",
+    "当前有 ": "Currently ",
+    " 个启用的规则": " active rules",
+    "tm-prompt-title\">编辑四象限规则 - ": "tm-prompt-title\">Edit quadrant rules - ",
+    "\r\n                            编辑\r\n": "\r\n                            Edit\r\n",
+    "\r\n                            删除\r\n": "\r\n                            Delete\r\n",
+    "\r\n                        立即应用\r\n": "\r\n                        Apply now\r\n",
+    "\r\n                            + 添加条件\r\n": "\r\n                            + Add condition\r\n",
+    "\r\n                            + 添加排序\r\n": "\r\n                            + Add sort\r\n",
+    "\r\n                        取消\r\n": "\r\n                        Cancel\r\n",
+    "\r\n                        完成\r\n": "\r\n                        Done\r\n"
   }
 }
