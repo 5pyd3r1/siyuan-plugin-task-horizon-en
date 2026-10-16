@@ -35,12 +35,14 @@ function copyFile(src, dest) {
     fs.copyFileSync(src, dest);
 }
 
-function buildTaskMain(repoRoot, stageRoot) {
-    const manifestPath = path.join(repoRoot, 'src', 'task-horizon', 'manifest.main.json');
+function buildTaskMain(stageRoot) {
+    // Concatenate the (already translated) modules of the staged tree into
+    // task.js, mirroring upstream build.ps1 marker format.
+    const sourceRoot = path.join(stageRoot, 'src', 'task-horizon');
+    const manifestPath = path.join(sourceRoot, 'manifest.main.json');
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     const scripts = Array.isArray(manifest.scripts) ? manifest.scripts : [];
     if (!scripts.length) throw new Error('src/task-horizon/manifest.main.json has no scripts');
-    const sourceRoot = path.join(repoRoot, 'src', 'task-horizon');
     const parts = [];
     for (const raw of scripts) {
         const rel = String(raw).replace(/\\/g, '/').trim();
@@ -66,22 +68,26 @@ function main() {
     const shipped = listShippedFiles(ROOT);
     let copied = 0;
     for (const rel of shipped) {
-        if (rel === 'task.js') continue; // regenerated below
-        if (rel.startsWith('src/task-horizon/')) continue; // becomes task.js
+        if (rel === 'task.js') continue; // regenerated after translation
         copyFile(path.join(ROOT, rel), path.join(STAGE, rel));
         copied++;
     }
-    const fragmentCount = buildTaskMain(ROOT, STAGE);
-    log(`stage: copied ${copied} files, built task.js from ${fragmentCount} fragments`);
+    log(`stage: copied ${copied} files`);
 
+    // Translate the staged tree first: module files keep their real paths and
+    // line numbers here, so byLine/raw spot patches work exactly like in the
+    // coverage run. task.js is then built from the translated modules.
     log('stage: applying translation dictionary');
     execFileSync(process.execPath, [
         APPLY,
         '--root', STAGE,
         '--out', STAGE,
-        '--include-task-main',
         '--report', path.join(ROOT, 'output', 'i18n', 'stage-apply-report.json'),
     ], { stdio: 'inherit' });
+
+    const fragmentCount = buildTaskMain(STAGE);
+    rmrf(path.join(STAGE, 'src', 'task-horizon'));
+    log(`stage: built task.js from ${fragmentCount} translated fragments`);
 
     // Syntax-verify everything that ships as JS.
     let verified = 0;

@@ -141,6 +141,43 @@ function escapeForInsert(value) {
         .replace(/\$/g, '\\$');
 }
 
+function escapeForExact(value) {
+    // Escape for literal-source insertion, but leave ${...} interpolation
+    // regions untouched: their content is code, not text, and escaping quote
+    // characters inside them would produce invalid interpolations.
+    let out = '';
+    let i = 0;
+    while (i < value.length) {
+        const ch = value[i];
+        if (ch === '$' && value[i + 1] === '{') {
+            let depth = 0;
+            let j = i + 1;
+            let inStr = null;
+            for (; j < value.length; j++) {
+                const c = value[j];
+                if (inStr) {
+                    if (c === '\\') { j++; continue; }
+                    if (c === inStr) inStr = null;
+                    continue;
+                }
+                if (c === "'" || c === '"' || c === '`') { inStr = c; continue; }
+                if (c === '{') depth++;
+                else if (c === '}') { depth--; if (depth === 0) break; }
+            }
+            out += value.slice(i, j + 1);
+            i = j + 1;
+            continue;
+        }
+        if (ch === '\\') { out += '\\\\'; i++; continue; }
+        if (ch === "'") { out += "\\'"; i++; continue; }
+        if (ch === '"') { out += '\\"'; i++; continue; }
+        if (ch === '`') { out += '\\`'; i++; continue; }
+        out += ch;
+        i++;
+    }
+    return out;
+}
+
 function noteMatch(stats, key) {
     stats.matches.set(key, (stats.matches.get(key) || 0) + 1);
 }
@@ -197,7 +234,8 @@ function contextFor(text, start, end) {
     return prefix + text.slice(from, to).replace(/\r/g, '\\r').replace(/\n/g, '\\n') + suffix;
 }
 
-function processFile(rel, source, opts, matcher, exactKeep, spots, stats) {
+function processFile(rel, source, opts, matcher, exactKeep, spots, spotByLine, spotRawFiles, stats) {
+    source = applyFileRawSpots(rel, source, spotRawFiles, stats);
     const isCss = rel.toLowerCase().endsWith('.css');
     const tokens = isCss ? scanCss(source) : scan(source);
     const eligible = [];
@@ -245,17 +283,23 @@ function processFile(rel, source, opts, matcher, exactKeep, spots, stats) {
             stats.kept++;
             return open + raw + close;
         }
+        const byLine = spotByLine.get(`${rel}:${token.line}`);
+        if (byLine !== undefined) {
+            noteMatch(stats, `@line:${rel}:${token.line}`);
+            noteReplaced();
+            return open + byLine + close;
+        }
         const spot = spots.get(raw);
         if (spot !== undefined) {
             noteMatch(stats, raw);
             noteReplaced();
-            return open + spot + close;
+            return open + escapeForExact(spot) + close;
         }
         const exact = matcher.exactKeys.get(raw);
         if (exact !== undefined) {
             noteMatch(stats, raw);
             noteReplaced();
-            return open + exact.en + close;
+            return open + escapeForExact(exact.en) + close;
         }
 
         const matchedLocal = [];
@@ -333,18 +377,48 @@ function processFile(rel, source, opts, matcher, exactKeep, spots, stats) {
     return { changed, output, fileStats };
 }
 
+function applyFileRawSpots(rel, source, spotRawFiles, stats) {
+    // Reviewed raw text replacements scoped to a single file. Each entry is
+    // the exact source text to find and its replacement; an optional
+    // { new, count } object pins the expected number of occurrences.
+    const entries = spotRawFiles[rel];
+    if (!entries || typeof entries !== 'object') return source;
+    let out = source;
+    for (const [oldText, value] of Object.entries(entries)) {
+        if (!oldText) continue;
+        const replacement = typeof value === 'string' ? value
+            : (value && typeof value.new === 'string' ? value.new : null);
+        if (replacement === null) continue;
+        const expected = (value && typeof value === 'object' && Number.isInteger(value.count)) ? value.count : null;
+        let count = 0;
+        let idx = out.indexOf(oldText);
+        while (idx !== -1) {
+            count++;
+            out = out.slice(0, idx) + replacement + out.slice(idx + oldText.length);
+            idx = out.indexOf(oldText, idx + replacement.length);
+        }
+        stats.matches.set(`@raw:${rel}:${oldText.slice(0, 40)}`, count);
+        if (expected !== null && count !== expected) {
+            stats.rawMismatch.push({ rel, expected, actual: count, old: oldText.slice(0, 90) });
+        }
+    }
+    return out;
+}
+
 function main() {
     const opts = parseArgs(process.argv);
     const dictionary = loadDictionary(opts.dict);
-    const spotRaw = readJsonIfPresent(opts.spot);
-    const spotEntries = spotRaw && typeof spotRaw === 'object'
-        ? new Map(Object.entries(spotRaw.entries && typeof spotRaw.entries === 'object' ? spotRaw.entries : spotRaw))
-        : new Map();
-    const exactKeep = loadKeep(opts.keep);
+    const spotRaw = readJsonIfPresent(opts.spot) || {};
     const spot = new Map();
-    for (const [key, value] of spotEntries) {
-        if (typeof key === 'string' && key && typeof value === 'string' && value) spot.set(key, value);
+    for (const [key, value] of Object.entries(spotRaw.entries || {})) {
+        if (key && typeof value === 'string' && value) spot.set(key, value);
     }
+    const spotByLine = new Map();
+    for (const [key, value] of Object.entries(spotRaw.byLine || {})) {
+        if (key && typeof value === 'string' && value) spotByLine.set(key, value);
+    }
+    const spotRawFiles = (spotRaw.raw && typeof spotRaw.raw === 'object') ? spotRaw.raw : {};
+    const exactKeep = loadKeep(opts.keep);
     const matcher = buildMatcher(dictionary);
 
     let files = listShippedFiles(opts.root).filter((rel) => isTranslatable(rel)
@@ -353,7 +427,7 @@ function main() {
         files = files.filter((rel) => opts.only.some((needle) => rel.includes(needle)));
     }
 
-    const stats = { matches: new Map(), kept: 0, filesChanged: 0 };
+    const stats = { matches: new Map(), kept: 0, filesChanged: 0, rawMismatch: [] };
     const report = {
         generatedAt: new Date().toISOString(),
         root: opts.root,
@@ -368,7 +442,7 @@ function main() {
     for (const rel of files) {
         const source = fs.readFileSync(path.join(opts.root, rel), 'utf8');
         const before = snapshotMatches(stats);
-        const { output, fileStats } = processFile(rel, source, opts, matcher, exactKeep, spot, stats);
+        const { output, fileStats } = processFile(rel, source, opts, matcher, exactKeep, spot, spotByLine, spotRawFiles, stats);
         if (fileStats) {
             const fileMatches = matchDelta(before, snapshotMatches(stats));
             report.files[rel] = {
@@ -393,6 +467,16 @@ function main() {
     for (const key of spot.keys()) {
         if (!stats.matches.has(key)) stale.push({ key, kind: 'spot' });
     }
+    for (const key of spotByLine.keys()) {
+        if (!stats.matches.has(`@line:${key}`)) stale.push({ key, kind: 'spot-line' });
+    }
+    for (const [rel, entries] of Object.entries(spotRawFiles)) {
+        for (const oldText of Object.keys(entries || {})) {
+            if (!stats.matches.get(`@raw:${rel}:${oldText.slice(0, 40)}`)) {
+                stale.push({ key: `${rel} :: ${oldText.slice(0, 60)}`, kind: 'spot-raw' });
+            }
+        }
+    }
 
     const totals = {
         filesScanned: files.length,
@@ -404,6 +488,7 @@ function main() {
     };
     report.totals = totals;
     report.stale = stale;
+    report.rawCountMismatch = stats.rawMismatch;
 
     fs.mkdirSync(path.dirname(opts.report), { recursive: true });
     fs.writeFileSync(opts.report, JSON.stringify(report, null, 2));
@@ -412,6 +497,12 @@ function main() {
         console.log(`apply${opts.dry ? ' (dry-run)' : ''}: ${totals.filesScanned} files, ${totals.filesChanged} changed`);
         console.log(`apply: ${totals.matchedKeysTotal} dictionary/spot keys matched, ${totals.keptLiterals} literals kept`);
         console.log(`apply: ${totals.uncoveredTotal} uncovered Chinese runs, ${totals.staleKeys} stale keys`);
+        if (stats.rawMismatch.length) {
+            console.warn(`apply: ${stats.rawMismatch.length} raw replacement COUNT MISMATCH(es):`);
+            for (const item of stats.rawMismatch) {
+                console.warn(`  ${item.rel}: expected ${item.expected}, found ${item.actual} :: ${item.old}`);
+            }
+        }
         console.log(`report: ${path.relative(process.cwd(), opts.report)}`);
         const uncoveredFiles = Object.entries(report.files)
             .filter(([, f]) => f.uncovered.length)

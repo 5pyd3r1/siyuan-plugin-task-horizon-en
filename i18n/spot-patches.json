@@ -1,6 +1,26 @@
 {
   "meta": {
-    "note": "Context-sensitive exact literal replacements, applied before the dictionary. Values are inserted VERBATIM - they must be written in the escape style of the surrounding literal. Prefer the dictionary when substring matching is safe; use spot patches for locale objects, weekday arrays, format fragments."
+    "note": "Context-sensitive exact replacements, applied before the dictionary. 'byLine' keys are 'file:line' and replace the whole literal content VERBATIM (values must be written in the escape style of the target literal). 'raw' entries are reviewed raw-file-text replacements scoped per file, optionally pinned with { new, count }; replacements must keep syntax valid (stage.js verifies). Prefer the dictionary when substring matching is safe."
   },
-  "entries": {}
+  "entries": {},
+  "byLine": {
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5574": "Checking a task means “Good”; you can also choose Again, Hard, Good, or Easy from the task menu.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5576": "This task will not repeat automatically.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5578": " The next occurrence is calculated from the actual completion date; no dates are pre-scheduled until then.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5581": " Check in on the planned dates independently; checking the note marks today as checked in and stays checked for the day. This mode has no permanent completed state - switch the repeat mode or turn repeating off to complete the task.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6866": "✅ ${label} applied (background write in progress, ${ok} items)",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6867": "⚠ ${label} partially applied: ${ok} succeeded, ${fail} failed",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6868": "❌ Failed to queue ${label}",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6870": "✅ ${label} succeeded (${ok} items)",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6871": "⚠ ${label} finished: ${ok} succeeded, ${fail} failed",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6872": "❌ ${label} failed"
+  },
+  "raw": {
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js": {
+      "[[1, '一'], [2, '二'], [3, '三'], [4, '四'], [5, '五'], [6, '六'], [0, '日']]": {
+        "new": "[[1, 'Mo'], [2, 'Tu'], [3, 'We'], [4, 'Th'], [5, 'Fr'], [6, 'Sa'], [0, 'Su']]",
+        "count": 1
+      }
+    }
+  }
 }
