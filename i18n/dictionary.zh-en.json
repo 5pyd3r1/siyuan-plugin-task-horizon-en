@@ -2605,6 +2605,7 @@
     "- 待完成：${pendingTasks}": "- Pending: ${pendingTasks}",
     "- 完成率：": "- Completion rate: ",
     ">智能体预设：": ">Agent presets: ",
-    ">定时事件：": ">Scheduled events: "
+    ">定时事件：": ">Scheduled events: ",
+    " 个</div>": "</div>"
   }
 }
