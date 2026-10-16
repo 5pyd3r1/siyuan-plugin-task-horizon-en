@@ -6534,6 +6534,205 @@
     "90天": {
       "en": "90 days",
       "exactOnly": true
+    },
+    "无效任务": "Invalid task",
+    "不支持跨文档连线": "Cross-document connections are not supported",
+    "连线任务不在当前页签组全局白板范围内": "The connected task is outside the current tab group's global whiteboard scope",
+    "各文档白板": "Per-document whiteboards",
+    "❌ 当前修改未保存，请重试": "❌ Current changes were not saved; try again",
+    "思源图片查看器不可用": "SiYuan image viewer is unavailable",
+    "加载思源图片查看器失败": "Failed to load the SiYuan image viewer",
+    "附件图片": "Attached image",
+    "跳转到块引用文档": "Go to the block-reference document",
+    "复制附件": "Copy attachment",
+    "✅ 已复制附件": "✅ Attachment copied",
+    "复制块链接": "Copy block link",
+    "复制路径": "Copy path",
+    "✅ 已复制块链接": "✅ Block link copied",
+    "✅ 已复制路径": "✅ Path copied",
+    "⚠ 当前环境不支持打开本地路径": "⚠ This environment cannot open local paths",
+    "⚠ 当前环境无法打开本地路径": "⚠ Cannot open local paths in this environment",
+    "⚠ 打开本地路径失败": "⚠ Failed to open the local path",
+    "历史附件": "Legacy attachments",
+    "暂无附件": "No attachments yet",
+    "没有匹配的附件": "No matching attachments",
+    "点击选择日期": "Click to pick a date",
+    "批量更新失败": "Batch update failed",
+    "打卡模式没有永久完成状态；请使用打卡复选框，或先切换循环方式": "Check-in mode has no permanent completion state; use the check-in checkbox, or switch the recurrence type first",
+    "完成状态写入缺少任务最新状态，已暂停本次写入": "The completion write is missing the task's latest state; this write was paused",
+    "文本列": "Text columns",
+    "任务时间": "Task time",
+    "输入备注（可留空）": "Enter a note (optional)",
+    "切换标题": "Switch heading",
+    "⚠ 未找到任务所在文档": "⚠ Could not find the document containing the task",
+    "✅ 任务已移出标题分组": "✅ Task moved out of the heading group",
+    "移动到文档": "Move to document",
+    "⚠ 当前分组内没有可移动到的其他文档": "⚠ No other documents in the current group to move to",
+    "搜索当前分组文档": "Search documents in the current group",
+    "搜索当前分组内文档名、别名或 ID": "Search the current group by document name, alias, or ID",
+    "当前分组内没有匹配的文档": "No matching documents in the current group",
+    "选择目标文档": "Select target document",
+    "或直接移动到当前分组内已有任务的文档": "Or move directly to a document in the current group that already has tasks",
+    "当前分组内暂无其他有任务的文档，可使用上方搜索全部文档": "No other documents with tasks in the current group; use the search above to find any document",
+    "设置优先级": "Set priority",
+    "✅ 优先级已更新": "✅ Priority updated",
+    "✅ 时长已更新": "✅ Duration updated",
+    "设置备注": "Set note",
+    "✅ 备注已更新": "✅ Note updated",
+    "✅ 截止日期已更新": "✅ Due date updated",
+    "已完成任务": "Completed tasks",
+    "已隐藏当前父任务下已完成的子任务": "Completed subtasks under this parent are hidden",
+    "直接编辑子任务内容": "Edit subtask content directly",
+    "打开子任务详情": "Open subtask details",
+    "没有找到匹配文档": "No matching documents",
+    "没有找到匹配附件": "No matching attachments",
+    "文档搜索中...": "Searching documents...",
+    "搜索中...": "Searching...",
+    "已切换到文档搜索，可直接搜索思源文档并作为附件添加，也支持粘贴块链接。": "Switched to document search: search SiYuan documents to add as attachments, or paste a block link.",
+    "支持搜索思源附件，也支持拖拽/上传本地文件、Ctrl+V 粘贴图片、assets 路径、本地路径、Markdown 附件链接或文档/块链接。": "Search SiYuan attachments, or drag/upload local files, paste images with Ctrl+V, or paste assets paths, local paths, Markdown attachment links, or document/block links.",
+    "输入文档名开始搜索，或粘贴块链接": "Type a document name to search, or paste a block link",
+    "输入文件名开始搜索，或拖拽/粘贴图片、附件链接、本地路径": "Type a file name to search, or drag/paste images, attachment links, or local paths",
+    "搜索文档名，或粘贴块链接": "Search document name, or paste a block link",
+    "搜索附件名，拖拽/上传文件，或粘贴 assets/… / 本地路径 / 块链接": "Search attachment name, drag/upload files, or paste assets/… / local paths / block links",
+    "松手后上传 ${fileCount} 个文件到思源附件": "Release to upload ${fileCount} files to SiYuan attachments",
+    "松手后上传文件到思源附件": "Release to upload files to SiYuan attachments",
+    "上传中...": "Uploading...",
+    "上传本地": "Upload local",
+    "添加选中": "Add selected",
+    "⚠ 未识别到附件路径或块链接，可粘贴 assets/...、本地路径、Markdown 附件链接或 siyuan://blocks/...": "⚠ No attachment path or block link recognized; paste assets/..., a local path, a Markdown attachment link, or siyuan://blocks/...",
+    "导入图片...": "Importing image...",
+    "未找到匹配附件": "No matching attachment found",
+    "已添加": "Added",
+    "已选择": "Selected",
+    "检测到可直接导入的附件路径或块链接，按回车即可添加。": "A directly importable attachment path or block link was detected; press Enter to add.",
+    "检测到可直接导入的内容，按回车添加": "Directly importable content detected; press Enter to add",
+    "打开附件": "Open attachment",
+    "移除": "Remove",
+    "可拖拽至此处添加附件，也可Ctrl+V粘贴。": "Drag attachments here, or press Ctrl+V to paste.",
+    ">附件</span>": ">Attachments</span>",
+    ">添加附件</span>": ">Add attachment</span>",
+    ">备注</span>": ">Note</span>",
+    "取消缩进": "Outdent",
+    "无序列表": "Bullet list",
+    "有序列表": "Numbered list",
+    "行内代码": "Inline code",
+    "格式工具": "Formatting tools",
+    "循环完成记录": "Recurrence history",
+    ">打卡记录</span>": ">Check-in records</span>",
+    "暂无打卡记录；计划日会显示在日历中。": "No check-in records yet; planned days show in the calendar.",
+    "图片": {
+      "en": "Image",
+      "exactOnly": true
+    },
+    "普通文件": {
+      "en": "File",
+      "exactOnly": true
+    },
+    "文档/块链接": {
+      "en": "Document/block link",
+      "exactOnly": true
+    },
+    "本地路径": {
+      "en": "Local path",
+      "exactOnly": true
+    },
+    "上移": {
+      "en": "Move up",
+      "exactOnly": true
+    },
+    "下移": {
+      "en": "Move down",
+      "exactOnly": true
+    },
+    "缩进": {
+      "en": "Indent",
+      "exactOnly": true
+    },
+    "粗体": {
+      "en": "Bold",
+      "exactOnly": true
+    },
+    "斜体": {
+      "en": "Italic",
+      "exactOnly": true
+    },
+    "链接": {
+      "en": "Link",
+      "exactOnly": true
+    },
+    "引用": {
+      "en": "Quote",
+      "exactOnly": true
+    },
+    "昨天": {
+      "en": "Yesterday",
+      "exactOnly": true
+    },
+    "普通": {
+      "en": "Normal",
+      "exactOnly": true
+    },
+    "黄色": {
+      "en": "Yellow",
+      "exactOnly": true
+    },
+    "绿色": {
+      "en": "Green",
+      "exactOnly": true
+    },
+    "红色": {
+      "en": "Red",
+      "exactOnly": true
+    },
+    "蓝色": {
+      "en": "Blue",
+      "exactOnly": true
+    },
+    "紫色": {
+      "en": "Purple",
+      "exactOnly": true
+    },
+    "共${stats.total}个任务，已完成${stats.completed}个，剩余${remaining}个": "${stats.total} tasks, ${stats.completed} done, ${remaining} remaining",
+    "子任务 ${stats.completed}/${stats.total}": "Subtasks ${stats.completed}/${stats.total}",
+    "❌ 详情保存失败: ${error?.message || String(error)}": "❌ Failed to save details: ${error?.message || String(error)}",
+    "❌ 关闭任务详情失败: ${error?.message || String(error)}": "❌ Failed to close task details: ${error?.message || String(error)}",
+    "\r\n            <article class=\"tm-attachment-library-row\" data-tm-task-id=\"${esc(row.taskId)}\" data-tm-path=\"${esc(row.path)}\">\r\n                <div class=\"tm-attachment-library-file\">\r\n                    ${__tmBuildTaskAttachmentThumbHtml(entry, { size: 'detail' })}\r\n                    <div class=\"tm-attachment-library-file__text\">\r\n                        <div class=\"tm-attachment-library-file__name\" title=\"${esc(fileTitle)}\">${esc(row.name || displayPath)}</div>\r\n                        <div class=\"tm-attachment-library-file__id\" title=\"${esc(row.identifier || row.path)}\">${esc(row.identifier || row.path)}</div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"tm-attachment-library-type\">\r\n                    <span class=\"tm-attachment-library-type-pill tm-attachment-library-type-pill--${esc(row.typeKey)}\">${esc(row.typeLabel)}</span>\r\n                </div>\r\n                <button type=\"button\" class=\"tm-attachment-library-task\" onclick=\"tmAttachmentLibraryOpenTaskDetail('${jsTaskId}', event)\" title=\"${esc(row.taskTitle)}\">\r\n                    ${row.taskTitleHtml || esc(row.taskTitle)}\r\n                </button>\r\n                <div class=\"tm-attachment-library-doc\" title=\"${esc(row.docName)}\">${esc(row.docName)}</div>\r\n                <div class=\"tm-attachment-library-time\" title=\"${esc(timeTitle)}\">${esc(timeLabel)}</div>\r\n                <div class=\"tm-attachment-library-actions\">\r\n                    <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-action\" onclick=\"tmAttachmentLibraryOpen('${jsPath}', event)\" aria-label=\"打开\"${__tmBuildTooltipAttrs('打开', { side: 'top' })}>${__tmRenderLucideIcon('file')}</button>\r\n                    <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-action\" onclick=\"tmAttachmentLibraryCopy('${jsPath}', event)\" aria-label=\"${esc(copyLabel)}\"${__tmBuildTooltipAttrs(copyLabel, { side: 'top' })}>${__tmRenderLucideIcon('paperclip')}</button>\r\n                    <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-action\" onclick=\"tmAttachmentLibraryOpenTask('${jsTaskId}', event)\" aria-label=\"定位任务\"${__tmBuildTooltipAttrs('定位任务', { side: 'top' })}>${__tmRenderLucideIcon('map-pin')}</button>\r\n                    <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-action tm-attachment-library-action--danger\" onclick=\"tmAttachmentLibraryRemove('${jsTaskId}', '${jsPath}', event)\" aria-label=\"移除关联\"${__tmBuildTooltipAttrs('移除关联', { side: 'top' })}>${__tmRenderLucideIcon('trash-2')}</button>\r\n                </div>\r\n            </article>\r\n        ": "\r\n            <article class=\"tm-attachment-library-row\" data-tm-task-id=\"${esc(row.taskId)}\" data-tm-path=\"${esc(row.path)}\">\r\n                <div class=\"tm-attachment-library-file\">\r\n                    ${__tmBuildTaskAttachmentThumbHtml(entry, { size: 'detail' })}\r\n                    <div class=\"tm-attachment-library-file__text\">\r\n                        <div class=\"tm-attachment-library-file__name\" title=\"${esc(fileTitle)}\">${esc(row.name || displayPath)}</div>\r\n                        <div class=\"tm-attachment-library-file__id\" title=\"${esc(row.identifier || row.path)}\">${esc(row.identifier || row.path)}</div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"tm-attachment-library-type\">\r\n                    <span class=\"tm-attachment-library-type-pill tm-attachment-library-type-pill--${esc(row.typeKey)}\">${esc(row.typeLabel)}</span>\r\n                </div>\r\n                <button type=\"button\" class=\"tm-attachment-library-task\" onclick=\"tmAttachmentLibraryOpenTaskDetail('${jsTaskId}', event)\" title=\"${esc(row.taskTitle)}\">\r\n                    ${row.taskTitleHtml || esc(row.taskTitle)}\r\n                </button>\r\n                <div class=\"tm-attachment-library-doc\" title=\"${esc(row.docName)}\">${esc(row.docName)}</div>\r\n                <div class=\"tm-attachment-library-time\" title=\"${esc(timeTitle)}\">${esc(timeLabel)}</div>\r\n                <div class=\"tm-attachment-library-actions\">\r\n                    <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-action\" onclick=\"tmAttachmentLibraryOpen('${jsPath}', event)\" aria-label=\"Open\"${__tmBuildTooltipAttrs('Open', { side: 'top' })}>${__tmRenderLucideIcon('file')}</button>\r\n                    <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-action\" onclick=\"tmAttachmentLibraryCopy('${jsPath}', event)\" aria-label=\"${esc(copyLabel)}\"${__tmBuildTooltipAttrs(copyLabel, { side: 'top' })}>${__tmRenderLucideIcon('paperclip')}</button>\r\n                    <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-action\" onclick=\"tmAttachmentLibraryOpenTask('${jsTaskId}', event)\" aria-label=\"Locate task\"${__tmBuildTooltipAttrs('Locate task', { side: 'top' })}>${__tmRenderLucideIcon('map-pin')}</button>\r\n                    <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-action tm-attachment-library-action--danger\" onclick=\"tmAttachmentLibraryRemove('${jsTaskId}', '${jsPath}', event)\" aria-label=\"Remove link\"${__tmBuildTooltipAttrs('Remove link', { side: 'top' })}>${__tmRenderLucideIcon('trash-2')}</button>\r\n                </div>\r\n            </article>\r\n        ",
+    "\r\n            <div class=\"tm-attachment-library-head\" aria-hidden=\"true\">\r\n                <div>附件</div>\r\n                <div>类型</div>\r\n                <div>关联任务</div>\r\n                <div>所属文档</div>\r\n                <div>添加时间</div>\r\n                <div>操作</div>\r\n            </div>\r\n            <div class=\"tm-attachment-library-list\">\r\n                ${items.map((item) => __tmRenderAttachmentLibraryRowHtml(item)).join('')}\r\n            </div>\r\n        ": "\r\n            <div class=\"tm-attachment-library-head\" aria-hidden=\"true\">\r\n                <div>Attachment</div>\r\n                <div>Type</div>\r\n                <div>Linked task</div>\r\n                <div>Document</div>\r\n                <div>Added</div>\r\n                <div>Actions</div>\r\n            </div>\r\n            <div class=\"tm-attachment-library-list\">\r\n                ${items.map((item) => __tmRenderAttachmentLibraryRowHtml(item)).join('')}\r\n            </div>\r\n        ",
+    "\r\n            <div class=\"tm-body tm-body--attachment-library${bodyAnimClass}\" data-tm-attachment-library-root>\r\n                <section class=\"tm-attachment-library\">\r\n                    <header class=\"tm-attachment-library-header\">\r\n                        <div class=\"tm-attachment-library-title\">\r\n                            <span class=\"tm-attachment-library-title__icon\">${__tmRenderLucideIcon('paperclip')}</span>\r\n                            <span>附件库</span>\r\n                            <span class=\"tm-attachment-library-count\" data-tm-attachment-library-count>${filteredItems.length}/${allItems.length}</span>\r\n                            <span class=\"tm-attachment-library-note\" title=\"仅展示当前文档分组的任务附件\">仅展示当前文档分组的任务附件</span>\r\n                        </div>\r\n                        <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-close\" onclick=\"tmCloseAttachmentLibrary(event)\" aria-label=\"返回工作区\"${__tmBuildTooltipAttrs('返回工作区', { side: 'bottom' })}>${__tmRenderLucideIcon('x')}</button>\r\n                    </header>\r\n                    <div class=\"tm-attachment-library-toolbar\">\r\n                        <label class=\"tm-attachment-library-search\">\r\n                            <span class=\"tm-attachment-library-search__icon\">${__tmRenderLucideIcon('search')}</span>\r\n                            <input type=\"search\" value=\"${esc(searchValue)}\" placeholder=\"搜索附件、任务或文档\" oninput=\"tmAttachmentLibrarySearch(this.value)\" autocomplete=\"off\">\r\n                        </label>\r\n                        <label class=\"tm-attachment-library-filter\">\r\n                            <span>类型</span>\r\n                            <select onchange=\"tmAttachmentLibraryFilter(this.value)\">\r\n                                ${__tmRenderAttachmentLibraryTypeOptions()}\r\n                            </select>\r\n                        </label>\r\n                    </div>\r\n                    <div class=\"tm-attachment-library-results\" data-tm-attachment-library-results>\r\n                        ${__tmRenderAttachmentLibraryResultsHtml(filteredItems, allItems.length)}\r\n                    </div>\r\n                </section>\r\n            </div>\r\n        ": "\r\n            <div class=\"tm-body tm-body--attachment-library${bodyAnimClass}\" data-tm-attachment-library-root>\r\n                <section class=\"tm-attachment-library\">\r\n                    <header class=\"tm-attachment-library-header\">\r\n                        <div class=\"tm-attachment-library-title\">\r\n                            <span class=\"tm-attachment-library-title__icon\">${__tmRenderLucideIcon('paperclip')}</span>\r\n                            <span>Attachment library</span>\r\n                            <span class=\"tm-attachment-library-count\" data-tm-attachment-library-count>${filteredItems.length}/${allItems.length}</span>\r\n                            <span class=\"tm-attachment-library-note\" title=\"Only task attachments in the current document group\">仅展示当前文档分组的任务附件</span>\r\n                        </div>\r\n                        <button type=\"button\" class=\"tm-icon-btn tm-attachment-library-close\" onclick=\"tmCloseAttachmentLibrary(event)\" aria-label=\"Back to workspace\"${__tmBuildTooltipAttrs('Back to workspace', { side: 'bottom' })}>${__tmRenderLucideIcon('x')}</button>\r\n                    </header>\r\n                    <div class=\"tm-attachment-library-toolbar\">\r\n                        <label class=\"tm-attachment-library-search\">\r\n                            <span class=\"tm-attachment-library-search__icon\">${__tmRenderLucideIcon('search')}</span>\r\n                            <input type=\"search\" value=\"${esc(searchValue)}\" placeholder=\"Search attachments, tasks, or documents\" oninput=\"tmAttachmentLibrarySearch(this.value)\" autocomplete=\"off\">\r\n                        </label>\r\n                        <label class=\"tm-attachment-library-filter\">\r\n                            <span>Type</span>\r\n                            <select onchange=\"tmAttachmentLibraryFilter(this.value)\">\r\n                                ${__tmRenderAttachmentLibraryTypeOptions()}\r\n                            </select>\r\n                        </label>\r\n                    </div>\r\n                    <div class=\"tm-attachment-library-results\" data-tm-attachment-library-results>\r\n                        ${__tmRenderAttachmentLibraryResultsHtml(filteredItems, allItems.length)}\r\n                    </div>\r\n                </section>\r\n            </div>\r\n        ",
+    "<span class=\"tm-kanban-chip tm-kanban-chip--muted tm-kanban-chip--date${dateChipClass}\" data-tm-task-time-field=\"date\" style=\"cursor:${editableWhiteboard ? 'pointer' : 'default'};\" ${editableWhiteboard ? `onclick=\"tmWhiteboardEditDate('${escSq(tid)}', event)\"` : ''} title=\"${editableWhiteboard ? '点击选择日期' : ''}\">${esc(dateText || '日期')}</span>": "<span class=\"tm-kanban-chip tm-kanban-chip--muted tm-kanban-chip--date${dateChipClass}\" data-tm-task-time-field=\"date\" style=\"cursor:${editableWhiteboard ? 'pointer' : 'default'};\" ${editableWhiteboard ? `onclick=\"tmWhiteboardEditDate('${escSq(tid)}', event)\"` : ''} title=\"${editableWhiteboard ? 'Click to pick a date' : ''}\">${esc(dateText || 'Date')}</span>",
+    "❌ 批量更新失败: ${e?.message || String(e)}": "❌ Batch update failed: ${e?.message || String(e)}",
+    "❌ 更新失败: ${String(opts.label || '任务字段').trim() || '任务字段'}未写入": "❌ 更新失败: ${String(opts.label || 'task field').trim() || 'task field'} was not written",
+    "❌ 打开时间设置失败: ${e.message}": "❌ Failed to open time settings: ${e.message}",
+    "⚠ 当前文档没有可切换的${headingLabel}": "⚠ This document has no switchable ${headingLabel}",
+    "❌ 切换失败: ${err?.message || err || '未知错误'}": "❌ Switch failed: ${err?.message || err || '未知错误'}",
+    "无${headingLabel}": "No ${headingLabel}",
+    "❌ 移动失败: ${err?.message || err || '未知错误'}": "❌ Move failed: ${err?.message || err || '未知错误'}",
+    "搜索文档（当前分组共 ${allDocs.length} 个）": "Search documents (${allDocs.length} in the current group)",
+    "无${headingLabels[headingLevel] || '标题'}": "No ${headingLabels[headingLevel] || 'heading'}",
+    "\r\n                <div class=\"tm-prompt-box tm-task-attachment-picker-box\">\r\n                    <div class=\"tm-prompt-title\">添加附件</div>\r\n                    <label class=\"tm-task-attachment-picker-switch\">\r\n                        <span class=\"tm-task-attachment-picker-switch__text\">搜索思源文档</span>\r\n                        <input class=\"b3-switch\" type=\"checkbox\" data-tm-attachment-picker-doc-toggle>\r\n                    </label>\r\n                    <div class=\"tm-task-attachment-picker-toolbar\">\r\n                        <input class=\"tm-prompt-input tm-task-attachment-picker-input\" type=\"text\" placeholder=\"搜索附件名，拖拽/上传文件，或粘贴 assets/… / 本地路径 / 块链接\">\r\n                        <button type=\"button\" class=\"tm-prompt-btn tm-prompt-btn-secondary\" data-tm-attachment-picker-upload>上传本地</button>\r\n                        <input class=\"tm-task-attachment-picker-file-input\" type=\"file\" multiple data-tm-attachment-picker-file>\r\n                    </div>\r\n                    <div class=\"tm-task-attachment-picker-helper\" data-tm-attachment-picker-helper>支持搜索思源附件，也支持拖拽/上传本地文件、Ctrl+V 粘贴图片、assets 路径、本地路径、Markdown 附件链接或文档/块链接。</div>\r\n                    <div class=\"tm-task-attachment-picker-list\" data-tm-attachment-picker-list></div>\r\n                    <div class=\"tm-prompt-buttons\">\r\n                        <button type=\"button\" class=\"tm-prompt-btn tm-prompt-btn-secondary\" data-tm-attachment-picker-cancel>取消</button>\r\n                        <button type=\"button\" class=\"tm-prompt-btn tm-prompt-btn-primary\" data-tm-attachment-picker-add disabled>添加选中</button>\r\n                    </div>\r\n                </div>\r\n            ": "\r\n                <div class=\"tm-prompt-box tm-task-attachment-picker-box\">\r\n                    <div class=\"tm-prompt-title\">Add attachment</div>\r\n                    <label class=\"tm-task-attachment-picker-switch\">\r\n                        <span class=\"tm-task-attachment-picker-switch__text\">Search SiYuan documents</span>\r\n                        <input class=\"b3-switch\" type=\"checkbox\" data-tm-attachment-picker-doc-toggle>\r\n                    </label>\r\n                    <div class=\"tm-task-attachment-picker-toolbar\">\r\n                        <input class=\"tm-prompt-input tm-task-attachment-picker-input\" type=\"text\" placeholder=\"Search attachment name, drag/upload files, or paste assets/… / local paths / block links\">\r\n                        <button type=\"button\" class=\"tm-prompt-btn tm-prompt-btn-secondary\" data-tm-attachment-picker-upload>Upload local</button>\r\n                        <input class=\"tm-task-attachment-picker-file-input\" type=\"file\" multiple data-tm-attachment-picker-file>\r\n                    </div>\r\n                    <div class=\"tm-task-attachment-picker-helper\" data-tm-attachment-picker-helper>Search SiYuan attachments, or drag/upload local files, paste images with Ctrl+V, or paste assets paths, local paths, Markdown attachment links, or document/block links.</div>\r\n                    <div class=\"tm-task-attachment-picker-list\" data-tm-attachment-picker-list></div>\r\n                    <div class=\"tm-prompt-buttons\">\r\n                        <button type=\"button\" class=\"tm-prompt-btn tm-prompt-btn-secondary\" data-tm-attachment-picker-cancel>取消</button>\r\n                        <button type=\"button\" class=\"tm-prompt-btn tm-prompt-btn-primary\" data-tm-attachment-picker-add disabled>Add selected</button>\r\n                    </div>\r\n                </div>\r\n            ",
+    "找到 ${results.length} 个${getSearchMode() === 'doc' ? '文档' : '附件'}": "Found ${results.length} 个${getSearchMode() === 'doc' ? 'documents' : 'attachments'}",
+    "第 ${occurrenceNumber}${totalOccurrences > 0 ? `/${totalOccurrences}` : ''} 次": "#${occurrenceNumber}${totalOccurrences > 0 ? `/${totalOccurrences}` : ''}",
+    "开始 ${__tmFormatTaskTimeCompact(sourceStart)}": "Start ${__tmFormatTaskTimeCompact(sourceStart)}",
+    "开始 ${__tmFormatTaskTimeCompact(nextStart)}": "Start ${__tmFormatTaskTimeCompact(nextStart)}",
+    "\r\n                <div class=\"tm-task-detail-history-item\">\r\n                    <div class=\"tm-task-detail-history-head\">\r\n                        <div class=\"tm-task-detail-history-main\">${esc([occurrenceText, completedAt ? `完成于 ${__tmFormatTaskTime(completedAt)}` : '已完成'].filter(Boolean).join(' · '))}</div>\r\n                        <button type=\"button\" class=\"tm-task-detail-history-delete\" data-tm-detail-repeat-history-delete=\"${esc(completedAt || String(index))}\">删除</button>\r\n                    </div>\r\n                    <div class=\"tm-task-detail-history-sub\">本次：${esc(sourceText)}</div>\r\n                    <div class=\"tm-task-detail-history-sub\">已推进到：${esc(nextText)}</div>\r\n                </div>\r\n            ": "\r\n                <div class=\"tm-task-detail-history-item\">\r\n                    <div class=\"tm-task-detail-history-head\">\r\n                        <div class=\"tm-task-detail-history-main\">${esc([occurrenceText, completedAt ? `Completed at ${__tmFormatTaskTime(completedAt)}` : 'Completed'].filter(Boolean).join(' · '))}</div>\r\n                        <button type=\"button\" class=\"tm-task-detail-history-delete\" data-tm-detail-repeat-history-delete=\"${esc(completedAt || String(index))}\">删除</button>\r\n                    </div>\r\n                    <div class=\"tm-task-detail-history-sub\">This run: ${esc(sourceText)}</div>\r\n                    <div class=\"tm-task-detail-history-sub\">Advanced to: ${esc(nextText)}</div>\r\n                </div>\r\n            ",
+    "<div class=\"tm-task-detail-history-item\"><div class=\"tm-task-detail-history-head\"><div class=\"tm-task-detail-history-main\">${esc(date)} · 已打卡</div><button type=\"button\" class=\"tm-task-detail-history-delete\" data-tm-detail-checkin-toggle=\"${esc(date)}\">取消</button></div><div class=\"tm-task-detail-history-sub\">记录于 ${esc(checkedAt ? __tmFormatTaskTime(checkedAt) : '未知时间')}</div></div>": "<div class=\"tm-task-detail-history-item\"><div class=\"tm-task-detail-history-head\"><div class=\"tm-task-detail-history-main\">${esc(date)} · checked in</div><button type=\"button\" class=\"tm-task-detail-history-delete\" data-tm-detail-checkin-toggle=\"${esc(date)}\">Cancel</button></div><div class=\"tm-task-detail-history-sub\">Recorded at ${esc(checkedAt ? __tmFormatTaskTime(checkedAt) : 'Unknown time')}</div></div>",
+    "移除附件关联": "Remove attachment link",
+    "仅从该任务移除此附件，不会删除思源资产文件或本地文件。是否继续？": "Remove this attachment only from this task; SiYuan asset files or local files are not deleted. Continue?",
+    "仅从该任务移除此附件，不会删除原文件。是否继续？": "Remove this attachment only from this task; the original file is not deleted. Continue?",
+    "⚠ 未找到关联任务": "⚠ Linked task not found",
+    "已移除附件关联": "Attachment link removed",
+    "选择${headingLabel}": "Select ${headingLabel}",
+    "截止 ${__tmFormatTaskTimeCompact(sourceDue)}": "Due ${__tmFormatTaskTimeCompact(sourceDue)}",
+    "截止 ${__tmFormatTaskTimeCompact(nextDue)}": "Due ${__tmFormatTaskTimeCompact(nextDue)}",
+    "❌ 上传失败: ${String(e?.message || e || '')}": "❌ Upload failed: ${String(e?.message || e || '')}",
+    "aria-label=\"编辑备注\"": "aria-label=\"Edit note\"",
+    "未记录日期": {
+      "en": "No date recorded",
+      "exactOnly": true
+    },
+    "未推进": {
+      "en": "Not advanced",
+      "exactOnly": true
     }
   }
 }
