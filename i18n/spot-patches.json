@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "note": "Context-sensitive exact literal replacements, applied before the dictionary. Values are inserted VERBATIM - they must be written in the escape style of the surrounding literal. Prefer the dictionary when substring matching is safe; use spot patches for locale objects, weekday arrays, format fragments."
+  },
+  "entries": {}
+}

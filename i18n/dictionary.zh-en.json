@@ -1,0 +1,8 @@
+{
+  "meta": {
+    "source": "zh",
+    "target": "en",
+    "note": "Keys are raw Chinese string literal content as written in the source (escapes preserved). Values are the English replacement. Values for template literals may keep ${...} interpolation syntax. Segment values are inserted escaped-safe. See tools/i18n/README.md."
+  },
+  "entries": {}
+}

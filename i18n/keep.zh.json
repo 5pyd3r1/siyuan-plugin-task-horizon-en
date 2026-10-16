@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "note": "Literal content that must NOT be translated (functional strings such as natural-language date parser synonyms). Entries are exact literal content matches; optionally scoped to files."
+  },
+  "exact": []
+}
