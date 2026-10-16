@@ -1308,6 +1308,12 @@
       "files": [
         "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
       ]
+    },
+    {
+      "text": "[Quickbar] tmOpenTaskDetail函数未找到，请确保任务管理器插件已加载",
+      "files": [
+        "quickbar.js"
+      ]
     }
   ]
 }

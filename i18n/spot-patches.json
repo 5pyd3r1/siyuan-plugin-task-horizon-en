@@ -406,6 +406,28 @@
         "new": "scaleState.label || 'Day'",
         "count": 1
       }
+    },
+    "src/task-horizon/main/shell/82-gantt-runtime.js": {
+      "label: '日',": {
+        "new": "label: 'Day',",
+        "count": 1
+      },
+      "label: '周',": {
+        "new": "label: 'Week',",
+        "count": 1
+      },
+      "label: '月',": {
+        "new": "label: 'Month',",
+        "count": 1
+      },
+      "aria-label=\"${d.getFullYear()}年${d.getMonth() + 1}月${day}日\"": {
+        "new": "aria-label=\"${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}\"",
+        "count": 1
+      },
+      ">${month + 1}月</span>": {
+        "new": ">${new Date(2000, month, 1).toLocaleDateString('en', { month: 'short' })}</span>",
+        "count": 1
+      }
     }
   }
 }
