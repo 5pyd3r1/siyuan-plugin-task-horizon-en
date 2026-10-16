@@ -428,6 +428,38 @@
         "new": ">${new Date(2000, month, 1).toLocaleDateString('en', { month: 'short' })}</span>",
         "count": 1
       }
+    },
+    "src/task-horizon/main/render/47-render-side-panels-and-view-switching.js": {
+      "const week = ['日', '一', '二', '三', '四', '五', '六'];": {
+        "new": "const week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];",
+        "count": 1
+      }
+    },
+    "src/task-horizon/main/render/41-render-scene-context.js": {
+      "['day', '日'],": {
+        "new": "['day', 'Day'],",
+        "count": 2
+      },
+      "['week', '周'],": {
+        "new": "['week', 'Week'],",
+        "count": 2
+      },
+      "['month', '月'],": {
+        "new": "['month', 'Month'],",
+        "count": 2
+      },
+      "时间轴尺度：${timelineScaleState.label || '日'}": {
+        "new": "Timeline scale: ${timelineScaleState.label || 'Day'}",
+        "count": 1
+      },
+      "label: '日',": {
+        "new": "label: 'Day',",
+        "count": 1
+      },
+      "|| '日'": {
+        "new": "|| 'Day'",
+        "count": 1
+      }
     }
   }
 }

@@ -1314,6 +1314,25 @@
       "files": [
         "quickbar.js"
       ]
+    },
+    {
+      "text": "[初始化] 加载设置失败:",
+      "files": [
+        "src/task-horizon/main/shell/80-shell-lifecycle.js"
+      ]
+    },
+    {
+      "text": "[初始化] 加载文档列表失败:",
+      "files": [
+        "src/task-horizon/main/shell/80-shell-lifecycle.js"
+      ]
+    },
+    {
+      "text": "[加载] 获取任务失败:",
+      "files": [
+        "src/task-horizon/main/shell/80-shell-lifecycle.js",
+        "src/task-horizon/main/task-runtime/53c-document-loader-runtime.js"
+      ]
     }
   ]
 }
