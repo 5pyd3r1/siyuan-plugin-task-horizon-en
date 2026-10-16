@@ -22,6 +22,16 @@
         "new": "[[1, 'Mo'], [2, 'Tu'], [3, 'We'], [4, 'Th'], [5, 'Fr'], [6, 'Sa'], [0, 'Su']]",
         "count": 1
       }
+    },
+    "src/task-horizon/main/task-runtime/52-task-detail-runtime.js": {
+      "const labels = ['日', '一', '二', '三', '四', '五', '六'];": {
+        "new": "const labels = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];",
+        "count": 1
+      },
+      "${month.getFullYear()}年${month.getMonth() + 1}月": {
+        "new": "${month.getFullYear()}/${month.getMonth() + 1}",
+        "count": 2
+      }
     }
   }
 }
