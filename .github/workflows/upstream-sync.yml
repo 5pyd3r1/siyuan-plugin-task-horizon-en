@@ -105,7 +105,9 @@ jobs:
 
           echo "sync: dry-run translation check"
           node tools/i18n/apply.js --dry --report output/i18n/sync-report.json
-          read -r U S M < <(node -e "const r=require('./output/i18n/sync-report.json');process.stdout.write([r.totals.uncoveredTotal||0,r.totals.staleKeys||0,(r.rawCountMismatch||[]).length].join(' '))")
+          U=$(node -e "const r=require('./output/i18n/sync-report.json');console.log(r.totals.uncoveredTotal||0)")
+          S=$(node -e "const r=require('./output/i18n/sync-report.json');console.log(r.totals.staleKeys||0)")
+          M=$(node -e "const r=require('./output/i18n/sync-report.json');console.log((r.rawCountMismatch||[]).length)")
           echo "sync: uncovered=${U} stale=${S} rawMismatch=${M}"
 
           if [ "$U" != "0" ] || [ "$S" != "0" ] || [ "$M" != "0" ]; then
@@ -122,7 +124,8 @@ jobs:
           fi
 
           node -e "const fs=require('node:fs');const p='i18n/fork.json';const c=JSON.parse(fs.readFileSync(p,'utf8'));c.versionSuffix='en.1';fs.writeFileSync(p,JSON.stringify(c,null,4)+'\n');"
-          git add -A
+          git add i18n/fork.json
+          git status --short
           git commit -m "sync: upstream ${TAG} (English release en.1)" || true
           git push origin HEAD:main
 
