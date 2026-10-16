@@ -400,6 +400,12 @@
         "new": "return 'no repeat';",
         "count": 1
       }
+    },
+    "src/task-horizon/main/40-render-runtime.js": {
+      "scaleState.label || '日'": {
+        "new": "scaleState.label || 'Day'",
+        "count": 1
+      }
     }
   }
 }
