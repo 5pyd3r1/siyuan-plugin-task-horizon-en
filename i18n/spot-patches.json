@@ -268,6 +268,56 @@
         "new": "\\n\\nThis is an unattended scheduled run. You may only read, filter, and aggregate data, and you may use the read-only sql.query, skill.list, or load Task Horizon built-in skills; you must not create, modify, or delete any data, must not ask the user for confirmation or questions, and must not call browser or other frontend capabilities. When task data is already attached to the prompt, use it directly and do not query again; but when focus time or Pomodoro data is involved, you must pick the Task Horizon MCP capability described as \\u201cFocus statistics\\u201d or \\u201cTime usage statistics\\u201d from this turn\\'s tool definitions (internal identifiers query_focus_statistics or aggregate_time_usage); the actual function name must be the full name with the plugin__siyuan_plugin_task_horizon__ prefix and checksum suffix from the current list; never call the bare identifiers, and never read any custom-tomato-* attributes via SQL.",
         "count": 1
       }
+    },
+    "homepage.js": {
+      "/* ---- 项目进度卡片模块 ---- */": {
+        "new": "/* Project progress card module */",
+        "count": 1
+      },
+      "/* 多分组归组：区块之间用虚线分隔 */": {
+        "new": "/* Multi-group stacking: sections separated by dashed lines */",
+        "count": 1
+      },
+      "/* 区块头：滚动时吸附在模块顶部，多卡片场景下始终知道自己在哪个分组 */": {
+        "new": "/* Section header: sticks to the module top while scrolling so the group is clear with multiple cards */",
+        "count": 1
+      },
+      "/* 右侧「进度条 + 百分比」固定宽度块：各区块头右缘始终对齐 */": {
+        "new": "/* Right-side \"progress bar + percentage\" fixed-width block: keeps header right edges aligned */",
+        "count": 1
+      },
+      "/* 与看板置顶卡片一致：用卡片自身的左边框做文档色条，拐角自然跟随圆角 */": {
+        "new": "/* Consistent with pinned kanban cards: the card left border is the document color strip and corners follow the radius */",
+        "count": 1
+      },
+      "/* 未设置日期时给提示色，引导补全 */": {
+        "new": "/* Accent color when no date is set, prompting completion */",
+        "count": 1
+      },
+      "/* 统计项内部不换行：避免 \"966 任务\" 这类文本从中间折断 */": {
+        "new": "/* No wrapping inside stat items: avoids \"966 tasks\" breaking mid-way */",
+        "count": 1
+      },
+      "/* 双进度条：实际进度填充 + 预期进度刻度（页签进度逻辑的卡片化） */": {
+        "new": "/* Dual progress bar: actual fill + expected tick (card version of tab progress logic) */",
+        "count": 1
+      },
+      "/* 窄屏（dock）：卡片略窄，区块头的聚合条让位 */": {
+        "new": "/* Narrow (dock): slightly narrower cards; the header aggregate bar steps aside */",
+        "count": 1
+      },
+      "/* 手机端：单列平铺，不再限制高度内滚 */": {
+        "new": "/* Mobile: single-column layout, no longer height-capped with inner scrolling */",
+        "count": 1
+      },
+      "[\"日\", \"一\", \"二\", \"三\", \"四\", \"五\", \"六\"]": {
+        "new": "[\"Sun\", \"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\"]",
+        "count": 2
+      },
+      "unit: \"天\",": {
+        "new": "unit: \"days\",",
+        "count": 1
+      }
     }
   }
 }

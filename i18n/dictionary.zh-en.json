@@ -6296,6 +6296,244 @@
     "✅ 分组默认配置已保存": "✅ Group default configuration saved",
     "当前文档分组默认规则、分组和默认视图设置": "Current document-group default rules, grouping, and default view settings",
     "${groupName} / 全部页签": "${groupName} / All tabs",
-    "清除分组默认": "Clear group default"
+    "清除分组默认": "Clear group default",
+    "按分组/文档/二级标题的进度卡片": "Progress cards by group/document/subheading",
+    "任务状态、完成摘要": "Task status, completion summary",
+    "番茄联动开启时展示": "Shown when Pomodoro integration is on",
+    "最近完成曲线": "Recent completion curve",
+    "按月展示近一年完成情况": "Monthly completion over the past year",
+    "未完成任务分布": "Unfinished task distribution",
+    "最近 6 条完成记录": "Last 6 completion records",
+    "逾期与临期任务": "Overdue and due-soon tasks",
+    "项目状态服务未加载": "Project status service not loaded",
+    "时间未知": "Time unknown",
+    "今天 ${clock}": "Today ${clock}",
+    "昨天 ${clock}": "Yesterday ${clock}",
+    "今日专注": "Focus today",
+    "当日专注": "Focus for the day",
+    "日期未知": "Date unknown",
+    "未填预估": "No estimate",
+    "文档分布": "Document distribution",
+    "分心": "Distractions",
+    "文档名称缺失": "Document name missing",
+    "正在读取番茄历史...": "Reading Pomodoro history...",
+    "番茄钟历史暂不可用。": "Pomodoro history is unavailable.",
+    "这一天当前范围暂无专注记录。": "No focus records for this day in the current scope.",
+    "跟随左侧选中日期": "Follow the selected date on the left",
+    "跟随当前页签，按最近结束时间排序": "Follow the current tab, sorted by latest end time",
+    ">当日专注任务</div>": ">Daily focus tasks</div>",
+    ">最近专注</button>": ">Recent focus</button>",
+    ">当日任务</button>": ">Day tasks</button>",
+    "aria-label=\"趋势范围\"": "aria-label=\"Trend range\"",
+    "aria-label=\"完成趋势\"": "aria-label=\"Completion trend\"",
+    "aria-label=\"完成热力图\"": "aria-label=\"Completion heatmap\"",
+    "aria-label=\"任务状态概览\"": "aria-label=\"Task status overview\"",
+    "aria-label=\"查看上个月\"": "aria-label=\"View previous month\"",
+    "aria-label=\"查看下个月\"": "aria-label=\"View next month\"",
+    ">暂无趋势数据</div>": ">No trend data yet</div>",
+    ">暂无热力图数据</div>": ">No heatmap data yet</div>",
+    ">暂无分布数据</div>": ">No distribution data yet</div>",
+    ">暂无专注数据</div>": ">No focus data yet</div>",
+    ">正在读取本月专注记录...</div>": ">Reading this month's focus records...</div>",
+    ">本月专注记录暂不可用。</div>": ">This month's focus records are unavailable.</div>",
+    ">低</span>": ">Low</span>",
+    ">小时</span>": ">h</span>",
+    " · 未设置时间": " · no time set",
+    " · 预期 ${expected}%": " · expected ${expected}%",
+    ">已完成</span>": ">Completed</span>",
+    ">任务状态</div>": ">Task status</div>",
+    "完成、逾期、未完成占比": "Completed, overdue, and unfinished shares",
+    ">总任务</div>": ">Total tasks</div>",
+    "连续完成": "Completion streak",
+    "最近保持连续完成": "Current streak",
+    "最近还没有形成连续完成": "No streak yet",
+    "拖延值": "Procrastination score",
+    ">完成摘要</div>": ">Completion summary</div>",
+    "先看今天，再看连续性和拖延值": "Start with today, then check consistency and procrastination",
+    ">今日完成</div>": ">Completed today</div>",
+    "今日当前范围": "Today · current scope",
+    "当日当前范围": "Day · current scope",
+    ">项目进度</div>": ">Project progress</div>",
+    ">完成热力图</div>": ">Completion heatmap</div>",
+    "按月展示当前范围近一年的完成情况": "Monthly completion for the current scope over the past year",
+    "分布": "Distribution",
+    "当前范围内未完成任务分布": "Unfinished task distribution in the current scope",
+    "当前范围内还没有完成记录。": "No completion records in the current scope yet.",
+    ">最近完成</div>": ">Recent completions</div>",
+    "保留最近 6 条完成记录": "Keeps the last 6 completion records",
+    "当前没有需要优先处理的风险任务。": "No risk tasks need attention right now.",
+    ">风险提醒</div>": ">Risk alerts</div>",
+    "逾期优先，其次展示 7 天内到期项": "Overdue first, then items due within 7 days",
+    "取消完成标记并恢复任务": "Unmark complete and restore the task",
+    "标记已完成并隐藏任务": "Mark complete and hide the task",
+    "保存失败，点击重试": "Save failed; click to retry",
+    "展开项目进度": "Expand project progress",
+    "折叠项目进度": "Collapse project progress",
+    "设置该二级标题的开始/截止日期": "Set the start/due dates of this subheading",
+    "该文档没有二级标题，显示文档整体进度": "This document has no subheadings; showing overall document progress",
+    "全部范围 · 按页签分组归组 · 刻度线为预期进度 · 点击卡片切换到对应文档": "All scopes · grouped by tab groups · tick marks show expected progress · click a card to switch to that document",
+    "当前分组 · 只显示该分组下的文档 · 点击卡片切换到对应文档": "Current group · only documents in this group · click a card to switch to that document",
+    "当前文档 · 按二级标题统计 · 日历按钮可设置开始/截止日期": "Current document · counted by subheading · the calendar button sets start/due dates",
+    "小时": {
+      "en": "h",
+      "exactOnly": true
+    },
+    "今天到期": {
+      "en": "Due today",
+      "exactOnly": true
+    },
+    "高优先级": {
+      "en": "High priority",
+      "exactOnly": true
+    },
+    "中优先级": {
+      "en": "Medium priority",
+      "exactOnly": true
+    },
+    "低优先级": {
+      "en": "Low priority",
+      "exactOnly": true
+    },
+    "当天": {
+      "en": "Today",
+      "exactOnly": true
+    },
+    "7天": {
+      "en": "7 days",
+      "exactOnly": true
+    },
+    "最近专注任务": {
+      "en": "Recent focus tasks",
+      "exactOnly": true
+    },
+    "当日专注任务": {
+      "en": "Daily focus tasks",
+      "exactOnly": true
+    },
+    "最近": {
+      "en": "Recent",
+      "exactOnly": true
+    },
+    "暂无": {
+      "en": "None",
+      "exactOnly": true
+    },
+    "峰值": {
+      "en": "Peak",
+      "exactOnly": true
+    },
+    "日均": {
+      "en": "Daily average",
+      "exactOnly": true
+    },
+    "超前": {
+      "en": "Ahead",
+      "exactOnly": true
+    },
+    "落后": {
+      "en": "Behind",
+      "exactOnly": true
+    },
+    "主页": {
+      "en": "Home",
+      "exactOnly": true
+    },
+    "${dt.getMonth() + 1}月${dt.getDate()}日 周${week[dt.getDay()]}": "${dt.getMonth() + 1}/${dt.getDate()} ${week[dt.getDay()]}",
+    "${bounds.start.getFullYear()}年${bounds.start.getMonth() + 1}月": "${bounds.start.toLocaleDateString('en', { month: 'long', year: 'numeric' })}",
+    "${formatFocusHoursValue(minutes)} 小时": "${formatFocusHoursValue(minutes)} h",
+    "逾期 ${item.overduePercent}%（${item.overdueCount}/${item.dueTaskCount}）": "Overdue ${item.overduePercent}% (${item.overdueCount}/${item.dueTaskCount})",
+    "近 ${runtime.rangeDays} 天完成 ${rangeDone} 项": "Completed ${runtime.rangeDays} in the last ${rangeDone} days",
+    "逾期 ${overdue} 项": "Overdue: ${overdue}",
+    "主页 - ${scopeLabel}": "Home - ${scopeLabel}",
+    "近 ${runtime.rangeDays} 天暂时没有完成记录": "No completions in the last ${runtime.rangeDays} days yet",
+    "${point.label} 完成 ${Number(point.value) || 0} 项": "${point.label}: completed ${Number(point.value) || 0} 项",
+    "<button type=\"button\" class=\"tm-homepage-range-btn ${runtime.rangeDays === days ? \"is-active\" : \"\"}\" data-tm-home-range=\"${days}\">${days} 天</button>": "<button type=\"button\" class=\"tm-homepage-range-btn ${runtime.rangeDays === days ? \"is-active\" : \"\"}\" data-tm-home-range=\"${days}\">${days} d</button>",
+    "${def.label}布局": "${def.label} layout",
+    "上移${def.label}": "Move ${def.label} up",
+    "下移${def.label}": "Move ${def.label} down",
+    "<circle cx=\"${peakPoint.x}\" cy=\"${peakPoint.y}\" r=\"3.5\" class=\"tm-homepage-trend-dot tm-homepage-trend-dot--peak\"><title>${esc(`峰值 ${peakPoint.label}：${peakPoint.value}`)}</title></circle>": "<circle cx=\"${peakPoint.x}\" cy=\"${peakPoint.y}\" r=\"3.5\" class=\"tm-homepage-trend-dot tm-homepage-trend-dot--peak\"><title>${esc(`Peak ${peakPoint.label}: ${peakPoint.value}`)}</title></circle>",
+    "<circle cx=\"${lastPoint.x}\" cy=\"${lastPoint.y}\" r=\"5.5\" class=\"tm-homepage-trend-dot tm-homepage-trend-dot--last\"><title>${esc(`最新 ${lastPoint.label}：${lastPoint.value}`)}</title></circle>": "<circle cx=\"${lastPoint.x}\" cy=\"${lastPoint.y}\" r=\"5.5\" class=\"tm-homepage-trend-dot tm-homepage-trend-dot--last\"><title>${esc(`Latest ${lastPoint.label}: ${lastPoint.value}`)}</title></circle>",
+    " title=\"${esc(`${cell?.key || \"\"} · 完成 ${Number(cell?.count) || 0} 项`)}\"": " title=\"${esc(`${cell?.key || \"\"} · · completed ${Number(cell?.count) || 0} 项`)}\"",
+    "逾期 ${Math.abs(item.diffDays)} 天": "Overdue by ${Math.abs(item.diffDays)} days",
+    "${item.diffDays} 天后到期": "${item.diffDays} days from now",
+    "${key} · 专注 ${minutes} 分钟": "${key} · · focus ${minutes} min",
+    "\r\n            <article class=\"tm-homepage-focus-panel tm-homepage-focus-today\" data-tm-home-focus-today-slot>\r\n                <div class=\"tm-homepage-focus-today-layout\">\r\n                    <div class=\"tm-homepage-focus-calendar-wrap\">${renderFocusCalendar(stats)}</div>\r\n                    <div class=\"tm-homepage-focus-day-metrics\">\r\n                        ${dayHead(today.totalMinutes || 0)}\r\n                        <div class=\"tm-homepage-focus-progress\" style=\"--tm-home-focus-progress:${progressPct}%;\">\r\n                            <div class=\"tm-homepage-focus-progress-meta\">\r\n                                <span>目标 ${esc(formatFocusHoursText(today.targetMinutes || 0))}</span>\r\n                                <span class=\"tm-homepage-focus-progress-value\">${progressPct}%</span>\r\n                            </div>\r\n                            <div class=\"tm-homepage-focus-progress-track\" aria-label=\"${esc(`今日专注目标完成 ${progressPct}%`)}\">\r\n                                <span class=\"tm-homepage-focus-progress-bar\"></span>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"tm-homepage-focus-stat-grid\">\r\n                            ${items.map((item) => `\r\n                                <div class=\"tm-homepage-focus-stat\">\r\n                                    <div class=\"tm-homepage-focus-stat-label\">${esc(item.label)}</div>\r\n                                    <div class=\"tm-homepage-focus-stat-value\">${esc(item.value)}</div>\r\n                                </div>\r\n                            `).join(\"\")}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </article>\r\n        ": "\r\n            <article class=\"tm-homepage-focus-panel tm-homepage-focus-today\" data-tm-home-focus-today-slot>\r\n                <div class=\"tm-homepage-focus-today-layout\">\r\n                    <div class=\"tm-homepage-focus-calendar-wrap\">${renderFocusCalendar(stats)}</div>\r\n                    <div class=\"tm-homepage-focus-day-metrics\">\r\n                        ${dayHead(today.totalMinutes || 0)}\r\n                        <div class=\"tm-homepage-focus-progress\" style=\"--tm-home-focus-progress:${progressPct}%;\">\r\n                            <div class=\"tm-homepage-focus-progress-meta\">\r\n                                <span>Goal ${esc(formatFocusHoursText(today.targetMinutes || 0))}</span>\r\n                                <span class=\"tm-homepage-focus-progress-value\">${progressPct}%</span>\r\n                            </div>\r\n                            <div class=\"tm-homepage-focus-progress-track\" aria-label=\"${esc(`今日专注目标完成 ${progressPct}%`)}\">\r\n                                <span class=\"tm-homepage-focus-progress-bar\"></span>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"tm-homepage-focus-stat-grid\">\r\n                            ${items.map((item) => `\r\n                                <div class=\"tm-homepage-focus-stat\">\r\n                                    <div class=\"tm-homepage-focus-stat-label\">${esc(item.label)}</div>\r\n                                    <div class=\"tm-homepage-focus-stat-value\">${esc(item.value)}</div>\r\n                                </div>\r\n                            `).join(\"\")}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </article>\r\n        ",
+    "\r\n            <div class=\"tm-homepage-focus-page-nav\" aria-label=\"当日专注任务分页\">\r\n                <button type=\"button\" class=\"tm-homepage-focus-page-btn\" data-tm-home-focus-day-page=\"-1\" aria-label=\"上一页当日专注任务\" ${page <= 0 ? \"disabled\" : \"\"}>&lsaquo;</button>\r\n                <span class=\"tm-homepage-focus-page-count\">${esc(`${page + 1}/${totalPages}`)}</span>\r\n                <button type=\"button\" class=\"tm-homepage-focus-page-btn\" data-tm-home-focus-day-page=\"1\" aria-label=\"下一页当日专注任务\" ${page >= totalPages - 1 ? \"disabled\" : \"\"}>&rsaquo;</button>\r\n            </div>\r\n        ": "\r\n            <div class=\"tm-homepage-focus-page-nav\" aria-label=\"Daily focus task pages\">\r\n                <button type=\"button\" class=\"tm-homepage-focus-page-btn\" data-tm-home-focus-day-page=\"-1\" aria-label=\"Previous page of daily focus tasks\" ${page <= 0 ? \"disabled\" : \"\"}>&lsaquo;</button>\r\n                <span class=\"tm-homepage-focus-page-count\">${esc(`${page + 1}/${totalPages}`)}</span>\r\n                <button type=\"button\" class=\"tm-homepage-focus-page-btn\" data-tm-home-focus-day-page=\"1\" aria-label=\"Next page of daily focus tasks\" ${page >= totalPages - 1 ? \"disabled\" : \"\"}>&rsaquo;</button>\r\n            </div>\r\n        ",
+    "近 ${Number(stats?.rangeDays) || runtime.focusRecentDays} 天": "Last ${Number(stats?.rangeDays) || runtime.focusRecentDays} days",
+    "近 ${distribution.rangeDays} 天": "Last ${distribution.rangeDays} days",
+    "\r\n                <article class=\"tm-homepage-focus-distribution\">\r\n                    <div class=\"tm-homepage-focus-distribution-toolbar\">\r\n                        <div class=\"tm-homepage-card-desc\">${distribution.globalScope ? \"全部页签 · 按文档分布\" : \"当前文档 · 按二级标题分布\"}</div>\r\n                        <div class=\"tm-homepage-focus-distribution-range\" role=\"tablist\" aria-label=\"专注分布范围\">\r\n                            ${renderFocusDistributionRangeButtons(distribution.rangeDays)}\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"tm-homepage-focus-distribution-empty\">${esc(rangeLabel)}暂无已完成专注记录。</div>\r\n                </article>\r\n            ": "\r\n                <article class=\"tm-homepage-focus-distribution\">\r\n                    <div class=\"tm-homepage-focus-distribution-toolbar\">\r\n                        <div class=\"tm-homepage-card-desc\">${distribution.globalScope ? \"全部页签 · 按文档分布\" : \"当前文档 · 按二级标题分布\"}</div>\r\n                        <div class=\"tm-homepage-focus-distribution-range\" role=\"tablist\" aria-label=\"专注分布范围\">\r\n                            ${renderFocusDistributionRangeButtons(distribution.rangeDays)}\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"tm-homepage-focus-distribution-empty\">${esc(rangeLabel)}No completed focus records yet.</div>\r\n                </article>\r\n            ",
+    "\r\n            <article class=\"tm-homepage-focus-distribution\">\r\n                <div class=\"tm-homepage-focus-distribution-toolbar\">\r\n                    <div class=\"tm-homepage-card-desc\">${distribution.globalScope ? \"全部页签 · 按文档分布\" : \"当前文档 · 按二级标题分布\"}</div>\r\n                    <div class=\"tm-homepage-focus-distribution-range\" role=\"tablist\" aria-label=\"专注分布范围\">\r\n                        ${renderFocusDistributionRangeButtons(distribution.rangeDays)}\r\n                    </div>\r\n                </div>\r\n                <div class=\"tm-homepage-focus-distribution-body\">\r\n                    <div class=\"tm-homepage-focus-donut-wrap\">\r\n                        <svg class=\"tm-homepage-focus-donut\" viewBox=\"0 0 100 100\" role=\"img\" aria-label=\"${esc(`${rangeLabel}专注分布`)}\">\r\n                            <circle class=\"tm-homepage-focus-donut-track\" cx=\"50\" cy=\"50\" r=\"35\"></circle>${slices}\r\n                        </svg>\r\n                        <div class=\"tm-homepage-focus-donut-center\"><div class=\"tm-homepage-focus-donut-total\">${esc(formatFocusHoursText(distribution.totalSeconds / 60))}</div><div class=\"tm-homepage-focus-donut-label\">${esc(rangeLabel)}完成专注</div></div>\r\n                    </div>\r\n                    <div class=\"tm-homepage-focus-distribution-list\">${rows}</div>\r\n                </div>\r\n            </article>\r\n        ": "\r\n            <article class=\"tm-homepage-focus-distribution\">\r\n                <div class=\"tm-homepage-focus-distribution-toolbar\">\r\n                    <div class=\"tm-homepage-card-desc\">${distribution.globalScope ? \"全部页签 · 按文档分布\" : \"当前文档 · 按二级标题分布\"}</div>\r\n                    <div class=\"tm-homepage-focus-distribution-range\" role=\"tablist\" aria-label=\"专注分布范围\">\r\n                        ${renderFocusDistributionRangeButtons(distribution.rangeDays)}\r\n                    </div>\r\n                </div>\r\n                <div class=\"tm-homepage-focus-distribution-body\">\r\n                    <div class=\"tm-homepage-focus-donut-wrap\">\r\n                        <svg class=\"tm-homepage-focus-donut\" viewBox=\"0 0 100 100\" role=\"img\" aria-label=\"${esc(`${rangeLabel}专注分布`)}\">\r\n                            <circle class=\"tm-homepage-focus-donut-track\" cx=\"50\" cy=\"50\" r=\"35\"></circle>${slices}\r\n                        </svg>\r\n                        <div class=\"tm-homepage-focus-donut-center\"><div class=\"tm-homepage-focus-donut-total\">${esc(formatFocusHoursText(distribution.totalSeconds / 60))}</div><div class=\"tm-homepage-focus-donut-label\">${esc(rangeLabel)}Completed focus</div></div>\r\n                    </div>\r\n                    <div class=\"tm-homepage-focus-distribution-list\">${rows}</div>\r\n                </div>\r\n            </article>\r\n        ",
+    "\r\n            <section class=\"tm-homepage-card tm-homepage-card--focus ${isNarrow ? \"is-narrow\" : \"\"}\">\r\n                <div class=\"tm-homepage-card-head\">\r\n                    <div>\r\n                        <div class=\"tm-homepage-card-title\">专注统计</div>\r\n                        <div class=\"tm-homepage-card-desc\">${isDistribution ? \"已完成专注分布\" : (isNarrow ? dayScope : `${dayScope} · 最近专注近 90 天`)}</div>\r\n                    </div>\r\n                    <div class=\"tm-homepage-focus-view-switch\" role=\"tablist\" aria-label=\"专注统计视图\">\r\n                        <button type=\"button\" class=\"tm-homepage-focus-view-btn ${isDistribution ? \"\" : \"is-active\"}\" data-tm-home-focus-view=\"overview\" role=\"tab\" aria-selected=\"${!isDistribution}\">概览</button>\r\n                        <button type=\"button\" class=\"tm-homepage-focus-view-btn ${isDistribution ? \"is-active\" : \"\"}\" data-tm-home-focus-view=\"distribution\" role=\"tab\" aria-selected=\"${isDistribution}\">分布</button>\r\n                    </div>\r\n                </div>\r\n                ${isDistribution\r\n                    ? renderFocusDistributionPanel(ctx, state.stats || null)\r\n                    : `<div class=\"tm-homepage-focus-grid\">\r\n                        ${renderTodayFocusPanel(stats)}\r\n                        ${isNarrow ? \"\" : `<div data-tm-home-focus-recent-slot>${renderRecentFocusPanel(stats)}</div>`}\r\n                    </div>\r\n                    ${isNarrow ? renderFocusTaskPopover(stats) : \"\"}`}\r\n            </section>\r\n        ": "\r\n            <section class=\"tm-homepage-card tm-homepage-card--focus ${isNarrow ? \"is-narrow\" : \"\"}\">\r\n                <div class=\"tm-homepage-card-head\">\r\n                    <div>\r\n                        <div class=\"tm-homepage-card-title\">Focus statistics</div>\r\n                        <div class=\"tm-homepage-card-desc\">${isDistribution ? \"Completed focus distribution\" : (isNarrow ? dayScope : `${dayScope} · recent focus over 90 days`)}</div>\r\n                    </div>\r\n                    <div class=\"tm-homepage-focus-view-switch\" role=\"tablist\" aria-label=\"Focus statistics view\">\r\n                        <button type=\"button\" class=\"tm-homepage-focus-view-btn ${isDistribution ? \"\" : \"is-active\"}\" data-tm-home-focus-view=\"overview\" role=\"tab\" aria-selected=\"${!isDistribution}\">Overview</button>\r\n                        <button type=\"button\" class=\"tm-homepage-focus-view-btn ${isDistribution ? \"is-active\" : \"\"}\" data-tm-home-focus-view=\"distribution\" role=\"tab\" aria-selected=\"${isDistribution}\">Distribution</button>\r\n                    </div>\r\n                </div>\r\n                ${isDistribution\r\n                    ? renderFocusDistributionPanel(ctx, state.stats || null)\r\n                    : `<div class=\"tm-homepage-focus-grid\">\r\n                        ${renderTodayFocusPanel(stats)}\r\n                        ${isNarrow ? \"\" : `<div data-tm-home-focus-recent-slot>${renderRecentFocusPanel(stats)}</div>`}\r\n                    </div>\r\n                    ${isNarrow ? renderFocusTaskPopover(stats) : \"\"}`}\r\n            </section>\r\n        ",
+    "${dayScope} · 最近专注近 90 天": "${dayScope} · recent focus over 90 days",
+    "近 ${summary.pointCount || 0} 天": "Last ${summary.pointCount || 0} days",
+    "\r\n            <section class=\"tm-homepage-card tm-homepage-card--trend ${String(layout || \"\").trim() === \"narrow\" ? \"is-narrow\" : \"\"}\">\r\n                <div class=\"tm-homepage-card-head tm-homepage-trend-head\">\r\n                    <div class=\"tm-homepage-trend-head-main\">\r\n                        <div class=\"tm-homepage-trend-title-group\">\r\n                        <div class=\"tm-homepage-card-title\">完成趋势</div>\r\n                        <div class=\"tm-homepage-card-desc\">最近 ${runtime.rangeDays} 天完成曲线</div>\r\n                        </div>\r\n                        <div class=\"tm-homepage-trend-summary\">\r\n                            ${stats.map((item) => `\r\n                                <div class=\"tm-homepage-trend-stat\">\r\n                                    <div class=\"tm-homepage-trend-stat-label\">${esc(item.label)}</div>\r\n                                    <div class=\"tm-homepage-trend-stat-value\">${esc(item.value)}</div>\r\n                                    <div class=\"tm-homepage-trend-stat-note\">${esc(item.note)}</div>\r\n                                </div>\r\n                            `).join(\"\")}\r\n                        </div>\r\n                    </div>\r\n                    ${renderRangeSwitch()}\r\n                </div>\r\n                <div class=\"tm-homepage-trend-scroll\">\r\n                    <div class=\"tm-homepage-trend-scroll-inner\">\r\n                        <div class=\"tm-homepage-trend-wrap\">${buildTrendSvg(overview.trend, ctx, profile, layout)}</div>\r\n                        ${renderTrendAxis(overview?.trend)}\r\n                    </div>\r\n                </div>\r\n            </section>\r\n        ": "\r\n            <section class=\"tm-homepage-card tm-homepage-card--trend ${String(layout || \"\").trim() === \"narrow\" ? \"is-narrow\" : \"\"}\">\r\n                <div class=\"tm-homepage-card-head tm-homepage-trend-head\">\r\n                    <div class=\"tm-homepage-trend-head-main\">\r\n                        <div class=\"tm-homepage-trend-title-group\">\r\n                        <div class=\"tm-homepage-card-title\">Completion trend</div>\r\n                        <div class=\"tm-homepage-card-desc\">Completion curve over the last ${runtime.rangeDays} days</div>\r\n                        </div>\r\n                        <div class=\"tm-homepage-trend-summary\">\r\n                            ${stats.map((item) => `\r\n                                <div class=\"tm-homepage-trend-stat\">\r\n                                    <div class=\"tm-homepage-trend-stat-label\">${esc(item.label)}</div>\r\n                                    <div class=\"tm-homepage-trend-stat-value\">${esc(item.value)}</div>\r\n                                    <div class=\"tm-homepage-trend-stat-note\">${esc(item.note)}</div>\r\n                                </div>\r\n                            `).join(\"\")}\r\n                        </div>\r\n                    </div>\r\n                    ${renderRangeSwitch()}\r\n                </div>\r\n                <div class=\"tm-homepage-trend-scroll\">\r\n                    <div class=\"tm-homepage-trend-scroll-inner\">\r\n                        <div class=\"tm-homepage-trend-wrap\">${buildTrendSvg(overview.trend, ctx, profile, layout)}</div>\r\n                        ${renderTrendAxis(overview?.trend)}\r\n                    </div>\r\n                </div>\r\n            </section>\r\n        ",
+    "<span class=\"tm-home-project-risk\">逾期${Math.abs(remainingDays)}天</span>": "<span class=\"tm-home-project-risk\">Overdue ${Math.abs(remainingDays)}d</span>",
+    "<span class=\"days-remaining\">剩余${remainingDays}天</span>": "<span class=\"days-remaining\">Remaining ${remainingDays}d</span>",
+    "<span class=\"delta is-ahead\">超前 ${delta}%</span>": "<span class=\"delta is-ahead\">Ahead ${delta}%</span>",
+    "<span class=\"delta is-behind\">落后 ${-delta}%</span>": "<span class=\"delta is-behind\">Behind ${-delta}%</span>",
+    "<div class=\"tm-home-project-progress-expected\" style=\"left:calc(${expected}% - 1px)\" title=\"预期进度 ${expected}%\"></div>": "<div class=\"tm-home-project-progress-expected\" style=\"left:calc(${expected}% - 1px)\" title=\"Expected progress ${expected}%\"></div>",
+    "\r\n            <div class=\"tm-home-project-stats\">\r\n                <span><span class=\"n\">${toNumber(entity?.total, 0)}</span> 任务</span>\r\n                <span><span class=\"n is-done\">${toNumber(entity?.done, 0)}</span> 完成</span>\r\n                ${overdue > 0 ? `<span><span class=\"n is-overdue\">${overdue}</span> 逾期</span>` : \"\"}\r\n                ${doing > 0 ? `<span><span class=\"n\">${doing}</span> 进行中</span>` : \"\"}\r\n                ${range\r\n                    ? `<span class=\"range ${overdueDays > 0 && !isProjectCardCompleted(entity, isCompleted) ? \"is-urgent\" : \"\"}\">${esc(range)}</span>`\r\n                    : `<span class=\"range is-none\">未设置时间</span>`}\r\n            </div>": "\r\n            <div class=\"tm-home-project-stats\">\r\n                <span><span class=\"n\">${toNumber(entity?.total, 0)}</span> tasks</span>\r\n                <span><span class=\"n is-done\">${toNumber(entity?.done, 0)}</span> done</span>\r\n                ${overdue > 0 ? `<span><span class=\"n is-overdue\">${overdue}</span> 逾期</span>` : \"\"}\r\n                ${doing > 0 ? `<span><span class=\"n\">${doing}</span> 进行中</span>` : \"\"}\r\n                ${range\r\n                    ? `<span class=\"range ${overdueDays > 0 && !isProjectCardCompleted(entity, isCompleted) ? \"is-urgent\" : \"\"}\">${esc(range)}</span>`\r\n                    : `<span class=\"range is-none\">未设置时间</span>`}\r\n            </div>",
+    "\r\n        <div class=\"tm-home-project-card ${card.active ? \"is-active\" : \"\"} ${isCompleted ? \"is-completed\" : \"\"}\"\r\n             ${color ? `style=\"--tm-doc-color:${esc(color)}\"` : \"\"}\r\n             data-tm-home-project-doc=\"${esc(card.id)}\"\r\n             data-tm-home-project-kind=\"doc\"\r\n             data-tm-home-project-id=\"${esc(card.id)}\"\r\n             title=\"点击切换：查看「${esc(card.name)}」按二级标题的进度\">\r\n            <div class=\"tm-home-project-top\">\r\n                <span class=\"tm-home-project-dot\"></span>\r\n                <span class=\"tm-home-project-name\">${esc(card.name)}</span>\r\n                ${renderProjectTimingStatusHtml(card, todayKey, isCompleted)}\r\n                ${renderProjectCalButton(\"doc\", card.id, card.name, !!range, range ? `设置文档日期（${range}）` : \"设置文档开始/截止日期\")}\r\n            </div>\r\n            ${renderProjectStatsHtml(card, overdueDays, card.overdue, isCompleted)}\r\n            ${renderProjectProgressHtml(card, isCompleted)}\r\n        </div>": "\r\n        <div class=\"tm-home-project-card ${card.active ? \"is-active\" : \"\"} ${isCompleted ? \"is-completed\" : \"\"}\"\r\n             ${color ? `style=\"--tm-doc-color:${esc(color)}\"` : \"\"}\r\n             data-tm-home-project-doc=\"${esc(card.id)}\"\r\n             data-tm-home-project-kind=\"doc\"\r\n             data-tm-home-project-id=\"${esc(card.id)}\"\r\n             title=\"Click to switch: view “${esc(card.name)}” by subheading\">\r\n            <div class=\"tm-home-project-top\">\r\n                <span class=\"tm-home-project-dot\"></span>\r\n                <span class=\"tm-home-project-name\">${esc(card.name)}</span>\r\n                ${renderProjectTimingStatusHtml(card, todayKey, isCompleted)}\r\n                ${renderProjectCalButton(\"doc\", card.id, card.name, !!range, range ? `设置文档日期（${range}）` : \"设置文档开始/截止日期\")}\r\n            </div>\r\n            ${renderProjectStatsHtml(card, overdueDays, card.overdue, isCompleted)}\r\n            ${renderProjectProgressHtml(card, isCompleted)}\r\n        </div>",
+    "设置标题日期（${range}）": "Set heading dates (${range})",
+    "<span class=\"tm-home-projects-section-bar-expected\" style=\"left:calc(${exp}% - 1px)\" title=\"预期进度 ${exp}%\"></span>": "<span class=\"tm-home-projects-section-bar-expected\" style=\"left:calc(${exp}% - 1px)\" title=\"Expected progress ${exp}%\"></span>",
+    "${cards.length} 个文档 · ${toNumber(agg.total, 0)} 任务 / ${toNumber(agg.done, 0)} 完成": "${cards.length} 个文档 · ${toNumber(agg.total, 0)} tasks / ${toNumber(agg.done, 0)} done",
+    " · <span class=\"is-overdue\">${overdueDocs} 个逾期</span>": " · <span class=\"is-overdue\">${overdueDocs} overdue</span>",
+    "${toNumber(doc.total, 0)} 任务 / ${toNumber(doc.done, 0)} 完成": "${toNumber(doc.total, 0)} tasks / ${toNumber(doc.done, 0)} done",
+    "<span class=\"tm-home-projects-collapsed-summary\">${totalTasks} 任务 · 完成 ${collapsedPct}%</span>": "<span class=\"tm-home-projects-collapsed-summary\">${totalTasks} tasks · done ${collapsedPct}%</span>",
+    "${actualPomodoros} / ${estimate} 番茄": "${actualPomodoros} / ${estimate} pomodoros",
+    "${m + 1}月": "${new Date(2000, m, 1).toLocaleDateString('en', { month: 'short' })}",
+    "扣分 ${item.penaltyCount}": "Penalty ${item.penaltyCount}",
+    "推迟 ${item.rescheduleCount}": "Postponed ${item.rescheduleCount}",
+    ">宽版</button>": ">Wide</button>",
+    ">窄版</button>": ">Narrow</button>",
+    "aria-label=\"主页模块排序设置\"": "aria-label=\"Home module order settings\"",
+    ">模块排序</div>": ">Module order</div>",
+    "aria-label=\"主页模块排序\"": "aria-label=\"Home module order\"",
+    "aria-label=\"关闭当日专注任务\"": "aria-label=\"Close daily focus tasks\"",
+    ">完成率 ": ">Completion rate ",
+    "最近一周累计 ": "Last 7 days: ",
+    "当前范围没有可展示的文档": "No documents to display in the current scope",
+    "当前范围暂无专注记录。": "No focus records in the current scope.",
+    "${key} · 暂无专注记录": "${key} · no focus records",
+    "项目进度": {
+      "en": "Project progress",
+      "exactOnly": true
+    },
+    "任务概览": {
+      "en": "Task overview",
+      "exactOnly": true
+    },
+    "完成趋势": {
+      "en": "Completion trend",
+      "exactOnly": true
+    },
+    "完成热力图": {
+      "en": "Completion heatmap",
+      "exactOnly": true
+    },
+    "任务分布": {
+      "en": "Task distribution",
+      "exactOnly": true
+    },
+    "最近完成": {
+      "en": "Recent completions",
+      "exactOnly": true
+    },
+    "风险提醒": {
+      "en": "Risk alerts",
+      "exactOnly": true
+    },
+    "当前范围": {
+      "en": "Current scope",
+      "exactOnly": true
+    },
+    "30天": {
+      "en": "30 days",
+      "exactOnly": true
+    },
+    "90天": {
+      "en": "90 days",
+      "exactOnly": true
+    }
   }
 }
