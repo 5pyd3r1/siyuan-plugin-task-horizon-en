@@ -355,6 +355,8 @@ function processFile(rel, source, opts, matcher, exactKeep, spots, spotByLine, s
         for (const run of runs) {
             fileStats.uncovered.push({
                 line: token.line,
+                start: token.contentStart + run.start,
+                end: token.contentStart + run.end,
                 context: contextFor(masked, run.start, run.end),
             });
         }
