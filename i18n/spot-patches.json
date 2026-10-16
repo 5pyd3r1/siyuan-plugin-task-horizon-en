@@ -318,6 +318,88 @@
         "new": "unit: \"days\",",
         "count": 1
       }
+    },
+    "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js": {
+      "dates.join('、') + '日'": {
+        "new": "dates.join(', ')",
+        "count": 1
+      },
+      ".filter(Boolean).join('、')": {
+        "new": ".filter(Boolean).join(', ')",
+        "count": 1
+      },
+      "pattern.ordinal === -1 ? '最后一个' : ['第一个', '第二个', '第三个', '第四个', '第五个'][pattern.ordinal - 1]": {
+        "new": "pattern.ordinal === -1 ? 'last' : ['first', 'second', 'third', 'fourth', 'fifth'][pattern.ordinal - 1]",
+        "count": 1
+      },
+      "+ ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][pattern.weekday];": {
+        "new": "+ ' ' + ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][pattern.weekday];",
+        "count": 1
+      },
+      "const ordinals = [[1, '第一个'], [2, '第二个'], [3, '第三个'], [4, '第四个'], [5, '第五个'], [-1, '最后一个']];": {
+        "new": "const ordinals = [[1, 'first'], [2, 'second'], [3, 'third'], [4, 'fourth'], [5, 'fifth'], [-1, 'last']];",
+        "count": 1
+      },
+      "const weekdays = [[0, '周日'], [1, '周一'], [2, '周二'], [3, '周三'], [4, '周四'], [5, '周五'], [6, '周六']];": {
+        "new": "const weekdays = [[0, 'Sun'], [1, 'Mon'], [2, 'Tue'], [3, 'Wed'], [4, 'Thu'], [5, 'Fri'], [6, 'Sat']];",
+        "count": 1
+      },
+      "aria-label=\"每月' + (day === -1 ? title : title + '日') + '\"": {
+        "new": "aria-label=\"' + (day === -1 ? title : 'Day ' + title) + '\"",
+        "count": 1
+      },
+      "const triggerText = rule.trigger === 'complete' ? '完成后' : (rule.trigger === 'checkin' ? '打卡' : '到期后');": {
+        "new": "const triggerText = rule.trigger === 'complete' ? 'After completion' : (rule.trigger === 'checkin' ? 'On check-in' : 'After due');",
+        "count": 1
+      },
+      "['周日', '周一', '周二', '周三', '周四', '周五', '周六'][weekday]).join('、')": {
+        "new": "['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][weekday]).join(', ')",
+        "count": 1
+      },
+      "return `按星期（第${__tmGetTaskRepeatMonthWeekOrdinal(anchorDate)}个${__tmGetTaskRepeatWeekdayLabel(anchorDate)}）`;": {
+        "new": "return `By weekday (#${__tmGetTaskRepeatMonthWeekOrdinal(anchorDate)} ${__tmGetTaskRepeatWeekdayLabel(anchorDate)})`;",
+        "count": 1
+      },
+      "return `按日期（${anchorDate.getDate()}日）`;": {
+        "new": "return `By date (${anchorDate.getDate()})`;",
+        "count": 1
+      },
+      "return n > 1 ? `每${n}天` : '每天';": {
+        "new": "return n > 1 ? `every ${n} days` : 'every day';",
+        "count": 1
+      },
+      "return n > 1 ? `每${n}个工作日` : '每个工作日';": {
+        "new": "return n > 1 ? `every ${n} workdays` : 'every workday';",
+        "count": 1
+      },
+      "return n > 1 ? `每${n}周` : '每周';": {
+        "new": "return n > 1 ? `every ${n} weeks` : 'every week';",
+        "count": 1
+      },
+      "return n > 1 ? `每${n}个月` : '每月';": {
+        "new": "return n > 1 ? `every ${n} months` : 'every month';",
+        "count": 1
+      },
+      "return n > 1 ? `每${n}年` : '每年';": {
+        "new": "return n > 1 ? `every ${n} years` : 'every year';",
+        "count": 1
+      },
+      "return n > 1 ? `每${n}个农历月` : '农历每月';": {
+        "new": "return n > 1 ? `every ${n} lunar months` : 'lunar monthly';",
+        "count": 1
+      },
+      "return n > 1 ? `每${n}个农历年` : '农历每年';": {
+        "new": "return n > 1 ? `every ${n} lunar years` : 'lunar yearly';",
+        "count": 1
+      },
+      "return 'FSRS 间隔重复';": {
+        "new": "return 'FSRS spaced repetition';",
+        "count": 2
+      },
+      "return '不循环';": {
+        "new": "return 'no repeat';",
+        "count": 1
+      }
     }
   }
 }

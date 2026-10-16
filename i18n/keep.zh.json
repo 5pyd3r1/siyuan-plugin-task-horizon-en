@@ -1014,6 +1014,300 @@
       "files": [
         "ai.js"
       ]
+    },
+    {
+      "text": "正",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "一",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "二",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "三",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "四",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "五",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "六",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "七",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "八",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "九",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "十",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "十一",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "十二",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "冬",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "腊",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "零",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "〇",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "两",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "廿",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "卅",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初一",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初二",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初三",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初四",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初五",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初六",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初七",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初八",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初九",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "初十",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "二十",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "三十",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "十${digits[n - 10]}",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "廿${digits[n - 20]}",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "正月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "二月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "三月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "四月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "五月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "六月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "七月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "八月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "九月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "十月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "冬月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "腊月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "${info.month}月",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "闰",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
+    },
+    {
+      "text": "打卡",
+      "files": [
+        "src/task-horizon/main/task-runtime/50-task-model-and-repeat-utils.js"
+      ]
     }
   ]
 }

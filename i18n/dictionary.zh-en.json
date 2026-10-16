@@ -6733,6 +6733,43 @@
     "未推进": {
       "en": "Not advanced",
       "exactOnly": true
-    }
+    },
+    "点击编辑：${name}": "Click to edit: ${name}",
+    "title=\"日程开始时间\"": "title=\"Schedule start time\"",
+    "打卡 ${text}": "Check-in ${text}",
+    "aria-label=\"子任务进度\"": "aria-label=\"Subtask progress\"",
+    "今日可额外打卡 · 下次 ${next}": "Extra check-in available today · next ${next}",
+    "打卡计划已结束 · 今日可额外打卡": "Check-in plan finished · extra check-in available today",
+    "可多选；未修改时保留原有月末规则。": "Multi-select; keeps the original month-end rule when unchanged.",
+    "当月不存在的日期跳过；最后一天随月份变化。": "Dates that do not exist in the month are skipped; the last day follows the month length.",
+    " · 至 ${rule.until}": " · until ${rule.until}",
+    " · 共 ${rule.maxOccurrences} 次": " · ${rule.maxOccurrences} times total",
+    "循环任务：${summary}${checkinHint}": "Recurring task: ${summary}${checkinHint}",
+    "循环任务${checkinHint}": "Recurring task${checkinHint}",
+    "置顶任务": "Pinned task",
+    "全局收集文档任务": "Global inbox document tasks",
+    "完成状态仅在插件内生效，不会修改原块内容": "The completion state only applies inside the plugin and does not modify the original block",
+    ">循环记录": ">Recurring",
+    " 次": " times",
+    "最后一天": {
+      "en": "Last day",
+      "exactOnly": true
+    },
+    "每月第几个星期": {
+      "en": "Weekday of the month",
+      "exactOnly": true
+    },
+    "星期几": {
+      "en": "Weekday",
+      "exactOnly": true
+    },
+    "周?": {
+      "en": "?",
+      "exactOnly": true
+    },
+    "${Number(full.slice(5, 7))}月${Number(full.slice(8, 10))}日": "${Number(full.slice(5, 7))}/${Number(full.slice(8, 10))}",
+    "已完成 ${__tmGetTaskRepeatCompletedCount(task, rule)}/${rule.maxOccurrences}": "Completed ${__tmGetTaskRepeatCompletedCount(task, rule)}/${rule.maxOccurrences}",
+    " · 第 ${occurrenceNumber}${totalOccurrences > 0 ? `/${totalOccurrences}` : ''} 次": " · #${occurrenceNumber}${totalOccurrences > 0 ? `/${totalOccurrences}` : ''}",
+    "每月日期，可多选": "Monthly dates (multi-select)"
   }
 }
