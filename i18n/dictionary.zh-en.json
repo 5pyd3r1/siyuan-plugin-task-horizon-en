@@ -7,17 +7,16 @@
   "entries": {
     "任务管理器": "Task Manager",
     "任务侧栏": "Task Dock",
-
     "立即上传日历 ICS": "Upload calendar ICS now",
-
     "思源智能体": "SiYuan Agent",
     "旧版 AI": "Legacy AI",
     "无法加载${normalized === \"agent\" ? \"思源智能体\" : \"旧版 AI\"}运行时": "Failed to load ${normalized === \"agent\" ? \"SiYuan Agent\" : \"Legacy AI\"} runtime",
-
     "思源数据正在同步": "Syncing SiYuan data…",
     "同步失败": "Sync failed",
-    "已同步": { "en": "Synced", "exactOnly": true },
-
+    "已同步": {
+      "en": "Synced",
+      "exactOnly": true
+    },
     "打开任务管理器": "Open Task Manager",
     "新建任务窗口": "New Task Window",
     "打开任务管理器的指定视图、任务或功能面板": "Open a specific view, task, or panel in the Task Manager",
@@ -26,7 +25,6 @@
     "在任务管理器中定位并聚焦一个任务": "Locate and focus a task in the Task Manager",
     "缺少任务 ID": "Missing task ID",
     "定位任务失败": "Failed to locate the task",
-
     "读取任务视图上下文": "Read task view context",
     "按活动页签注册任务范围；返回当前视图 scopeToken 和可重新筛选的 containerScopeToken；scope 可显式覆盖": "Register a task scope for the active tab; returns the current view scopeToken and a re-filterable containerScopeToken; scope can override explicitly",
     "任务上下文服务尚未就绪": "Task context service is not ready",
@@ -41,45 +39,111 @@
     "已选任务范围注册失败": "Failed to register the selected task scope",
     "读取任务视图失败": "Failed to read the task view",
     "未知前端动作: ${String(name || \"\")}": "Unknown frontend action: ${String(name || \"\")}",
-
-    "打开": { "en": "Open", "exactOnly": true },
-
+    "打开": {
+      "en": "Open",
+      "exactOnly": true
+    },
     "任务 Dock 已关闭": "Task Dock is turned off",
     "可以在任务管理器设置里的“视图与布局”重新开启这个侧边栏。": "Re-enable this sidebar under “Views & Layout” in the Task Manager settings.",
     "任务 Dock 加载中": "Task Dock is loading",
     "正在等待任务管理器入口挂载。": "Waiting for the Task Manager entry to mount.",
     "任务 Dock 加载失败": "Failed to load the Task Dock",
     "未知错误": "Unknown error",
-    "重试": { "en": "Retry", "exactOnly": true },
-
-    "经典图标": { "en": "Classic", "exactOnly": true },
-    "任务收件箱": { "en": "Task Inbox", "exactOnly": true },
-    "任务完成": { "en": "Task Check", "exactOnly": true },
-    "任务列表": { "en": "Task List", "exactOnly": true },
-    "日程任务": { "en": "Scheduled Tasks", "exactOnly": true },
-    "聚焦完成": { "en": "Focus Complete", "exactOnly": true },
-
-    "取消": { "en": "Cancel", "exactOnly": true },
-    "确定": { "en": "OK", "exactOnly": true },
-    "确认": { "en": "Confirm", "exactOnly": true },
-    "应用": { "en": "Apply", "exactOnly": true },
-    "清空": { "en": "Clear", "exactOnly": true },
-    "状态": { "en": "Status", "exactOnly": true },
-    "未设置": { "en": "Not set", "exactOnly": true },
-    "日程": { "en": "Schedule", "exactOnly": true },
-    "文档": { "en": "Document", "exactOnly": true },
-    "标题": { "en": "Heading", "exactOnly": true },
-    "日记": { "en": "Daily note", "exactOnly": true },
-    "今天": { "en": "Today", "exactOnly": true },
-    "无": { "en": "None", "exactOnly": true },
-    "高": { "en": "High", "exactOnly": true },
-    "中": { "en": "Medium", "exactOnly": true },
-    "低": { "en": "Low", "exactOnly": true },
-
+    "重试": {
+      "en": "Retry",
+      "exactOnly": true
+    },
+    "经典图标": {
+      "en": "Classic",
+      "exactOnly": true
+    },
+    "任务收件箱": {
+      "en": "Task Inbox",
+      "exactOnly": true
+    },
+    "任务完成": {
+      "en": "Task Check",
+      "exactOnly": true
+    },
+    "任务列表": {
+      "en": "Task List",
+      "exactOnly": true
+    },
+    "日程任务": {
+      "en": "Scheduled Tasks",
+      "exactOnly": true
+    },
+    "聚焦完成": {
+      "en": "Focus Complete",
+      "exactOnly": true
+    },
+    "取消": {
+      "en": "Cancel",
+      "exactOnly": true
+    },
+    "确定": {
+      "en": "OK",
+      "exactOnly": true
+    },
+    "确认": {
+      "en": "Confirm",
+      "exactOnly": true
+    },
+    "应用": {
+      "en": "Apply",
+      "exactOnly": true
+    },
+    "清空": {
+      "en": "Clear",
+      "exactOnly": true
+    },
+    "状态": {
+      "en": "Status",
+      "exactOnly": true
+    },
+    "未设置": {
+      "en": "Not set",
+      "exactOnly": true
+    },
+    "日程": {
+      "en": "Schedule",
+      "exactOnly": true
+    },
+    "文档": {
+      "en": "Document",
+      "exactOnly": true
+    },
+    "标题": {
+      "en": "Heading",
+      "exactOnly": true
+    },
+    "日记": {
+      "en": "Daily note",
+      "exactOnly": true
+    },
+    "今天": {
+      "en": "Today",
+      "exactOnly": true
+    },
+    "无": {
+      "en": "None",
+      "exactOnly": true
+    },
+    "高": {
+      "en": "High",
+      "exactOnly": true
+    },
+    "中": {
+      "en": "Medium",
+      "exactOnly": true
+    },
+    "低": {
+      "en": "Low",
+      "exactOnly": true
+    },
     ">取消</button>": ">Cancel</button>",
     ">确定</button>": ">OK</button>",
     ">清空</button>": ">Clear</button>",
-
     "移动失败：缺少块 ID": "Move failed: missing block ID",
     "任务写入适配器未就绪: moveBlock": "Task write adapter is not ready: moveBlock",
     "色系 ${groupIndex + 1}": "Palette ${groupIndex + 1}",
@@ -112,7 +176,6 @@
     "色系类型": "Palette type",
     "✅ 当前分组色系已更新": "✅ Group colors updated",
     "✅ 所有文档默认色系已更新": "✅ Default document palette updated",
-
     "又拿下一条": "Another one down!",
     "这条已经体面退场": "That one bowed out gracefully.",
     "清掉一个，小赚一点轻松": "One cleared - a little lighter now.",
@@ -133,16 +196,29 @@
     "任务刚刚偷偷点了个头": "The task just quietly nodded.",
     "✅ 任务已完成": "✅ Task completed",
     "✅ 已取消完成": "✅ Completion undone",
-
     "未命名笔记本": "Untitled notebook",
     "未命名分组": "Untitled group",
     "未命名页签组": "Untitled tab group",
-
-    "按文档": { "en": "By document", "exactOnly": true },
-    "按时间": { "en": "By time", "exactOnly": true },
-    "四象限": { "en": "Quadrants", "exactOnly": true },
-    "按任务名": { "en": "By task name", "exactOnly": true },
-    "不分组": { "en": "No grouping", "exactOnly": true },
+    "按文档": {
+      "en": "By document",
+      "exactOnly": true
+    },
+    "按时间": {
+      "en": "By time",
+      "exactOnly": true
+    },
+    "四象限": {
+      "en": "Quadrants",
+      "exactOnly": true
+    },
+    "按任务名": {
+      "en": "By task name",
+      "exactOnly": true
+    },
+    "不分组": {
+      "en": "No grouping",
+      "exactOnly": true
+    },
     "默认视图未设置": "No default view set",
     "时间看板": "Time kanban",
     "标题看板": "Heading kanban",
@@ -156,7 +232,6 @@
     "分组默认": "Group default",
     "全局默认": "Global default",
     "全部规则": "All rules",
-
     "例如：30 或 30m": "e.g. 30 or 30m",
     "设置时长": "Set duration",
     "选预设或直接输入": "Pick a preset or type a value",
@@ -189,12 +264,10 @@
     ">次（含本次）</div>": ">time(s) incl. this one</div>",
     "基准日期：": "Anchor date: ",
     ">计划起始日期</label>": ">Planned start date</label>",
-
     " 接下来：": " Next: ",
     " 没有下一次，请检查日期和结束条件。": " No next occurrence; check the date and end conditions.",
     "请选择有效的月日期，并检查截止日期": "Pick a valid day of the month and check the end date",
     "⚠ 结束次数不能小于当前第 ${currentRepeatState.occurrenceCount} 次": "⚠ End count cannot be lower than the current occurrence (${currentRepeatState.occurrenceCount})",
-
     "输入文档名、别名或 ID": "Enter a document name, alias, or ID",
     "没有匹配的文档": "No matching documents",
     "搜索文档": "Search documents",
@@ -203,7 +276,6 @@
     "别名：${doc.alias}": "Alias: ${doc.alias}",
     "结果较多，仅显示前 ${limit} 个，请继续输入以缩小范围": "Too many results; showing the first ${limit} - keep typing to narrow down",
     "请选择": "Select",
-
     "未找到可移动的块": "No movable block found",
     "当前仅支持移动块内容，不支持移动整篇文档": "Only block content can be moved; moving a whole document is not supported",
     "无法确定日记所属笔记本": "Unable to determine the daily note's notebook",
@@ -213,7 +285,6 @@
     "✅ 已移动 ${result.movedCount} 个块到今天日记": "✅ Moved ${result.movedCount} blocks to today's daily note",
     "✅ 已移动到今天日记": "✅ Moved to today's daily note",
     "❌ 移动失败: ${e.message}": "❌ Move failed: ${e.message}",
-
     "⚠ 日历模块尚未加载完成": "⚠ The calendar module has not finished loading",
     "⚠ 未找到可编辑的块": "⚠ No editable block found",
     "打开日程编辑器失败": "Failed to open the schedule editor",
@@ -223,12 +294,10 @@
     "⚠ 未选择文档分组，已取消添加至今天日程": "⚠ No document group selected; adding to today's schedule was cancelled",
     "✅ 已添加至今天日程": "✅ Added to today's schedule",
     "❌ 添加至今天日程失败：": "❌ Failed to add to today's schedule: ",
-
     "(空标题)": "(Untitled heading)",
     "⚠ 日期面板未就绪": "⚠ The date panel is not ready",
     "设置${entityLabel}日期": "Set ${entityLabel} date",
     "${entityLabel}日期": "${entityLabel} date",
-
     "批量更新": "Batch update",
     "⚠ 请先选择至少一条任务": "⚠ Select at least one task first",
     "⚠ 未找到可批量更新的内容": "⚠ Nothing to batch-update",
@@ -248,7 +317,6 @@
     "批量取消置顶": "Batch unpin",
     "批量完成": "Batch complete",
     "批量取消完成": "Batch undo completion",
-
     "⚠ 请先设置回收站文档": "⚠ Configure the recycle bin document first",
     "批量删除任务": "Batch delete tasks",
     "确定要删除选中的 ${selectedIds.length} 条任务吗？此操作不可恢复。": "Delete the ${selectedIds.length} selected tasks? This cannot be undone.",
@@ -277,7 +345,6 @@
     "⚠ 请先在设置中配置完成状态联动": "⚠ Configure the completion status link in the settings first",
     "批量设置完成状态": "Batch set completion status",
     "批量设置 ${field.name || field.id}": "Batch set ${field.name || field.id}",
-
     "未知文档": "Unknown document",
     "未找到任务块": "Task block not found",
     "任务写入服务未就绪: patchTask": "Task write service is not ready: patchTask",
@@ -310,28 +377,90 @@
     "新建子任务": "New subtask",
     "❌ 未找到当前任务": "❌ Current task not found",
     "新建同级任务": "New sibling task",
-    "日期": { "en": "Date", "exactOnly": true },
-    "重要性": { "en": "Priority", "exactOnly": true },
-    "待办": { "en": "To do", "exactOnly": true },
-    "备注": { "en": "Remark", "exactOnly": true },
-    "截止日期": { "en": "Due date", "exactOnly": true },
-    "移动端": { "en": "Mobile", "exactOnly": true },
-    "桌面端": { "en": "Desktop", "exactOnly": true },
-    "完成": { "en": "Done", "exactOnly": true },
-    "关闭": { "en": "Close", "exactOnly": true },
-    "添加": { "en": "Add", "exactOnly": true },
-    "已设置": { "en": "Set", "exactOnly": true },
-    "时间": { "en": "Time", "exactOnly": true },
-    "摘要": { "en": "Summary", "exactOnly": true },
-    "搜索": { "en": "Search", "exactOnly": true },
-    "全部": { "en": "All", "exactOnly": true },
-    "全部文档": { "en": "All documents", "exactOnly": true },
-    "全部页签": { "en": "All tabs", "exactOnly": true },
-    "首页": { "en": "Home", "exactOnly": true },
-    "全局白板": { "en": "Global whiteboard", "exactOnly": true },
-    "单文档总览": { "en": "Document overview", "exactOnly": true },
-    "卡片流": { "en": "Card stream", "exactOnly": true },
-
+    "日期": {
+      "en": "Date",
+      "exactOnly": true
+    },
+    "重要性": {
+      "en": "Priority",
+      "exactOnly": true
+    },
+    "待办": {
+      "en": "To do",
+      "exactOnly": true
+    },
+    "备注": {
+      "en": "Remark",
+      "exactOnly": true
+    },
+    "截止日期": {
+      "en": "Due date",
+      "exactOnly": true
+    },
+    "移动端": {
+      "en": "Mobile",
+      "exactOnly": true
+    },
+    "桌面端": {
+      "en": "Desktop",
+      "exactOnly": true
+    },
+    "完成": {
+      "en": "Done",
+      "exactOnly": true
+    },
+    "关闭": {
+      "en": "Close",
+      "exactOnly": true
+    },
+    "添加": {
+      "en": "Add",
+      "exactOnly": true
+    },
+    "已设置": {
+      "en": "Set",
+      "exactOnly": true
+    },
+    "时间": {
+      "en": "Time",
+      "exactOnly": true
+    },
+    "摘要": {
+      "en": "Summary",
+      "exactOnly": true
+    },
+    "搜索": {
+      "en": "Search",
+      "exactOnly": true
+    },
+    "全部": {
+      "en": "All",
+      "exactOnly": true
+    },
+    "全部文档": {
+      "en": "All documents",
+      "exactOnly": true
+    },
+    "全部页签": {
+      "en": "All tabs",
+      "exactOnly": true
+    },
+    "首页": {
+      "en": "Home",
+      "exactOnly": true
+    },
+    "全局白板": {
+      "en": "Global whiteboard",
+      "exactOnly": true
+    },
+    "单文档总览": {
+      "en": "Document overview",
+      "exactOnly": true
+    },
+    "卡片流": {
+      "en": "Card stream",
+      "exactOnly": true
+    },
     "今天日记": "Today's daily note",
     "新建任务更多操作": "More new-task actions",
     "自定义列": "Custom column",
@@ -390,7 +519,6 @@
     "⚠ 任务已创建，但提醒写入失败: ": "⚠ Task created, but writing the reminder failed: ",
     "⚠ 任务已创建，但等待真实任务 ID 超时，提醒未写入": "⚠ Task created, but waiting for the real task ID timed out; the reminder was not written",
     "❌ 创建失败: ${e.message}": "❌ Creation failed: ${e.message}",
-
     "placeholder=\"准备做什么？\"": "placeholder=\"What needs to be done?\"",
     "aria-label=\"任务内容，每行一个任务\"": "aria-label=\"Task content, one task per line\"",
     "placeholder=\"备注\"": "placeholder=\"Remark\"",
@@ -418,11 +546,16 @@
     "仅设置": "Configures ",
     "。关闭后收进更多菜单，已填写的值会保留。": " only. When closed it moves into the More menu; entered values are kept.",
     ">关闭</button>": ">Close</button>",
-
     "未命名规则": "Untitled rule",
     "筛选与排序规则": "Filter & sort rules",
-    "分组": { "en": "Group", "exactOnly": true },
-    "规则": { "en": "Rule", "exactOnly": true },
+    "分组": {
+      "en": "Group",
+      "exactOnly": true
+    },
+    "规则": {
+      "en": "Rule",
+      "exactOnly": true
+    },
     ">分组 <b>": ">Group <b>",
     ">规则 <b>": ">Rule <b>",
     "分组 ": "Group ",
@@ -447,7 +580,6 @@
     "全部折叠": "Collapse all",
     "全部展开": "Expand all",
     "任务管理器菜单": "Task Manager menu",
-
     "保持当前分组": "Keep current group",
     "保持当前看板模式": "Keep current kanban mode",
     "不应用规则": "No rule",
@@ -463,7 +595,6 @@
     "暂时无法确认文档范围，请稍后重试": "Cannot confirm the document scope right now; try again later",
     "任务加载失败，请稍后重试": "Failed to load tasks; try again later",
     "打开快捷项失败：${error?.message || error}": "Failed to open the shortcut: ${error?.message || error}",
-
     "侧栏状态保存失败，请重试": "Failed to save the sidebar state; try again",
     ">失效</span>": ">Invalid</span>",
     " · 已失效": " · Invalid",
@@ -532,7 +663,6 @@
     ">选择文档</div>": ">Select document</div>",
     "开始 ${__tmFormatTaskTimeCompact(sd)}": "Starts ${__tmFormatTaskTimeCompact(sd)}",
     "编辑${esc(item.name)}": "Edit ${esc(item.name)}",
-
     ">暂无任务</td>": ">No tasks</td>",
     "\" title=\"共": "\" title=\"Total ",
     "个任务，已完成": " tasks, ",
@@ -553,18 +683,42 @@
     "六级标题": "Heading 6",
     "无${headingLabelMap[headingLevel] || '标题'}": "No ${headingLabelMap[headingLevel] || 'heading'}",
     "在该标题下新建任务": "New task under this heading",
-    "待定": { "en": "Unscheduled", "exactOnly": true },
-    "已过期": { "en": "Overdue", "exactOnly": true },
-    "明天": { "en": "Tomorrow", "exactOnly": true },
-    "后天": { "en": "Day after tomorrow", "exactOnly": true },
-    "更远": { "en": "Later", "exactOnly": true },
-    "下周": { "en": "Next week", "exactOnly": true },
+    "待定": {
+      "en": "Unscheduled",
+      "exactOnly": true
+    },
+    "已过期": {
+      "en": "Overdue",
+      "exactOnly": true
+    },
+    "明天": {
+      "en": "Tomorrow",
+      "exactOnly": true
+    },
+    "后天": {
+      "en": "Day after tomorrow",
+      "exactOnly": true
+    },
+    "更远": {
+      "en": "Later",
+      "exactOnly": true
+    },
+    "下周": {
+      "en": "Next week",
+      "exactOnly": true
+    },
     "余${diffDays}天": "${diffDays} days left",
     ">继续加载</button>": ">Load more</button>",
     "当前块": "Current block",
     "❌ 操作失败: ": "❌ Operation failed: ",
-    "置顶": { "en": "Pin", "exactOnly": true },
-    "取消置顶": { "en": "Unpin", "exactOnly": true },
+    "置顶": {
+      "en": "Pin",
+      "exactOnly": true
+    },
+    "取消置顶": {
+      "en": "Unpin",
+      "exactOnly": true
+    },
     "置底全天日程": "Send all-day schedules to bottom",
     "取消置底全天日程": "Restore all-day schedule order",
     "已置底全天日程": "All-day schedules moved to bottom",
@@ -572,7 +726,10 @@
     "完成后的关联处理缺少任务 ID": "Post-completion link handling is missing a task ID",
     "循环任务推进服务未就绪": "Recurring task advancement service is not ready",
     "完成状态已保存，但番茄联动": "Completion status saved, but Pomodoro integration",
-    "撤销": { "en": "Undo", "exactOnly": true },
+    "撤销": {
+      "en": "Undo",
+      "exactOnly": true
+    },
     "ℹ 该撤销提示已过期，请使用 Ctrl+Z": "ℹ This undo prompt has expired; use Ctrl+Z instead",
     "✅ 已在插件内标记完成": "✅ Marked complete in the plugin",
     "✅ 已取消插件内完成": "✅ Plugin completion undone",
@@ -583,8 +740,14 @@
     "未能更新任务复选框状态": "Could not update the task checkbox state",
     "无法确认任务复选框状态": "Unable to confirm the task checkbox state",
     "任务复选框状态未同步成功": "The task checkbox state did not sync successfully",
-    "完成任务": { "en": "Complete", "exactOnly": true },
-    "取消完成": { "en": "Mark incomplete", "exactOnly": true },
+    "完成任务": {
+      "en": "Complete",
+      "exactOnly": true
+    },
+    "取消完成": {
+      "en": "Mark incomplete",
+      "exactOnly": true
+    },
     "无效的打卡日期": "Invalid check-in date",
     "未来的打卡日期暂不可操作": "Future check-in dates cannot be modified yet",
     "打卡记录未保存": "Check-in record was not saved",
@@ -631,7 +794,10 @@
     "✅ 任务已恢复": "✅ Task restored",
     "❌ 恢复失败: ": "❌ Restore failed: ",
     "✅ 任务已删除": "✅ Task deleted",
-    "任务": { "en": "Task", "exactOnly": true },
+    "任务": {
+      "en": "Task",
+      "exactOnly": true
+    },
     "⚠ 未检测到底栏番茄钟插件，请前往集市安装底栏番茄钟插件": "⚠ Bottom-bar Pomodoro plugin not detected; install it from the Marketplace",
     "没有可复制的内容": "Nothing to copy",
     "复制失败": "Copy failed",
@@ -639,7 +805,10 @@
     "块引用": "Block reference",
     "嵌入块": "Embed",
     "块 ID": "Block ID",
-    "内容": { "en": "Content", "exactOnly": true },
+    "内容": {
+      "en": "Content",
+      "exactOnly": true
+    },
     "✅ 已复制": "✅ Copied ",
     "⚠ 未检测到番茄计时功能，请确认番茄插件已启用": "⚠ Pomodoro timer feature not detected; make sure the Pomodoro plugin is enabled",
     "⚠ 未找到可关联的任务块": "⚠ No task block found to link",
@@ -650,7 +819,10 @@
     "❌ 截止日期更新失败: ${err?.message || err}": "❌ Due date update failed: ${err?.message || err}",
     "任务日期写入函数未就绪": "Task date writer is not ready",
     "❌ 截止日期更新失败": "❌ Due date update failed",
-    "优先级": { "en": "Priority", "exactOnly": true },
+    "优先级": {
+      "en": "Priority",
+      "exactOnly": true
+    },
     "设置优先级为": "Set priority to ",
     "修改内容": "Edit content",
     "❌ 优先级更新失败": "❌ Priority update failed",
@@ -661,26 +833,47 @@
     " · 预计 ": " · Due ",
     "FSRS 反馈功能未就绪": "FSRS feedback feature is not ready",
     "FSRS 反馈失败：": "FSRS feedback failed: ",
-    "计时": { "en": "Timer", "exactOnly": true },
+    "计时": {
+      "en": "Timer",
+      "exactOnly": true
+    },
     "📅 按日程时长开始番茄（${scheduleDurationMin}m）": "📅 Start Pomodoro for the schedule duration (${scheduleDurationMin}m)",
     "计时方式": "Timer mode",
     "设置正计时时长": "Set stopwatch duration",
     "${durationSlider.value}分": "${durationSlider.value} min",
-    "正计时": { "en": "Stopwatch", "exactOnly": true },
+    "正计时": {
+      "en": "Stopwatch",
+      "exactOnly": true
+    },
     "❌ 更新失败: 任务写入队列未就绪: patchTask": "❌ Update failed: task write queue is not ready: patchTask",
     "❌ 更新失败: ${error.message}": "❌ Update failed: ${error.message}",
-    "提醒": { "en": "Reminder", "exactOnly": true },
+    "提醒": {
+      "en": "Reminder",
+      "exactOnly": true
+    },
     "取消聚焦": "Unfocus",
-    "隐藏已完成子任务": { "en": "Hide completed subtasks", "exactOnly": true },
-    "显示已完成子任务": { "en": "Show completed subtasks", "exactOnly": true },
-    "复制": { "en": "Copy", "exactOnly": true },
+    "隐藏已完成子任务": {
+      "en": "Hide completed subtasks",
+      "exactOnly": true
+    },
+    "显示已完成子任务": {
+      "en": "Show completed subtasks",
+      "exactOnly": true
+    },
+    "复制": {
+      "en": "Copy",
+      "exactOnly": true
+    },
     "复制纯文本": "Copy plain text",
     "复制块引用": "Copy block reference",
     "复制嵌入块": "Copy embed",
     "复制块 ID": "Copy block ID",
     "移出子任务": "Move out of parent",
     "编辑日程": "Edit schedule",
-    "操作失败": { "en": "Operation failed", "exactOnly": true },
+    "操作失败": {
+      "en": "Operation failed",
+      "exactOnly": true
+    },
     "删除日程": "Delete schedule",
     "✅ 已删除日程": "✅ Schedule deleted",
     "删除日程失败": "Failed to delete the schedule",
@@ -695,7 +888,6 @@
     "任务详情": "Task details",
     "跳转到原块": "Go to source block",
     "删除记录": "Delete record",
-
     "基础显示": "Basic display",
     "新建/归档": "New & archive",
     "状态选项": "Status options",
@@ -719,37 +911,72 @@
     "定时事件": "Scheduled events",
     "智能体": "Agent",
     "安排规则": "Scheduling rules",
-
     "完成时间：": "Completion time: ",
-    "下月": { "en": "Next month", "exactOnly": true },
-    "上月": { "en": "Previous month", "exactOnly": true },
+    "下月": {
+      "en": "Next month",
+      "exactOnly": true
+    },
+    "上月": {
+      "en": "Previous month",
+      "exactOnly": true
+    },
     "aria-label=\"快速设置日期\"": "aria-label=\"Quick date setup\"",
     "aria-label=\"循环结束日期\"": "aria-label=\"Repeat end date\"",
     "aria-label=\"循环总次数\"": "aria-label=\"Total repeats\"",
     ">次</span>": ">times</span>",
     ">应用</button>": ">Apply</button>",
-    "结束": { "en": "End", "exactOnly": true },
+    "结束": {
+      "en": "End",
+      "exactOnly": true
+    },
     ">结束</div>": ">End</div>",
     ">永不结束</button>": ">Never ends</button>",
     ">按日期结束</button>": ">Ends on date</button>",
     ">按次数结束</button>": ">Ends after count</button>",
-    "无内容": { "en": "No content", "exactOnly": true },
+    "无内容": {
+      "en": "No content",
+      "exactOnly": true
+    },
     "aria-label=\"打开父任务详情：": "aria-label=\"Open parent task details: ",
     ">父任务：</span>": ">Parent task:</span>",
     "${Number(m[2])}月${Number(m[3])}日": "${Number(m[2])}/${Number(m[3])}",
-    "已提醒": { "en": "Reminded", "exactOnly": true },
-    "循环": { "en": "Repeat", "exactOnly": true },
+    "已提醒": {
+      "en": "Reminded",
+      "exactOnly": true
+    },
+    "循环": {
+      "en": "Repeat",
+      "exactOnly": true
+    },
     "今日打卡": "Today's check-in",
     "下次打卡": "Next check-in",
     "打卡日期": "Check-in dates",
     "计划已结束": "Schedule ended",
     "日期由循环计划决定 · 在「循环」中调整": "Dates are determined by the repeat schedule · adjust them under “Repeat”",
-    "已打卡": { "en": "Checked in", "exactOnly": true },
-    "未打卡": { "en": "Not checked in", "exactOnly": true },
-    "计划打卡": { "en": "Planned check-in", "exactOnly": true },
-    "可补打卡": { "en": "Can catch up", "exactOnly": true },
-    "可额外打卡": { "en": "Extra check-in available", "exactOnly": true },
-    "无打卡计划": { "en": "No check-in schedule", "exactOnly": true },
+    "已打卡": {
+      "en": "Checked in",
+      "exactOnly": true
+    },
+    "未打卡": {
+      "en": "Not checked in",
+      "exactOnly": true
+    },
+    "计划打卡": {
+      "en": "Planned check-in",
+      "exactOnly": true
+    },
+    "可补打卡": {
+      "en": "Can catch up",
+      "exactOnly": true
+    },
+    "可额外打卡": {
+      "en": "Extra check-in available",
+      "exactOnly": true
+    },
+    "无打卡计划": {
+      "en": "No check-in schedule",
+      "exactOnly": true
+    },
     "，点击取消打卡": ", click to uncheck",
     "，点击打卡": ", click to check in",
     "⚠ 未找到时间设置入口": "⚠ Time settings entry not found",
@@ -758,8 +985,14 @@
     "任务时间中心": "Task time hub",
     "关闭日期设置": "Close date settings",
     ">下次循环</span>": ">Next repeat</span>",
-    "开始": { "en": "Start", "exactOnly": true },
-    "截止": { "en": "Due", "exactOnly": true },
+    "开始": {
+      "en": "Start",
+      "exactOnly": true
+    },
+    "截止": {
+      "en": "Due",
+      "exactOnly": true
+    },
     "aria-label=\"清除": "aria-label=\"Clear ",
     "日期\"": " date\"",
     "title=\"选择年月\"": "title=\"Select year and month\"",
@@ -767,44 +1000,116 @@
     "aria-label=\"回到本月\"": "aria-label=\"Back to this month\"",
     ">今</button>": ">Today</button>",
     "aria-label=\"下个月\"": "aria-label=\"Next month\"",
-    "1月": { "en": "Jan", "exactOnly": true },
-    "2月": { "en": "Feb", "exactOnly": true },
-    "3月": { "en": "Mar", "exactOnly": true },
-    "4月": { "en": "Apr", "exactOnly": true },
-    "5月": { "en": "May", "exactOnly": true },
-    "6月": { "en": "Jun", "exactOnly": true },
-    "7月": { "en": "Jul", "exactOnly": true },
-    "8月": { "en": "Aug", "exactOnly": true },
-    "9月": { "en": "Sep", "exactOnly": true },
-    "10月": { "en": "Oct", "exactOnly": true },
-    "11月": { "en": "Nov", "exactOnly": true },
-    "12月": { "en": "Dec", "exactOnly": true },
+    "1月": {
+      "en": "Jan",
+      "exactOnly": true
+    },
+    "2月": {
+      "en": "Feb",
+      "exactOnly": true
+    },
+    "3月": {
+      "en": "Mar",
+      "exactOnly": true
+    },
+    "4月": {
+      "en": "Apr",
+      "exactOnly": true
+    },
+    "5月": {
+      "en": "May",
+      "exactOnly": true
+    },
+    "6月": {
+      "en": "Jun",
+      "exactOnly": true
+    },
+    "7月": {
+      "en": "Jul",
+      "exactOnly": true
+    },
+    "8月": {
+      "en": "Aug",
+      "exactOnly": true
+    },
+    "9月": {
+      "en": "Sep",
+      "exactOnly": true
+    },
+    "10月": {
+      "en": "Oct",
+      "exactOnly": true
+    },
+    "11月": {
+      "en": "Nov",
+      "exactOnly": true
+    },
+    "12月": {
+      "en": "Dec",
+      "exactOnly": true
+    },
     "aria-label=\"上一年\"": "aria-label=\"Previous year\"",
     "aria-label=\"年份\"": "aria-label=\"Year\"",
     "aria-label=\"下一年\"": "aria-label=\"Next year\"",
     "aria-label=\"跳转到": "aria-label=\"Go to ",
-    "不提醒": { "en": "No reminder", "exactOnly": true },
-    "不循环": { "en": "No repeat", "exactOnly": true },
-    "永不结束": { "en": "Never ends", "exactOnly": true },
-    "不重复": { "en": "No repeat", "exactOnly": true },
+    "不提醒": {
+      "en": "No reminder",
+      "exactOnly": true
+    },
+    "不循环": {
+      "en": "No repeat",
+      "exactOnly": true
+    },
+    "永不结束": {
+      "en": "Never ends",
+      "exactOnly": true
+    },
+    "不重复": {
+      "en": "No repeat",
+      "exactOnly": true
+    },
     "至 ": "Until ",
     "第 ${__tmNormalizeTaskRepeatState(repeatTask?.repeatState || repeatTask?.repeat_state).occurrenceCount} 次": "Occurrence ${__tmNormalizeTaskRepeatState(repeatTask?.repeatState || repeatTask?.repeat_state).occurrenceCount}",
     "当前轮次": "Current cycle",
     ">正在读取日程...</div>": ">Loading schedules...</div>",
     ">暂无日程</div>": ">No schedules</div>",
-    "未定日期": { "en": "Unscheduled", "exactOnly": true },
-    "全天": { "en": "All-day", "exactOnly": true },
-    "跟随任务": { "en": "Follow task", "exactOnly": true },
+    "未定日期": {
+      "en": "Unscheduled",
+      "exactOnly": true
+    },
+    "全天": {
+      "en": "All-day",
+      "exactOnly": true
+    },
+    "跟随任务": {
+      "en": "Follow task",
+      "exactOnly": true
+    },
     ">编辑</button>": ">Edit</button>",
     ">提醒</div>": ">Reminders</div>",
     ">不提醒</button>": ">No reminder</button>",
     "打开提醒设置": "Open reminder settings",
-    "FSRS 间隔重复": { "en": "FSRS spaced repetition", "exactOnly": true },
-    "每天": { "en": "Daily", "exactOnly": true },
-    "每周": { "en": "Weekly", "exactOnly": true },
-    "每月": { "en": "Monthly", "exactOnly": true },
-    "每年": { "en": "Yearly", "exactOnly": true },
-    "工作日": { "en": "Workdays", "exactOnly": true },
+    "FSRS 间隔重复": {
+      "en": "FSRS spaced repetition",
+      "exactOnly": true
+    },
+    "每天": {
+      "en": "Daily",
+      "exactOnly": true
+    },
+    "每周": "Every ",
+    "每月": {
+      "en": "Monthly",
+      "exactOnly": true
+    },
+    "每年": {
+      "en": "Yearly",
+      "exactOnly": true
+    },
+    "工作日": {
+      "en": "Workdays",
+      "exactOnly": true
+    },
     "农历每月": "Lunar monthly",
     "农历每年": "Lunar yearly",
     ">循环</div>": ">Repeat</div>",
@@ -827,9 +1132,18 @@
     "${minutes} 分钟": "${minutes} min",
     "${hours} 小时 ${rest} 分钟": "${hours} h ${rest} min",
     "${hours} 小时": "${hours} h",
-    "自身": { "en": "Self", "exactOnly": true },
-    "子任务": { "en": "Subtasks", "exactOnly": true },
-    "合计": { "en": "Total", "exactOnly": true },
+    "自身": {
+      "en": "Self",
+      "exactOnly": true
+    },
+    "子任务": {
+      "en": "Subtasks",
+      "exactOnly": true
+    },
+    "合计": {
+      "en": "Total",
+      "exactOnly": true
+    },
     "专注统计": "Focus statistics",
     "其他块内容请回原文档编辑": "Edit other block content in the original document",
     "快照任务，源任务已删除": "Snapshot task; the source task was deleted",
@@ -843,10 +1157,16 @@
     "打开笔记内视图": "Open in-note view",
     "更多操作": "More actions",
     "更多任务操作": "More task actions",
-    "保存": { "en": "Save", "exactOnly": true },
+    "保存": {
+      "en": "Save",
+      "exactOnly": true
+    },
     "保存任务详情": "Save task details",
     "关闭任务详情": "Close task details",
-    "开始日期": { "en": "Start date", "exactOnly": true },
+    "开始日期": {
+      "en": "Start date",
+      "exactOnly": true
+    },
     "时长与番茄": "Duration & Pomodoro",
     "添加子任务": "Add subtask",
     "aria-label=\"重要性\"": "aria-label=\"Priority\"",
@@ -877,7 +1197,10 @@
     "⚠ 当前任务没有可嵌入的思源块": "⚠ The current task has no SiYuan block that can be embedded",
     "⚠ 笔记内视图不可用，已跳转到原文档": "⚠ The in-note view is unavailable; jumped to the original document",
     "⚠ 笔记内视图打开失败，已跳转到原文档": "⚠ Failed to open the in-note view; jumped to the original document",
-    "更新": { "en": "Update", "exactOnly": true },
+    "更新": {
+      "en": "Update",
+      "exactOnly": true
+    },
     "任务字段未写入": "Task fields were not written",
     "保存中...": "Saving...",
     "aria-label=\"时长与番茄\"": "aria-label=\"Duration & Pomodoro\"",
@@ -922,17 +1245,42 @@
     "自定义字段": "Custom fields",
     "选择左侧任务后，这里会显示可编辑的详情。": "Select a task on the left to see editable details here.",
     "选择任务后，这里会显示可编辑的详情。": "Select a task to see editable details here.",
-
-    "进行中": { "en": "In progress", "exactOnly": true },
-    "已完成": { "en": "Completed", "exactOnly": true },
-    "放弃": { "en": "Abandoned", "exactOnly": true },
-    "阻塞": { "en": "Blocked", "exactOnly": true },
-    "待审核": { "en": "In review", "exactOnly": true },
-    "已取消": { "en": "Cancelled", "exactOnly": true },
-    "未完成": { "en": "Not done", "exactOnly": true },
-    "审核": { "en": "Review", "exactOnly": true },
-    "空格": { "en": "Space", "exactOnly": true },
-
+    "进行中": {
+      "en": "In progress",
+      "exactOnly": true
+    },
+    "已完成": {
+      "en": "Completed",
+      "exactOnly": true
+    },
+    "放弃": {
+      "en": "Abandoned",
+      "exactOnly": true
+    },
+    "阻塞": {
+      "en": "Blocked",
+      "exactOnly": true
+    },
+    "待审核": {
+      "en": "In review",
+      "exactOnly": true
+    },
+    "已取消": {
+      "en": "Cancelled",
+      "exactOnly": true
+    },
+    "未完成": {
+      "en": "Not done",
+      "exactOnly": true
+    },
+    "审核": {
+      "en": "Review",
+      "exactOnly": true
+    },
+    "空格": {
+      "en": "Space",
+      "exactOnly": true
+    },
     "创建文档失败": "Failed to create the document",
     "未指定笔记本": "Notebook not specified",
     "创建日记失败": "Failed to create the daily note",
@@ -1047,7 +1395,6 @@
     "正在准备白板视图": "Preparing the Whiteboard view",
     "正在准备任务视图": "Preparing the task view",
     ">加载中</span>": ">Loading</span>",
-
     "识别到明确日期": "explicit date",
     "识别到月日表达": "month-day expression",
     "识别到数字日期": "numeric date",
@@ -1070,7 +1417,6 @@
     "${taskTitle}：提醒写入失败（${String(e?.message || e || '未知错误')}）": "${taskTitle}: reminder write failed (${String(e?.message || e || 'Unknown error')})",
     "日历时间无效": "Invalid calendar time",
     "日历模块未加载": "Calendar module is not loaded",
-
     "本次刷新自动识别到 <b>": "This refresh detected <b>",
     "</b> 条语义日期。": "</b> semantic dates. ",
     "其中开始日期 <b>": "Of these: start dates <b>",
@@ -1092,7 +1438,10 @@
     ">全不选</button>": ">Select none</button>",
     ">应用勾选项</button>": ">Apply selected</button>",
     "应用勾选项": "Apply selected",
-    "写入": { "en": "Write", "exactOnly": true },
+    "写入": {
+      "en": "Write",
+      "exactOnly": true
+    },
     ">任务</th>": ">Task</th>",
     ">复制</button>": ">Copy</button>",
     "支付宝": "Alipay",
@@ -1107,7 +1456,6 @@
     " 条日历": " calendar schedule(s)",
     " 条处理失败，请查看控制台": " item(s) failed to process; check the console",
     "应用失败": "Apply failed",
-
     "${dt.getMonth() + 1}月${dt.getDate()}日": "${dt.getMonth() + 1}/${dt.getDate()}",
     "最近一次提醒": "Latest reminder",
     "提醒时间无效": "Invalid reminder time",
@@ -1117,17 +1465,37 @@
     "保存提醒失败": "Failed to save the reminder",
     "ℹ 当前仅清单、表格、时间轴、看板和卡片流支持多选模式": "ℹ Multi-select mode is currently supported in Checklist, Table, Timeline, Kanban, and Card stream views",
     "最近一次修改": "Last modified",
-    "附件": { "en": "Attachment", "exactOnly": true },
-    "实际番茄": { "en": "Actual Pomodoros", "exactOnly": true },
+    "附件": {
+      "en": "Attachment",
+      "exactOnly": true
+    },
+    "实际番茄": {
+      "en": "Actual Pomodoros",
+      "exactOnly": true
+    },
     "循环规则": "Repeat rule",
     "循环状态": "Repeat state",
     "任务日期颜色": "Task date color",
-    "时长": { "en": "Duration", "exactOnly": true },
-
-    "爆红": { "en": "Critical", "exactOnly": true },
-    "高风险": { "en": "High risk", "exactOnly": true },
-    "注意": { "en": "Watch", "exactOnly": true },
-    "健康": { "en": "Healthy", "exactOnly": true },
+    "时长": {
+      "en": "Duration",
+      "exactOnly": true
+    },
+    "爆红": {
+      "en": "Critical",
+      "exactOnly": true
+    },
+    "高风险": {
+      "en": "High risk",
+      "exactOnly": true
+    },
+    "注意": {
+      "en": "Watch",
+      "exactOnly": true
+    },
+    "健康": {
+      "en": "Healthy",
+      "exactOnly": true
+    },
     "，扣分 ${Number(m.penaltyCount) || 0}": " (deducted ${Number(m.penaltyCount) || 0})",
     "拖延值 ${score}/100 · ${String(m.levelLabel || __tmGetProcrastinationLevel(score).label || '')}（逾期 ${overduePercent}%（${overdueCount}/${dueTaskCount}）${penaltyText}，推迟 ${Number(m.rescheduleCount) || 0}）": "Delay score ${score}/100 · ${String(m.levelLabel || __tmGetProcrastinationLevel(score).label || '')} (overdue ${overduePercent}% (${overdueCount}/${dueTaskCount})${penaltyText}, postponed ${Number(m.rescheduleCount) || 0})",
     "任务日程逾期扣分：${title}": "Schedule overdue penalty: ${title}",
@@ -1138,7 +1506,10 @@
     "输入日期，如 2026-02-07": "Enter a date, e.g. 2026-02-07",
     "设置新的截止日期（YYYY-MM-DD）": "Set a new due date (YYYY-MM-DD)",
     "⚠ 日期格式无效，请使用 YYYY-MM-DD": "⚠ Invalid date format; use YYYY-MM-DD",
-    "截止日": { "en": "Due date", "exactOnly": true },
+    "截止日": {
+      "en": "Due date",
+      "exactOnly": true
+    },
     ">扣分</button>": ">Deduct points</button>",
     ">已完成免扣</button>": ">Completed - no penalty</button>",
     ">改时间</button>": ">Reschedule</button>",
@@ -1149,7 +1520,6 @@
     "可逐项处理；父任务已完成的子任务不会进入扣分列表；日程按天处理一次，截止日按当前截止日期处理一次（修改截止日后会重新计算）。": "Handle items one by one; subtasks whose parent is completed are excluded; schedules are handled once per day, due dates once per current due date (recalculated after the due date changes).",
     ">类型</th>": ">Type</th>",
     ">到期时间</th>": ">Due time</th>",
-
     "-- 文档信息": "-- document info",
     "-- 自定义属性": "-- custom attributes",
     "-- 连接文档信息": "-- join document info",
@@ -1162,7 +1532,6 @@
     "-- 递归情况：父块是任务块，继续向上查找": "-- recursive case: parent is a task block, keep walking up",
     "-- 继续向上查找（包含超级块's'）": "-- keep walking up (including superblocks 's')",
     "-- 获取最终的order_key（最外层非任务块的order_key）": "-- get the final order_key (of the outermost non-task block)",
-
     ">扣分</th>": ">Points</th>",
     ">处理</th>": ">Action</th>",
     ">全部扣分</button>": ">Deduct all</button>",
@@ -1194,21 +1563,31 @@
     "❌ 加载失败: ${e?.message || String(e)}": "❌ Load failed: ${e?.message || String(e)}",
     "未分类任务": "Uncategorized tasks",
     "页签分组": "Tab groups",
-    "未分组": { "en": "Ungrouped", "exactOnly": true },
+    "未分组": {
+      "en": "Ungrouped",
+      "exactOnly": true
+    },
     ">主页模块未加载。</div>": ">The homepage module is not loaded.</div>",
     "点击添加备注": "Click to add a remark",
-    "代码": { "en": "Code", "exactOnly": true },
-    "文本": { "en": "Text", "exactOnly": true },
+    "代码": {
+      "en": "Code",
+      "exactOnly": true
+    },
+    "文本": {
+      "en": "Text",
+      "exactOnly": true
+    },
     "链接文本": "Link text",
-    "无标题": { "en": "Untitled", "exactOnly": true },
-
+    "无标题": {
+      "en": "Untitled",
+      "exactOnly": true
+    },
     "移动端本体 -> 桌面浏览器伺服访问": "Mobile app -> desktop browser access",
     "移动端本体 -> 手机浏览器伺服访问": "Mobile app -> phone browser access",
     "移动端本体 -> 原生移动客户端": "Mobile app -> native mobile client",
     "桌面端本体 -> 桌面访问": "Desktop app -> desktop access",
     "桌面端本体 -> 手机浏览器访问": "Desktop app -> phone browser access",
     "桌面端本体 -> 原生移动客户端访问": "Desktop app -> native mobile client access",
-
     "永久买断": "Lifetime purchase",
     "一次付费获得当前插件全功能永久授权，适合把本插件作为主力任务系统的用户。": "One payment grants a lifetime full-feature license for this plugin - ideal if it is your main task system.",
     "扫码转账 98 元后，付款时请提供以下用户名；无法在付款备注提供时，请通过 QQ 群或邮件提供付款信息。": "After transferring 98 CNY by QR code, provide the username below when paying; if you cannot add it to the payment note, provide the payment info via the QQ group or email.",
@@ -1224,7 +1603,10 @@
     "设备码": "Device code",
     "用户名/设备码": "Username / device code",
     "免费版": "Free version",
-    "永久": { "en": "Lifetime", "exactOnly": true },
+    "永久": {
+      "en": "Lifetime",
+      "exactOnly": true
+    },
     "未激活": "Not activated",
     "套餐、价格和功能说明已收起": "Plans, pricing & features (collapsed)",
     "套餐、价格和功能说明": "Plans, pricing & features",
@@ -1239,14 +1621,20 @@
     "白板基础与全局白板": "Whiteboard basics & global whiteboard",
     "白板手写、分组框、便签": "Whiteboard handwriting, group frames, sticky notes",
     "不包含": "Not included",
-    "可用": { "en": "Available", "exactOnly": true },
+    "可用": {
+      "en": "Available",
+      "exactOnly": true
+    },
     "白板任务池搜索/详情定位": "Whiteboard task pool search / detail locating",
     "AI 工作台与任务 AI 操作": "AI workbench & task AI actions",
     "离线激活": "Offline activation",
     "不需要": "Not required",
     "用户名或设备": "Username or device",
     "维护支持": "Maintenance & support",
-    "常规": { "en": "Standard", "exactOnly": true },
+    "常规": {
+      "en": "Standard",
+      "exactOnly": true
+    },
     "优先响应": "Priority response",
     "白板增强": "Whiteboard enhancements",
     "全局白板基础能力继续可用；免费版不包含手写、分组框、便签工具、任务详情白板反向定位和任务池搜索。": "Basic global whiteboard features remain available; the free version excludes handwriting, group frames, sticky notes, whiteboard back-links from task details, and task pool search.",
@@ -1258,7 +1646,10 @@
     "付款时请提供以下用户名": "Provide the following username when paying",
     "无法在付款备注提供时，可将": "If you cannot add it to the payment note, send the ",
     "和付款截图发送至 729373125@qq.com。": " and your payment screenshot to 729373125@qq.com.",
-    "已激活": { "en": "Activated", "exactOnly": true },
+    "已激活": {
+      "en": "Activated",
+      "exactOnly": true
+    },
     ">清除授权</button>": ">Clear license</button>",
     ">当前授权</div>": ">Current license</div>",
     "到期：": "Expires: ",
@@ -1317,7 +1708,6 @@
     "发送：用户名 + 全功能试用": "Send: username + full-feature trial",
     "全功能年付授权": "Full-feature yearly license",
     "全功能永久授权": "Full-feature lifetime license",
-
     "当前插件 UI 判定": "Current plugin UI detection",
     "参考 UI 判定": "Reference UI detection",
     "参考客户端类型": "Reference client type",
@@ -1357,20 +1747,37 @@
     "</code>。": "</code>.",
     ">展开原始诊断 JSON</summary>": ">Expand raw diagnostic JSON</summary>",
     "浏览器 UA：": "Browser UA: ",
-
     "快速新建任务": "Quick task creation",
     "短按${meta.shortLabel}，长按${meta.longLabel}": "Short press: ${meta.shortLabel} · Long press: ${meta.longLabel}",
-    "表格": { "en": "Table", "exactOnly": true },
+    "表格": {
+      "en": "Table",
+      "exactOnly": true
+    },
     "表格视图": "Table view",
-    "清单": { "en": "Checklist", "exactOnly": true },
+    "清单": {
+      "en": "Checklist",
+      "exactOnly": true
+    },
     "清单视图": "Checklist view",
-    "时间轴": { "en": "Timeline", "exactOnly": true },
+    "时间轴": {
+      "en": "Timeline",
+      "exactOnly": true
+    },
     "时间轴视图": "Timeline view",
-    "看板": { "en": "Kanban", "exactOnly": true },
+    "看板": {
+      "en": "Kanban",
+      "exactOnly": true
+    },
     "看板视图": "Kanban view",
-    "日历": { "en": "Calendar", "exactOnly": true },
+    "日历": {
+      "en": "Calendar",
+      "exactOnly": true
+    },
     "日历视图": "Calendar view",
-    "白板": { "en": "Whiteboard", "exactOnly": true },
+    "白板": {
+      "en": "Whiteboard",
+      "exactOnly": true
+    },
     "白板视图": "Whiteboard view",
     "文档名": "Document name",
     "开始时间": "Start time",
@@ -1378,12 +1785,20 @@
     "剩余时间": "Remaining time",
     "专注/耗时": "Focus / time spent",
     "状态标签": "Status labels",
-    "大": { "en": "Large", "exactOnly": true },
-    "小": { "en": "Small", "exactOnly": true },
+    "大": {
+      "en": "Large",
+      "exactOnly": true
+    },
+    "小": {
+      "en": "Small",
+      "exactOnly": true
+    },
     "任务名称": "Task name",
     "完成时间": "Completion time",
-
-    "随机": { "en": "Random", "exactOnly": true },
+    "随机": {
+      "en": "Random",
+      "exactOnly": true
+    },
     "保持较高区分度，适合通用场景。": "High distinction; suits general use.",
     "莫兰迪": "Morandi",
     "低饱和灰调，更安静耐看。": "Low-saturation gray tones; calmer and easier on the eyes.",
@@ -1411,13 +1826,15 @@
     "森林中性，强调色偏青绿。": "Forest neutral with teal-green accents.",
     "更冷静的石墨灰配蓝光强调。": "Calmer graphite gray with blue highlight accents.",
     "甘特字段": "Gantt fields",
-
     "文档分组": "Document groups",
     "常规设置": "General",
     "外观": "Appearance",
     "规则管理": "Rules",
     "优先级算法": "Priority algorithm",
-    "关于": { "en": "About", "exactOnly": true },
+    "关于": {
+      "en": "About",
+      "exactOnly": true
+    },
     "设置页": "Settings",
     ">未找到设置项</div>": ">No matching settings</div>",
     "placeholder=\"搜索设置项\"": "placeholder=\"Search settings\"",
@@ -1428,8 +1845,14 @@
     "日历模块加载失败，请稍后重试。": "Failed to load the calendar module; try again later.",
     "文档 ID ${id}": "Document ID ${id}",
     "${rawPath} · 文档 ID ${id}": "${rawPath} · Document ID ${id}",
-    "笔记本": { "en": "Notebook", "exactOnly": true },
-    "自定义": { "en": "Custom", "exactOnly": true },
+    "笔记本": {
+      "en": "Notebook",
+      "exactOnly": true
+    },
+    "自定义": {
+      "en": "Custom",
+      "exactOnly": true
+    },
     " 项来源": " sources",
     ">已添加</span>": ">Added</span>",
     "暂无文档来源。可在上方添加文档，或从思源文档菜单加入当前分组。": "No document sources yet. Add documents above, or add them to the current group from the SiYuan document menu.",
@@ -1523,11 +1946,17 @@
     ">跟随当前/第一个文档</option>": ">Follow the current/first document</option>",
     " (不在当前列表)</option>": " (not in the current list)</option>",
     ">跟随当前文档所属笔记本</option>": ">Follow the current document's notebook</option>",
-    "默认": { "en": "Default", "exactOnly": true },
+    "默认": {
+      "en": "Default",
+      "exactOnly": true
+    },
     "，全功能权益": ", full-feature benefits",
     " · 全功能权益": " · full-feature benefits",
     ">全功能</small>": ">Full version</small>",
-    "未命名": { "en": "Untitled", "exactOnly": true },
+    "未命名": {
+      "en": "Untitled",
+      "exactOnly": true
+    },
     "${fieldLabel}（自定义）": "${fieldLabel} (custom)",
     ">已选 ": ">Selected: ",
     ">高</span>": ">High</span>",
@@ -1551,9 +1980,18 @@
     "title=\"提醒\"": "title=\"Reminder\"",
     "title=\"更多\"": "title=\"More\"",
     ">悬浮条不显示字段</span>": ">No fields shown in the quickbar</span>",
-    "剩余": { "en": "Remaining", "exactOnly": true },
-    "专注": { "en": "Focus", "exactOnly": true },
-    "示例": { "en": "Example", "exactOnly": true },
+    "剩余": {
+      "en": "Remaining",
+      "exactOnly": true
+    },
+    "专注": {
+      "en": "Focus",
+      "exactOnly": true
+    },
+    "示例": {
+      "en": "Example",
+      "exactOnly": true
+    },
     ">行末不显示字段</span>": ">No fields shown at the end of the row</span>",
     "效果预览": "Preview",
     "清单 · 桌面端紧凑模式：任务右侧字段排列": "Checklist · desktop compact mode: fields arranged to the right of tasks",
@@ -1570,7 +2008,10 @@
     ">正在读取工具列表…</div>": ">Reading the tool list…</div>",
     " · 思源关闭 ${deniedCount}": " · Disabled in SiYuan: ${deniedCount}",
     " · 思源关闭 ${groupDeniedCount}": " · Disabled in SiYuan: ${groupDeniedCount}",
-    "启用": { "en": "Enable", "exactOnly": true },
+    "启用": {
+      "en": "Enable",
+      "exactOnly": true
+    },
     "${name}：已在思源智能体能力设置中关闭": "${name}: turned off in the SiYuan agent capability settings",
     ">思源已关闭</small>": ">Disabled in SiYuan</small>",
     "按需要保留工具；关闭后会从下一次智能体对话中移除，可减少模型上下文占用，不影响任务管理器界面。这里的开关会同步思源智能体能力设置。": "Keep only the tools you need; disabling a tool removes it from the next agent conversation, reduces model context usage, and does not affect the Task Manager UI. These toggles stay in sync with the SiYuan agent capability settings.",
@@ -1610,7 +2051,10 @@
     "默认走 OpenAI 官方 /v1 接口；可改为 Azure / 兼容代理地址。": "Uses the official OpenAI /v1 endpoint by default; can be changed to Azure or a compatible proxy.",
     "默认走 Anthropic 官方 /v1/messages 接口；可改为兼容代理地址。": "Uses the official Anthropic /v1/messages endpoint by default; can be changed to a compatible proxy.",
     "默认走 MiniMax Anthropic 兼容接口。": "Uses the MiniMax Anthropic-compatible endpoint by default.",
-    "模型": { "en": "Model", "exactOnly": true },
+    "模型": {
+      "en": "Model",
+      "exactOnly": true
+    },
     "默认 deepseek-v4-flash，可手填 deepseek-v4-pro 等模型名。": "Defaults to deepseek-v4-flash; enter another model name such as deepseek-v4-pro manually.",
     "默认 gpt-5.4-mini，可手填 gpt-5.5 / gpt-5.4 等模型名。": "Defaults to gpt-5.4-mini; enter another model name such as gpt-5.5 / gpt-5.4 manually.",
     "默认 claude-sonnet-4-5，可手填其它 Claude 或兼容模型名。": "Defaults to claude-sonnet-4-5; enter another Claude or compatible model name manually.",
@@ -1740,7 +2184,10 @@
     "开启后，打开快速新建时预先选中今天；提交前可修改或清空，多行任务会统一应用。": "When enabled, quick-add preselects today; you can change or clear it before submitting, and multi-line tasks apply it to all.",
     "子任务继承父任务字段": "Subtasks inherit parent task fields",
     "新建子任务时，仅继承父任务中已经填写的字段。默认不继承任何字段。": "When creating a subtask, only fields already filled in on the parent task are inherited. Nothing is inherited by default.",
-    "字段": { "en": "Fields", "exactOnly": true },
+    "字段": {
+      "en": "Fields",
+      "exactOnly": true
+    },
     "删除任务时": "When deleting tasks",
     "永久删除仍会二次确认；移入回收站后可从提示中撤销。": "Permanent deletion still asks for confirmation; recycle-bin deletions can be undone from the toast.",
     ">永久删除</option>": ">Permanently delete</option>",
@@ -1925,10 +2372,16 @@
     "控制任务悬浮条里显示哪些字段和动作图标；取消勾选后对应按钮会隐藏。": "Controls which field and action icons appear in the task quickbar; unchecking hides the corresponding buttons.",
     "动作": "Actions",
     "AI 优化": "AI optimize",
-    "更多": { "en": "More", "exactOnly": true },
+    "更多": {
+      "en": "More",
+      "exactOnly": true
+    },
     "常驻显示字段": "Persistent display fields",
     "默认显示状态和截止日期；剩余时间规则与桌面端紧凑右侧字段一致。字段越多越容易挤占任务正文空间。": "Shows status and due date by default; remaining-time rules match the desktop compact right-side fields. More fields leave less room for task text.",
-    "子任务数量": { "en": "Subtask count", "exactOnly": true },
+    "子任务数量": {
+      "en": "Subtask count",
+      "exactOnly": true
+    },
     "子任务数量显示未完成数": "Subtask count shows unfinished",
     "开启后，子任务数量常驻标签显示未完成子任务数量；关闭时显示已完成/总数。": "When on, the persistent subtask-count label shows the number of unfinished subtasks; when off, it shows completed/total.",
     "移动端启用常驻显示": "Enable persistent display on mobile",
@@ -1961,7 +2414,6 @@
     "每行一个时间；支持 HH:mm（当天）和 +1 HH:mm（次日检查前一天）。": "One time per line; supports HH:mm (same day) and +1 HH:mm (check the previous day on the next day).",
     "弹窗确认扣分": "Confirm penalties with a dialog",
     "开启后先弹窗确认，可在弹窗中标记完成、免扣或修改时间。": "When enabled, a dialog asks for confirmation first, where you can mark tasks complete, waive the penalty, or change the time.",
-
     "调整常规字号、行高和文本展示方式。": "Adjust regular font sizes, row height, and text presentation.",
     "设置新建任务的默认位置，以及删除和完成任务后的归档方式。": "Set the default location for new tasks and how tasks are archived after deletion or completion.",
     "统一设置删除任务和完成顶层任务后的移动方式。": "Configure in one place how tasks move after deletion or top-level completion.",
@@ -1995,7 +2447,6 @@
     "支持按需导入 Status=0/1/2 任务；Status=1 已完成、Status=2 已归档会自动勾选完成，不同文档会并行写入以提升速度。": "Imports Status=0/1/2 tasks on demand; Status=1 (completed) and Status=2 (archived) are checked as complete automatically, and different documents are written in parallel for speed.",
     "右击页签可快速加入；完整勾选、包含子文档和重命名请在独立弹窗中管理。": "Right-click a tab to add it quickly; full selection, subdocument inclusion, and renaming are managed in the separate dialog.",
     ">管理页签分组</button>": ">Manage tab groups</button>",
-
     "⚠️ 没有可复制的诊断内容": "⚠️ No diagnostic content to copy",
     "✅ 诊断信息已复制": "✅ Diagnostics copied",
     "❌ 复制失败，请手动展开 JSON 复制": "❌ Copy failed; expand the JSON manually to copy it",
@@ -2030,8 +2481,14 @@
     "阴影 亮色": "Shadow light",
     "阴影 夜间": "Shadow dark",
     "任务内容列字体颜色": "Task content column font color",
-    "亮色": { "en": "Light", "exactOnly": true },
-    "夜间": { "en": "Dark", "exactOnly": true },
+    "亮色": {
+      "en": "Light",
+      "exactOnly": true
+    },
+    "夜间": {
+      "en": "Dark",
+      "exactOnly": true
+    },
     "任务其它列字体颜色": "Other task column font color",
     "子任务进度条背景": "Subtask progress bar background",
     "日历当天高亮颜色": "Calendar today highlight color",
@@ -2052,12 +2509,30 @@
     "阴影强度": "Shadow strength",
     "调整亮色与夜间配色。": "Adjust light and dark color schemes.",
     "思源主题色": "SiYuan theme colors",
-    "背景": { "en": "Background", "exactOnly": true },
-    "侧栏": { "en": "Sidebar", "exactOnly": true },
-    "卡片": { "en": "Card", "exactOnly": true },
-    "主色": { "en": "Primary", "exactOnly": true },
-    "强调": { "en": "Accent", "exactOnly": true },
-    "危险": { "en": "Danger", "exactOnly": true },
+    "背景": {
+      "en": "Background",
+      "exactOnly": true
+    },
+    "侧栏": {
+      "en": "Sidebar",
+      "exactOnly": true
+    },
+    "卡片": {
+      "en": "Card",
+      "exactOnly": true
+    },
+    "主色": {
+      "en": "Primary",
+      "exactOnly": true
+    },
+    "强调": {
+      "en": "Accent",
+      "exactOnly": true
+    },
+    "危险": {
+      "en": "Danger",
+      "exactOnly": true
+    },
     "title=\"背景\"": "title=\"Background\"",
     "title=\"卡片\"": "title=\"Card\"",
     "title=\"主色\"": "title=\"Primary\"",
@@ -2110,11 +2585,17 @@
     "找不到父任务的子任务 ${Number(summary.orphanSubtasks)} 条，已按根任务导入": "Subtasks without a parent: ${Number(summary.orphanSubtasks)} - imported as root tasks",
     "标签 ${Number(summary.tagCount) || 0} 个，将新建“标签”多选列": "Tags: ${Number(summary.tagCount) || 0} - a “Tags” multi-select column will be created",
     "文件：": "File: ",
-    "标签": { "en": "Tags", "exactOnly": true },
+    "标签": {
+      "en": "Tags",
+      "exactOnly": true
+    },
     "未选择目标笔记本": "No target notebook selected",
     "${baseName}（导入${i + 1}）": "${baseName} (import ${i + 1})",
     "文档已创建，但未拿到文档 ID": "The document was created but no document ID was returned",
-    "已存在": { "en": "Already exists", "exactOnly": true },
+    "已存在": {
+      "en": "Already exists",
+      "exactOnly": true
+    },
     "创建导入文档失败": "Failed to create the import document",
     "文档 ID 无效": "Invalid document ID",
     "文档尚未就绪": "The document is not ready yet",
@@ -2178,7 +2659,6 @@
     "应用主题": "Apply theme",
     "未解析到可用的主题变量，请确认内容里包含 :root / .dark 的 shadcn 语义 token。": "No usable theme variables were parsed; make sure the content contains :root / .dark shadcn semantic tokens.",
     "已载入文件：${file.name}": "Loaded file: ${file.name}",
-
     "⚠️ 至少保留一列": "⚠️ Keep at least one column",
     "兼容模式下旧版思源仅支持空格和 X；未完成状态的语法标记统一为空格，完成状态为 X。": "Legacy SiYuan in compatibility mode supports only space and X; unfinished markers are written as a space and finished as X.",
     "空格和 / 为未完成，X 为已完成，- 为放弃；除空格外，语法标记不能重复。": "Space and / are unfinished, X is finished, and - is abandoned; markers other than space cannot repeat.",
@@ -2225,27 +2705,45 @@
     "清空自定义列设置": "Clear custom column settings",
     "确定清空所有自定义列配置吗？已有任务上的历史值不会被立即清理，但会停止显示。": "Clear all custom column configurations? Historical values on existing tasks are not cleaned up immediately but stop being displayed.",
     "✅ 自定义列设置已清空": "✅ Custom column settings cleared",
-    "选项1": { "en": "Option 1", "exactOnly": true },
-    "选项2": { "en": "Option 2", "exactOnly": true },
+    "选项1": {
+      "en": "Option 1",
+      "exactOnly": true
+    },
+    "选项2": {
+      "en": "Option 2",
+      "exactOnly": true
+    },
     "未命名文档分组": "Untitled document group",
     "未找到匹配文档": "No matching documents found",
     "没有可选文档分组": "No document groups available",
     "没有可选页签组": "No tab groups available",
     "${id}（已失效）": "${id} (invalid)",
-    "页签组": { "en": "Tab group", "exactOnly": true },
+    "页签组": {
+      "en": "Tab group",
+      "exactOnly": true
+    },
     "title=\"移除": "title=\"Remove: ",
     ">尚未选择范围</span>": ">No scope selected yet</span>",
     ">文本</option>": ">Text</option>",
     ">单选</option>": ">Single select</option>",
     ">多选</option>": ">Multi-select</option>",
     "显示${__tmResolveColumnLabel(colKey)}": "Show ${__tmResolveColumnLabel(colKey)}",
-    "单选": { "en": "Single select", "exactOnly": true },
-    "多选": { "en": "Multi-select", "exactOnly": true },
+    "单选": {
+      "en": "Single select",
+      "exactOnly": true
+    },
+    "多选": {
+      "en": "Multi-select",
+      "exactOnly": true
+    },
     "指定范围": "Specific scope",
     "未命名自定义列": "Untitled custom column",
     "取消归档": "Unarchive",
     "归档选项": "Archive option",
-    "已归档": { "en": "Archived", "exactOnly": true },
+    "已归档": {
+      "en": "Archived",
+      "exactOnly": true
+    },
     "随父级归档": "Archive with parent",
     "第 ${depth + 1} 级": "Level ${depth + 1}",
     "拖拽移动选项": "Drag to move option",
@@ -2308,7 +2806,10 @@
     "确定删除选项“${optionName}”吗？历史任务中的原始属性值不会被批量改写。": "Delete option “${optionName}”? Raw attribute values in existing tasks are not rewritten.",
     "⚠️ 当前版本未加载内置字段属性名配置": "⚠️ The built-in field attribute configuration is not loaded in this version",
     "⚠️ 迁移正在执行，请等待完成": "⚠️ A migration is running; wait for it to finish",
-    "未预览": { "en": "Not previewed", "exactOnly": true },
+    "未预览": {
+      "en": "Not previewed",
+      "exactOnly": true
+    },
     "，已写 ${migrated}，失败 ${failed}": ", written ${migrated}, failed ${failed}",
     "可迁移 ": "Migratable: ",
     "，跳过 ": ", skipped: ",
@@ -2377,9 +2878,11 @@
     "请输入新的分组名称": "Enter a new group name",
     "⚠ 分组名称不能为空": "⚠ Group name cannot be empty",
     "✅ 已重命名分组": "✅ Group renamed",
-    "当前分组": { "en": "Current group", "exactOnly": true },
+    "当前分组": {
+      "en": "Current group",
+      "exactOnly": true
+    },
     "确定要删除分组“${currentGroupName}”吗？此操作不会删除思源中的文档。": "Delete the group “${currentGroupName}”? This does not delete documents in SiYuan.",
-
     "修改标题分组名称": "Rename heading group",
     "请输入新标题名称": "Enter the new heading name",
     "⚠ 标题名称不能为空或包含换行": "⚠ The heading name cannot be empty or contain line breaks",
@@ -2395,7 +2898,10 @@
     "当前筛选恢复显示后会在页签组内排到最前": "will sort first within the tab group after the current filter shows it again",
     "页签组显示后会在组内排到最前": "will sort first in the group once shown",
     "，该页签已钉住，": "; this tab is pinned; ",
-    "当前文档分组": { "en": "Current document group", "exactOnly": true },
+    "当前文档分组": {
+      "en": "Current document group",
+      "exactOnly": true
+    },
     "上移页签组：${name}": "Move tab group up: ${name}",
     "下移页签组：${name}": "Move tab group down: ${name}",
     ">暂无页签组</div>": ">No tab groups</div>",
@@ -2514,15 +3020,33 @@
     "节假日/农历缓存": "Holiday/lunar cache",
     "去年、今年、明年范围内真实可用的节假日/农历缓存。": "Real holiday/lunar caches available for last year, this year, and next year.",
     "状态语法标记重复（只有空格可以重复）：": "Duplicate status markers (only space can repeat):",
-    "已刷新": { "en": "Refreshed", "exactOnly": true },
-    "已缓存": { "en": "Cached", "exactOnly": true },
-    "缺失": { "en": "Missing", "exactOnly": true },
-    "未知": { "en": "Unknown", "exactOnly": true },
+    "已刷新": {
+      "en": "Refreshed",
+      "exactOnly": true
+    },
+    "已缓存": {
+      "en": "Cached",
+      "exactOnly": true
+    },
+    "缺失": {
+      "en": "Missing",
+      "exactOnly": true
+    },
+    "未知": {
+      "en": "Unknown",
+      "exactOnly": true
+    },
     "请先停止当前 AI 请求再导入": "Stop the current AI request before importing",
     "请至少选择一个导出模块": "Select at least one export module",
     "包含 API Key，设置包为明文 JSON。": "Includes API keys; the settings package is plain-text JSON.",
-    "未包含": { "en": "Not included", "exactOnly": true },
-    "已包含": { "en": "Included", "exactOnly": true },
+    "未包含": {
+      "en": "Not included",
+      "exactOnly": true
+    },
+    "已包含": {
+      "en": "Included",
+      "exactOnly": true
+    },
     ">设置包摘要</div>": ">Settings package summary</div>",
     ">导出时间：": ">Exported at: ",
     ">模块：": ">Modules: ",
@@ -2537,7 +3061,10 @@
     "选择要导出的内容。设置包是明文 JSON；勾选 AI 接入设置时会包含 API Key。": "Choose what to export. The settings package is plain-text JSON; checking AI access settings includes API keys.",
     "节假日/农历会检查去年、今年、明年；只导出已有缓存或成功刷新到的真实数据。": "Holidays/lunar data are checked for last year, this year, and next year; only existing caches or successfully refreshed real data are exported.",
     ">导出</button>": ">Export</button>",
-    "导出": { "en": "Export", "exactOnly": true },
+    "导出": {
+      "en": "Export",
+      "exactOnly": true
+    },
     "正在导出...": "Exporting...",
     "✅ 设置包已导出": "✅ Settings package exported",
     "再次导出": "Export again",
@@ -2553,7 +3080,10 @@
     "正在导入...": "Importing...",
     "✅ 设置包已导入": "✅ Settings package imported",
     "确认导入": "Confirm import",
-    "今日已打卡": { "en": "Checked in today", "exactOnly": true },
+    "今日已打卡": {
+      "en": "Checked in today",
+      "exactOnly": true
+    },
     "打卡计划已结束": "Check-in schedule ended",
     "今日待打卡": "Check-in due today",
     "下次打卡 ${days}天后": "Next check-in in ${days} days",
@@ -2562,12 +3092,24 @@
     "明天→": "Tomorrow →",
     "后天→": "Day after tomorrow →",
     "${daysUntilStart}天后→": "In ${daysUntilStart} days →",
-    "过期": { "en": "Expired", "exactOnly": true },
+    "过期": {
+      "en": "Expired",
+      "exactOnly": true
+    },
     "余${remainingDays}天": "${remainingDays} days left",
-    "是": { "en": "Yes", "exactOnly": true },
+    "是": {
+      "en": "Yes",
+      "exactOnly": true
+    },
     "优先级分": "Priority score",
-    "耗时": { "en": "Time spent", "exactOnly": true },
-    "层级": { "en": "Level", "exactOnly": true },
+    "耗时": {
+      "en": "Time spent",
+      "exactOnly": true
+    },
+    "层级": {
+      "en": "Level",
+      "exactOnly": true
+    },
     "⚠️ 仅表格视图支持导出 Excel": "⚠️ Excel export is available only in the Table view",
     "⏳ 正在准备 Excel 导出组件...": "⏳ Preparing the Excel export component...",
     "❌ Excel 导出组件未加载": "❌ The Excel export component is not loaded",
@@ -2609,28 +3151,69 @@
     " 个</div>": "</div>",
     "每日完成总结": "Daily completion summary",
     "请总结今天完成的任务，提炼主要成果、推进中的方向和明天值得优先关注的事项。内容应简洁、具体，不要虚构任务数据。涉及专注时长或番茄时，必须从本轮 tool definitions 中选择描述为“专注统计”或“时间投入统计”的 Task Horizon MCP capability（内部标识分别为 query_focus_statistics、aggregate_time_usage），实际调用必须使用带 plugin__siyuan_plugin_task_horizon__ 前缀和校验后缀的完整工具名，禁止直接调用裸标识，也禁止通过 SQL 读取 custom-tomato-* 属性。": "Summarize today's completed tasks: highlight the main results, directions in progress, and what deserves priority attention tomorrow. Keep it concise and concrete; never invent task data. For focus time or Pomodoros, choose the Task Horizon MCP capability described as “Focus statistics” or “Time usage statistics” from this turn's tool definitions (internal identifiers query_focus_statistics and aggregate_time_usage respectively); actual calls must use the full tool names with the plugin__siyuan_plugin_task_horizon__ prefix and checksum suffix - never call bare identifiers and never read custom-tomato-* attributes via SQL.",
-    "周日": { "en": "Sunday", "exactOnly": true },
-    "周一": { "en": "Monday", "exactOnly": true },
-    "周二": { "en": "Tuesday", "exactOnly": true },
-    "周三": { "en": "Wednesday", "exactOnly": true },
-    "周四": { "en": "Thursday", "exactOnly": true },
-    "周五": { "en": "Friday", "exactOnly": true },
-    "周六": { "en": "Saturday", "exactOnly": true },
-    "未设置日期": { "en": "No date set", "exactOnly": true },
+    "周日": {
+      "en": "Sunday",
+      "exactOnly": true
+    },
+    "周一": {
+      "en": "Monday",
+      "exactOnly": true
+    },
+    "周二": {
+      "en": "Tuesday",
+      "exactOnly": true
+    },
+    "周三": {
+      "en": "Wednesday",
+      "exactOnly": true
+    },
+    "周四": {
+      "en": "Thursday",
+      "exactOnly": true
+    },
+    "周五": {
+      "en": "Friday",
+      "exactOnly": true
+    },
+    "周六": {
+      "en": "Saturday",
+      "exactOnly": true
+    },
+    "未设置日期": {
+      "en": "No date set",
+      "exactOnly": true
+    },
     "工作日 ${schedule.time}": "Workdays ${schedule.time}",
-    "每周": "Every ",
     "每天 ${schedule.time}": "Every day ${schedule.time}",
-    "已停用": { "en": "Disabled", "exactOnly": true },
+    "已停用": {
+      "en": "Disabled",
+      "exactOnly": true
+    },
     "等待执行": "Waiting to run",
     "待计算": "Pending",
-    "等待": { "en": "Waiting", "exactOnly": true },
-    "运行中": { "en": "Running", "exactOnly": true },
-    "成功": { "en": "Success", "exactOnly": true },
+    "等待": {
+      "en": "Waiting",
+      "exactOnly": true
+    },
+    "运行中": {
+      "en": "Running",
+      "exactOnly": true
+    },
+    "成功": {
+      "en": "Success",
+      "exactOnly": true
+    },
     "空任务跳过": "Skipped: no tasks",
     "安全阻断": "Blocked (safety)",
     "配置错误": "Misconfigured",
-    "仅电脑端": { "en": "Desktop only", "exactOnly": true },
-    "失败": { "en": "Failed", "exactOnly": true },
+    "仅电脑端": {
+      "en": "Desktop only",
+      "exactOnly": true
+    },
+    "失败": {
+      "en": "Failed",
+      "exactOnly": true
+    },
     "已投递，等待确认": "Delivered, awaiting confirmation",
     "编辑定时事件": "Edit scheduled event",
     "新建定时事件": "New scheduled event",
@@ -2676,12 +3259,27 @@
     "尚无运行结果": "No results yet",
     "title=\"关闭结果\"": "title=\"Close results\"",
     "aria-label=\"关闭结果\"": "aria-label=\"Close results\"",
-    "已阻止": { "en": "Blocked", "exactOnly": true },
+    "已阻止": {
+      "en": "Blocked",
+      "exactOnly": true
+    },
     "月度子文档": "Monthly subdocument",
-    "顶部": { "en": "Top", "exactOnly": true },
-    "底部": { "en": "Bottom", "exactOnly": true },
-    "通知展示": { "en": "Notification", "exactOnly": true },
-    "停用": { "en": "Disable", "exactOnly": true },
+    "顶部": {
+      "en": "Top",
+      "exactOnly": true
+    },
+    "底部": {
+      "en": "Bottom",
+      "exactOnly": true
+    },
+    "通知展示": {
+      "en": "Notification",
+      "exactOnly": true
+    },
+    "停用": {
+      "en": "Disable",
+      "exactOnly": true
+    },
     "title=\"打开对话\"": "title=\"Open conversation\"",
     "aria-label=\"打开对话\"": "aria-label=\"Open conversation\"",
     ">下次运行</span>": ">Next run</span>",
@@ -2702,31 +3300,82 @@
     "总结今天的任务。": "Summarize today's tasks.",
     "定时事件已保存": "Scheduled event saved",
     "定时事件正在运行": "The scheduled event is running",
-    "未知原因": { "en": "Unknown reason", "exactOnly": true },
+    "未知原因": {
+      "en": "Unknown reason",
+      "exactOnly": true
+    },
     "定时事件已完成，但系统通知未发送：": "The scheduled event completed, but the system notification was not sent: ",
     "；正在打开对话": "; opening the conversation",
     "该事件还没有运行对话": "This event has no run conversation yet",
     "任务智能体对话暂不可用": "The task agent conversation is temporarily unavailable",
     "删除定时事件“${event.name}”？": "Delete the scheduled event “${event.name}”?",
-    "会议": { "en": "Meeting", "exactOnly": true },
-    "例会": { "en": "Standup", "exactOnly": true },
-    "周会": { "en": "Weekly meeting", "exactOnly": true },
-    "写作": { "en": "Writing", "exactOnly": true },
-    "报告": { "en": "Report", "exactOnly": true },
-    "复盘": { "en": "Review", "exactOnly": true },
-    "方案": { "en": "Proposal", "exactOnly": true },
-    "撰写": { "en": "Drafting", "exactOnly": true },
-    "沟通杂务": { "en": "Communication chores", "exactOnly": true },
-    "邮件": { "en": "Email", "exactOnly": true },
-    "回复": { "en": "Reply", "exactOnly": true },
-    "整理": { "en": "Tidy up", "exactOnly": true },
-    "报销": { "en": "Expenses", "exactOnly": true },
-    "归档": { "en": "Archive", "exactOnly": true },
+    "会议": {
+      "en": "Meeting",
+      "exactOnly": true
+    },
+    "例会": {
+      "en": "Standup",
+      "exactOnly": true
+    },
+    "周会": {
+      "en": "Weekly meeting",
+      "exactOnly": true
+    },
+    "写作": {
+      "en": "Writing",
+      "exactOnly": true
+    },
+    "报告": {
+      "en": "Report",
+      "exactOnly": true
+    },
+    "复盘": {
+      "en": "Review",
+      "exactOnly": true
+    },
+    "方案": {
+      "en": "Proposal",
+      "exactOnly": true
+    },
+    "撰写": {
+      "en": "Drafting",
+      "exactOnly": true
+    },
+    "沟通杂务": {
+      "en": "Communication chores",
+      "exactOnly": true
+    },
+    "邮件": {
+      "en": "Email",
+      "exactOnly": true
+    },
+    "回复": {
+      "en": "Reply",
+      "exactOnly": true
+    },
+    "整理": {
+      "en": "Tidy up",
+      "exactOnly": true
+    },
+    "报销": {
+      "en": "Expenses",
+      "exactOnly": true
+    },
+    "归档": {
+      "en": "Archive",
+      "exactOnly": true
+    },
     "当前思源版本未提供安排规则服务": "This SiYuan version does not provide the scheduling rules service",
     "安排规则服务调用失败": "Scheduling rules service call failed",
     "安排规则读取失败": "Failed to read scheduling rules",
-    "跟随日历默认": { "en": "Follow calendar default", "exactOnly": true },
-    "单独设置": { "en": "Set separately", "exactOnly": true },
+    "跟随日历默认": {
+      "en": "Follow calendar default",
+      "exactOnly": true
+    },
+    "单独设置": {
+      "en": "Set separately",
+      "exactOnly": true
+    },
     "继承上级，编辑后覆盖": "Inherit from parent; edits override",
     "每周可安排时间": "Weekly availability",
     ">至</span>": ">to</span>",
@@ -2760,7 +3409,10 @@
     "补充希望 AI 在当前规则作用域内遵守的安排或处理要求。": "Add scheduling or handling requirements for the AI to follow within this rule's scope.",
     "placeholder=\"例如：会议前后预留 15 分钟；本组任务只安排在工作日上午。\"": "placeholder=\"e.g. Leave 15 minutes around meetings; schedule this group's tasks on weekday mornings only.\"",
     "截止时间优先级": "Deadline priority",
-    "默认日历": { "en": "Default calendar", "exactOnly": true },
+    "默认日历": {
+      "en": "Default calendar",
+      "exactOnly": true
+    },
     ">有截止时间时自动设置</span>": ">Set automatically when a deadline exists</span>",
     ">高</option>": ">High</option>",
     ">中</option>": ">Medium</option>",
@@ -2794,10 +3446,16 @@
     "其他安排规则已保存": "Other scheduling rules saved",
     "安排规则保存失败": "Failed to save the scheduling rules",
     "选择文档": "Select document",
-    "周报": { "en": "Weekly report", "exactOnly": true },
+    "周报": {
+      "en": "Weekly report",
+      "exactOnly": true
+    },
     "时段\"": " time slot\"",
     "循环任务 · 第 ${occurrence}${total > 0 ? `/${total}` : ''} 次": "Recurring task · #${occurrence}${total > 0 ? `/${total}` : ''}",
-    "循环任务": { "en": "Recurring task", "exactOnly": true },
+    "循环任务": {
+      "en": "Recurring task",
+      "exactOnly": true
+    },
     "全部分区内文档": "All documents in all groups",
     "已选分组内全部文档": "All documents in the selected groups",
     "指定文档": "Specified documents",
@@ -2807,8 +3465,14 @@
     "按完成日期": "By completion date",
     "按重要性": "By priority",
     "按状态": "By status",
-    "最早": { "en": "Earliest", "exactOnly": true },
-    "最晚": { "en": "Latest", "exactOnly": true },
+    "最早": {
+      "en": "Earliest",
+      "exactOnly": true
+    },
+    "最晚": {
+      "en": "Latest",
+      "exactOnly": true
+    },
     "全部时间": "All time",
     "# 今日日报": "# Today's report",
     "# 本周周报": "# This week's report",
@@ -2857,12 +3521,26 @@
     "✅ 已复制摘要 Markdown": "✅ Summary Markdown copied",
     "⚠️ 没有可导出的内容": "⚠️ Nothing to export",
     "✅ 已导出 Markdown": "✅ Markdown exported",
-
-    "视图": { "en": "Views", "exactOnly": true },
-    "界面": { "en": "Interface", "exactOnly": true },
-    "智能": { "en": "AI", "exactOnly": true },
-    "数据": { "en": "Data", "exactOnly": true },
-    "授权": { "en": "License", "exactOnly": true },
+    "视图": {
+      "en": "Views",
+      "exactOnly": true
+    },
+    "界面": {
+      "en": "Interface",
+      "exactOnly": true
+    },
+    "智能": {
+      "en": "AI",
+      "exactOnly": true
+    },
+    "数据": {
+      "en": "Data",
+      "exactOnly": true
+    },
+    "授权": {
+      "en": "License",
+      "exactOnly": true
+    },
     "文档与来源": "Documents & sources",
     "完成与归档": "Completion & archiving",
     "复习与日期": "Review & dates",
@@ -2911,7 +3589,10 @@
     "任务数据导入": "Task data import",
     "设备识别与诊断": "Device recognition & diagnostics",
     "兼容与同步": "Compatibility & sync",
-    "设置": { "en": "Settings", "exactOnly": true },
+    "设置": {
+      "en": "Settings",
+      "exactOnly": true
+    },
     "安排规则需要启用思源智能体并具备对应功能权益。": "Scheduling rules require the SiYuan agent to be enabled with the corresponding feature entitlement.",
     "当前工作方式未启用": "The current workflow does not enable ",
     "，可在工作方式中切换。": "; switch it under Workflow.",
@@ -2924,12 +3605,14 @@
     "设置子分类": "Settings subcategory",
     "日历布局": "Calendar layout",
     "日历订阅": "Calendar subscription",
-    "选项": { "en": "Options", "exactOnly": true },
+    "选项": {
+      "en": "Options",
+      "exactOnly": true
+    },
     "未生效：": "Not applied: ",
     "规则名称不能为空": "Rule name cannot be empty",
     "定时事件需要思源 3.7.3 或更高版本": "Scheduled events require SiYuan 3.7.3 or later",
     "安排规则已在其他位置发生变化，已重新读取最新设置，请重新修改": "The scheduling rules changed elsewhere; the latest settings were reloaded - edit again",
-
     "统计规则": "Statistics rule",
     "今日任务 统计规则 文档范围 顶栏 Dock 侧栏 数量": "Today's tasks · Statistics rule · Document scope · Top bar · Dock sidebar · Count",
     "启用任务数量角标": "Enable the task count badge",
@@ -2959,7 +3642,6 @@
     "角标已关闭": "Badge is disabled",
     ">刷新数量</button>": ">Refresh count</button>",
     "角标使用当前插件图标预设；首次统计在启动后执行。任务数量按实际命中的任务计算。": "The badge uses the current plugin icon preset; the first count runs after startup. The count reflects the tasks that actually match.",
-
     "请先停止当前 AI 请求，再切换工作方式": "Stop the current AI request before switching the workflow",
     "目标 AI 运行时未就绪": "The target AI runtime is not ready",
     "切换失败：": "Switch failed: ",
@@ -2990,6 +3672,50 @@
     "设置备份与迁移": "Settings backup & migration",
     "文档范围": "Document scope",
     "所选规则已失效": "The selected rule is no longer valid",
-    "所选分组已失效": "The selected group is no longer valid"
+    "所选分组已失效": "The selected group is no longer valid",
+    "AI 定时事件仅在电脑端执行": "AI scheduled events run on desktop only",
+    "定时事件结果": "Scheduled event result",
+    "未命名定时事件": "Untitled scheduled event",
+    "名称和提示词不能为空": "Name and prompt cannot be empty",
+    "重复规则无效": "Invalid repeat rule",
+    "运行时间无效": "Invalid run time",
+    "单次事件日期无效": "Invalid one-time event date",
+    "请选择目标文档或输入文档 ID": "Select a target document or enter a document ID",
+    "，时间范围为 from=": ", time range from=",
+    "、to=": " to=",
+    "任务内核不可用，无法创建月度子文档": "The task kernel is unavailable; cannot create the monthly subdocument",
+    "任务内核未返回月度子文档 ID": "The task kernel did not return the monthly subdocument ID",
+    "无法确定今天日记所属笔记本": "Unable to determine the notebook of today's daily note",
+    "获取今天日记文档失败": "Failed to get today's daily-note document",
+    "定时事件完成：": "Scheduled event complete: ",
+    "已追加到任务智能体对话“": "Appended to the task agent conversation “",
+    "定时：": "Scheduled: ",
+    "未获取到可用的系统通知接口": "No usable system notification interface was obtained",
+    "系统通知发送失败": "Failed to send the system notification",
+    "思源通知接口未返回有效通知 ID": "The SiYuan notification interface did not return a valid notification ID",
+    "\\n\\n系统通知未发送：": "\\n\\nThe system notification was not sent: ",
+    "定时事件执行失败：${name}": "Scheduled event failed: ${name}",
+    "任务内核仍在处理上一次调用：${active.name}": "The task kernel is still processing the previous call: ${active.name}",
+    "任务内核调用超时：${name}": "Task kernel call timed out: ${name}",
+    "任务内核不可用，定时事件未写入": "The task kernel is unavailable; the scheduled event was not written",
+    "任务内核不可用，无法安全执行定时事件": "The task kernel is unavailable; cannot safely run the scheduled event",
+    "任务内核未返回定时事件状态": "The task kernel did not return the scheduled event status",
+    "任务内核不可用，无法完成定时事件": "The task kernel is unavailable; cannot complete the scheduled event",
+    "定时事件完成状态写入失败": "Failed to write the scheduled event completion status",
+    "任务内核不可用，无法续租定时事件": "The task kernel is unavailable; cannot renew the scheduled event lease",
+    "定时事件执行权已失效": "The scheduled event's execution lease has expired",
+    "投递失败": "Delivery failed",
+    "定时事件已被删除": "The scheduled event was deleted",
+    "定时事件的会话绑定与当前设备不一致，请完成思源数据同步后重试": "The scheduled event's conversation binding does not match the current device; complete the SiYuan data sync and try again",
+    "会话保存版本落后于已记录版本，请完成思源数据同步后重试": "The conversation save version is behind the recorded version; complete the SiYuan data sync and try again",
+    "定时事件的会话绑定已变化，请完成思源数据同步后重试": "The scheduled event's conversation binding has changed; complete the SiYuan data sync and try again",
+    "会话保存期间发现更新的同步版本，请完成思源数据同步后重试": "A newer sync version appeared while saving the conversation; complete the SiYuan data sync and try again",
+    "定时事件不存在": "The scheduled event does not exist",
+    "定时事件需要思源 3.7.3 或更高版本，并启用可用的智能体模型": "Scheduled events require SiYuan 3.7.3 or later and an enabled agent model",
+    "\\n\\n以下是 ": "\\n\\nTasks actually completed on ",
+    " 当天实际完成的任务（完成日期只按 taskCompleteAt 计算）：\\n": " (completion dates are counted only via taskCompleteAt):\\n",
+    "智能体未返回内容": "The agent returned no content",
+    "定时事件执行权已转移，本次结果未投递": "The scheduled event's execution lease moved elsewhere; this result was not delivered",
+    "\\n\\n专注数据口径（必须遵守）：本次总结涉及专注时长或番茄时，必须从本轮 tool definitions 中选择 Task Horizon MCP 的“专注统计” capability（内部标识 query_focus_statistics），并传 action=query、bucket=none、groupBy=task${rangeText}；实际函数名必须使用当前列表中带 plugin__siyuan_plugin_task_horizon__ 前缀及校验后缀的完整名称，不要直接调用裸的 query_focus_statistics。如提示词附带任务，才将这些任务的 id 作为 taskIDs，否则不要传空的 taskIDs，直接按时间范围查询。需要预估、日程与实际对比时，从本轮 tool definitions 中选择“时间投入统计” capability（内部标识 aggregate_time_usage），同样使用列表中的完整名称，不要直接调用裸的 aggregate_time_usage。禁止使用 sql.query 读取任何 custom-tomato-* 属性，尤其 custom-tomato-applied-records，它是 Dock Tomato 内部去重账本，不是专注数据。MCP 无数据时明确写“暂无专注数据”，不要用其他字段替代或推算。": "\\n\\nFocus data rules (mandatory): when this summary involves focus time or Pomodoros, choose the Task Horizon MCP “Focus statistics” capability from this turn's tool definitions (internal identifier query_focus_statistics) and pass action=query, bucket=none, groupBy=task${rangeText}; the actual function name must be the full name with the plugin__siyuan_plugin_task_horizon__ prefix and checksum suffix from the current list - never call the bare query_focus_statistics. Only when the prompt includes tasks, pass those task ids as taskIDs; otherwise do not pass an empty taskIDs and query by time range directly. To compare estimates, schedules, and actuals, choose the “Time usage statistics” capability from this turn's tool definitions (internal identifier aggregate_time_usage), again using the full name from the list - never call the bare aggregate_time_usage. Do not use sql.query to read any custom-tomato-* attributes, especially custom-tomato-applied-records, which is Dock Tomato's internal dedup ledger, not focus data. When the MCP has no data, state explicitly “No focus data”; do not substitute or infer from other fields."
   }
 }
