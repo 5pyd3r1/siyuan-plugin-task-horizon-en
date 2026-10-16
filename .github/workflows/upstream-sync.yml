@@ -1,0 +1,168 @@
+name: upstream-sync
+
+# Automatic upstream tracking for the English build.
+#
+# Runs daily, on main pushes and on manual dispatch:
+#   * latest upstream (5kyfkr/siyuan-plugin-task-horizon) GitHub release
+#   * tree already contains it and our release exists      -> no-op
+#   * merge + dry-run clean (0 uncovered / 0 stale / 0 raw mismatches)
+#       -> set versionSuffix to en.1, push main + tag, build the release in
+#          this same run (GITHUB_TOKEN pushes cannot trigger release.yml)
+#   * new Chinese strings or merge conflict
+#       -> open an issue, push nothing; translate, push main, and the next
+#          run finishes the release
+#
+# Untranslated builds are never published: this gate and pack.js both refuse
+# dirty reports.
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: upstream-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      tag: ${{ steps.run.outputs.tag }}
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Configure git
+        run: |
+          git config user.name '5pyd3r1'
+          git config user.email '5pyd3r1@users.noreply.github.com'
+          git config --global merge.ours.driver true
+      - name: Sync upstream
+        id: run
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          UPSTREAM=5kyfkr/siyuan-plugin-task-horizon
+
+          TAG=$(gh api "repos/${UPSTREAM}/releases/latest" --jq '.tag_name' 2>/dev/null || true)
+          if ! echo "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "sync: no usable upstream release (got: ${TAG:-none}) - nothing to do"
+            exit 0
+          fi
+          echo "sync: upstream latest release: ${TAG}"
+
+          PRE=$(git rev-parse HEAD)
+
+          git remote add upstream "https://github.com/${UPSTREAM}.git" 2>/dev/null || true
+          git fetch --force --no-tags upstream "refs/tags/${TAG}:refs/tags/${TAG}"
+          git push origin "refs/tags/${TAG}" 2>/dev/null || true
+
+          if ! git merge-base --is-ancestor "refs/tags/${TAG}" HEAD; then
+            echo "sync: merging ${TAG}"
+            if ! git merge --no-edit "refs/tags/${TAG}"; then
+              git merge --abort || true
+              gh issue create --repo "$REPO" \
+                --title "Upstream sync ${TAG}: merge conflict needs a human" \
+                --body "Merging upstream ${TAG} into main hit a conflict, so nothing was pushed. Resolve it locally (git fetch origin --tags, then git merge ${TAG}), push main, and the next upstream-sync run publishes the release."
+              exit 0
+            fi
+          fi
+
+          V=$(node -e "console.log(JSON.parse(require('node:fs').readFileSync('plugin.json','utf8')).version)")
+          if ! echo "$V" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "sync: unexpected manifest version '${V}' - skipping"
+            exit 0
+          fi
+          echo "sync: manifest version in tree: ${V}"
+
+          EXISTING=$(git tag -l "v${V}-en.*" | sort -V | tail -n 1)
+          if [ -n "$EXISTING" ]; then
+            if gh release view "$EXISTING" --repo "$REPO" >/dev/null 2>&1; then
+              echo "sync: ${EXISTING} already released - nothing to do"
+            else
+              echo "sync: ${EXISTING} tag exists without a release - rebuilding it"
+              echo "tag=${EXISTING}" >> "$GITHUB_OUTPUT"
+            fi
+            exit 0
+          fi
+
+          echo "sync: dry-run translation check"
+          node tools/i18n/apply.js --dry --report output/i18n/sync-report.json
+          read -r U S M < <(node -e "const r=require('./output/i18n/sync-report.json');process.stdout.write([r.totals.uncoveredTotal||0,r.totals.staleKeys||0,(r.rawCountMismatch||[]).length].join(' '))")
+          echo "sync: uncovered=${U} stale=${S} rawMismatch=${M}"
+
+          if [ "$U" != "0" ] || [ "$S" != "0" ] || [ "$M" != "0" ]; then
+            git reset --hard "$PRE" >/dev/null
+            OPEN=$(gh issue list --repo "$REPO" --state open --search "\"Upstream sync ${TAG}\" in:title" --json number --jq '.[0].number // empty')
+            if [ -z "$OPEN" ]; then
+              gh issue create --repo "$REPO" \
+                --title "Upstream sync ${TAG}: translation needed (${U} uncovered runs, ${S} stale keys)" \
+                --body "Upstream published ${TAG}, but the English dictionaries do not translate it cleanly yet: ${U} uncovered runs, ${S} stale keys, ${M} raw mismatches. Nothing was pushed. Translate the delta locally (node tools/i18n/apply.js --dry shows it), commit and push main - the next upstream-sync run (or a manual dispatch) tags and publishes the release automatically."
+            else
+              echo "sync: issue already open for ${TAG} (#${OPEN})"
+            fi
+            exit 0
+          fi
+
+          node -e "const fs=require('node:fs');const p='i18n/fork.json';const c=JSON.parse(fs.readFileSync(p,'utf8'));c.versionSuffix='en.1';fs.writeFileSync(p,JSON.stringify(c,null,4)+'\n');"
+          git add -A
+          git commit -m "sync: upstream ${TAG} (English release en.1)" || true
+          git push origin HEAD:main
+
+          NTAG="v${V}-en.1"
+          if git rev-parse -q --verify "refs/tags/${NTAG}" >/dev/null; then
+            git tag -f "$NTAG"
+          else
+            git tag "$NTAG"
+          fi
+          git push origin "refs/tags/${NTAG}"
+          echo "tag=${NTAG}" >> "$GITHUB_OUTPUT"
+          echo "sync: pushed ${NTAG}"
+
+  release:
+    needs: sync
+    if: needs.sync.outputs.tag != ''
+    permissions:
+      contents: write
+    uses: ./.github/workflows/build-release.yml
+    with:
+      tag: ${{ needs.sync.outputs.tag }}
+
+  cleanup:
+    needs: [sync, release]
+    if: needs.sync.outputs.tag != ''
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Close resolved upstream-sync issues
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          TAG: ${{ needs.sync.outputs.tag }}
+        run: |
+          set -euo pipefail
+          BASE="${TAG#v}"
+          BASE="${BASE%%-en.*}"
+          echo "cleanup: closing open sync issues for upstream v${BASE}"
+          gh issue list --repo "$REPO" --state open --search "\"Upstream sync v${BASE}\" in:title" --json number --jq '.[].number' | while read -r n; do
+            if [ -n "$n" ]; then gh issue close "$n" --repo "$REPO" --comment "Released ${TAG}."; fi
+          done

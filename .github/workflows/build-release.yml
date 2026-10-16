@@ -1,0 +1,42 @@
+name: build-release
+
+# Reusable release pipeline: builds the unofficial English package (translate +
+# rename identity + rebuild task.js), verifies it and publishes the GitHub
+# Release with package.zip. Called by release.yml (manual/tag pushes) and by
+# upstream-sync.yml (automatic upstream releases).
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build English stage (translate + rename + syntax verify)
+        run: node tools/i18n/stage.js --lang en
+      - name: Package and verify (tag must match manifest version)
+        run: node tools/i18n/pack.js --tag "${{ inputs.tag }}"
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag }}
+          files: output/i18n/package.zip
+          body_path: output/i18n/RELEASE_BODY.md
+          fail_on_unmatched_files: true
+          prerelease: false
+          make_latest: true

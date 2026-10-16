@@ -12,5 +12,12 @@
 *.css text eol=crlf
 *.md  text eol=lf
 
+# Fork-owned files: merges from upstream keep our version (root-anchored).
+# Requires `git config --global merge.ours.driver true` once per clone.
+/README.md merge=ours
+/README_zh_CN.md merge=ours
+/.gitignore merge=ours
+/.github/workflows/release.yml merge=ours
+
 # Binary assets
 *.png binary

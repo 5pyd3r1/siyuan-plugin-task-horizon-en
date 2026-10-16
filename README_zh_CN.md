@@ -17,6 +17,12 @@
 - **手动安装**：从[最新 Release](https://github.com/5pyd3r1/siyuan-plugin-task-horizon-en/releases/latest) 下载 `package.zip`，解压到 `{工作空间}/data/plugins/siyuan-plugin-task-horizon-en/`，重启思源并启用插件。
 - **从原版切换**：把 `{工作空间}/data/storage/petal/siyuan-plugin-task-horizon` 复制为 `{工作空间}/data/storage/petal/siyuan-plugin-task-horizon-en`（或运行本仓库的 `tools/i18n/migrate-data.ps1`），即可保留设置、AI 配置与激活状态，然后停用原版插件。
 
+## 更新
+
+每个版本对应一个上游版本：`x.y.z-en.N` 即上游 `x.y.z` 的英文构建。
+
+本仓库每天检查上游。当 5kyfkr 发布新版本、且现有词典已覆盖全部文案时，会自动合并、重新构建并发布，随后像普通插件更新一样通过思源集市推送。若上游新增界面文案，则会先开 issue 等待补译，翻译不完整的版本绝不会发布。
+
 ## 反馈
 
 - 翻译问题请在本仓库的 [issues](https://github.com/5pyd3r1/siyuan-plugin-task-horizon-en/issues) 反馈。
