@@ -32,6 +32,12 @@
         "new": "${month.getFullYear()}/${month.getMonth() + 1}",
         "count": 2
       }
+    },
+    "src/task-horizon/main/settings/66-scheduled-events-settings.js": {
+      "|| '一'": {
+        "new": "|| 'Monday'",
+        "count": 1
+      }
     }
   }
 }
