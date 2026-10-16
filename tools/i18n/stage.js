@@ -1,16 +1,19 @@
 'use strict';
 
-// Build a complete, translated deploy tree under output/i18n/stage.
+// Build a complete deploy tree under output/i18n/stage.
 //
 // Mirrors upstream packaging semantics (build.ps1):
 //   1. copy every shipped file (same top-level excludes as packaging)
 //   2. rebuild task.js by concatenating src/task-horizon per manifest.main.json
 //   3. drop src/task-horizon from the package (task.js replaces it)
-//   4. run apply.js over the staged tree (task.js included)
+//   4. run apply.js over the staged tree (task.js included)   [--lang en only]
 //   5. syntax-verify every staged .js file with vm.Script
 //
 // Usage:
-//   node tools/i18n/stage.js [--quiet]
+//   node tools/i18n/stage.js [--lang en|zh] [--quiet]
+//
+// --lang zh builds the pristine Chinese plugin (translation step skipped);
+// --lang en (default) builds the fully translated English plugin.
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -21,6 +24,12 @@ const { ROOT, listShippedFiles } = require('./lib/targets');
 const STAGE = path.join(ROOT, 'output', 'i18n', 'stage');
 const APPLY = path.join(__dirname, 'apply.js');
 const QUIET = process.argv.includes('--quiet');
+const LANG = (() => {
+    const index = process.argv.indexOf('--lang');
+    const value = index >= 0 ? String(process.argv[index + 1] || '').trim().toLowerCase() : 'en';
+    if (!['en', 'zh'].includes(value)) throw new Error(`Unknown --lang value: ${value} (expected en or zh)`);
+    return value;
+})();
 
 function log(...args) {
     if (!QUIET) console.log(...args);
@@ -77,17 +86,27 @@ function main() {
     // Translate the staged tree first: module files keep their real paths and
     // line numbers here, so byLine/raw spot patches work exactly like in the
     // coverage run. task.js is then built from the translated modules.
-    log('stage: applying translation dictionary');
-    execFileSync(process.execPath, [
-        APPLY,
-        '--root', STAGE,
-        '--out', STAGE,
-        '--report', path.join(ROOT, 'output', 'i18n', 'stage-apply-report.json'),
-    ], { stdio: 'inherit' });
+    // --lang zh skips this step entirely to build the pristine Chinese plugin.
+    if (LANG === 'en') {
+        log('stage: applying translation dictionary');
+        execFileSync(process.execPath, [
+            APPLY,
+            '--root', STAGE,
+            '--out', STAGE,
+            '--report', path.join(ROOT, 'output', 'i18n', 'stage-apply-report.json'),
+        ], { stdio: 'inherit' });
+    } else {
+        log('stage: language zh - skipping translation (pristine sources)');
+        fs.writeFileSync(
+            path.join(ROOT, 'output', 'i18n', 'stage-apply-report.json'),
+            JSON.stringify({ skipped: true, lang: 'zh', generatedAt: new Date().toISOString() }, null, 2) + '\n',
+            'utf8',
+        );
+    }
 
     const fragmentCount = buildTaskMain(STAGE);
     rmrf(path.join(STAGE, 'src', 'task-horizon'));
-    log(`stage: built task.js from ${fragmentCount} translated fragments`);
+    log(`stage: built task.js from ${fragmentCount} fragments (language: ${LANG})`);
 
     // Syntax-verify everything that ships as JS.
     let verified = 0;

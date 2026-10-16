@@ -1,18 +1,20 @@
 <#
-    Deploys the translated build into the SiYuan workspace plugin directory.
+    Deploys a build into the SiYuan workspace plugin directory.
 
     Steps:
-      1. node tools/i18n/stage.js          (build + translate + syntax verify)
+      1. node tools/i18n/stage.js --lang <en|zh>  (build + translate + syntax verify)
       2. back up the current installed plugin folder (zip, timestamped)
       3. mirror the staged tree into the plugin folder
       4. remove src/task-horizon if present (it would override task.js)
 
     Usage:
-      pwsh -File tools/i18n/deploy.ps1                    # build + backup + deploy
+      pwsh -File tools/i18n/deploy.ps1                    # English build (default)
+      pwsh -File tools/i18n/deploy.ps1 -Lang zh           # pristine Chinese build
       pwsh -File tools/i18n/deploy.ps1 -StageOnly         # build stage only
       pwsh -File tools/i18n/deploy.ps1 -NoBackup          # skip the zip backup
 #>
 param(
+    [ValidateSet('en', 'zh')][string]$Lang = 'en',
     [string]$SiYuanPluginDir = 'X:\siyuan\data\plugins\siyuan-plugin-task-horizon',
     [switch]$StageOnly,
     [switch]$NoBackup
@@ -23,8 +25,8 @@ $repo = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSCommandPat
 $stage = Join-Path $repo 'output\i18n\stage'
 $backupDir = Join-Path $repo 'output\i18n\backups'
 
-Write-Host "==> staging (build + translate + verify)" -ForegroundColor Cyan
-& node (Join-Path $repo 'tools\i18n\stage.js')
+Write-Host "==> staging (build + verify) [language: $Lang]" -ForegroundColor Cyan
+& node (Join-Path $repo 'tools\i18n\stage.js') --lang $Lang
 if ($LASTEXITCODE -ne 0) { throw "stage.js failed with exit code $LASTEXITCODE" }
 if (-not (Test-Path (Join-Path $stage 'task.js'))) { throw "stage is missing task.js" }
 
@@ -57,5 +59,5 @@ if (Test-Path -LiteralPath $devSources) {
     Write-Host "removed leftover src\task-horizon (dev-mode overrides task.js)" -ForegroundColor Yellow
 }
 
-Write-Host "==> deployed." -ForegroundColor Green
+Write-Host "==> deployed (language: $Lang)." -ForegroundColor Green
 Write-Host "Reload the plugin in SiYuan (toggle it off/on) to pick up the new build."
