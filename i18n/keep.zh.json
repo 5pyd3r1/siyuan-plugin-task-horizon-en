@@ -36,6 +36,14 @@
       "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
     },
     {
+      "text": "[TickTick 导入] 任务块就绪校验超时，继续使用当前 ID:",
+      "files": ["src/task-horizon/main/settings/61-settings-appearance-and-import.js"]
+    },
+    {
+      "text": "[TickTick 导入] 标题块就绪校验超时，继续使用当前 ID:",
+      "files": ["src/task-horizon/main/settings/61-settings-appearance-and-import.js"]
+    },
+    {
       "text": "识别到${token}",
       "files": ["src/task-horizon/main/20-api-and-runtime-services.js"]
     },
