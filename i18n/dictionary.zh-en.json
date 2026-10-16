@@ -2,7 +2,61 @@
   "meta": {
     "source": "zh",
     "target": "en",
-    "note": "Keys are raw Chinese string literal content as written in the source (escapes preserved). Values are the English replacement. Values for template literals may keep ${...} interpolation syntax. Segment values are inserted escaped-safe. See tools/i18n/README.md."
+    "note": "Keys are raw Chinese string literal content as written in the source (escapes preserved). Values are the English replacement. Entries may be plain strings, or { \"en\": \"...\", \"exactOnly\": true } for short/generic labels that must only replace a whole literal. Template values may keep ${...} interpolation syntax; exact-match values are inserted verbatim, segment values are inserted escaped-safe. See tools/i18n/README.md."
   },
-  "entries": {}
+  "entries": {
+    "任务管理器": "Task Manager",
+    "任务侧栏": "Task Dock",
+
+    "立即上传日历 ICS": "Upload calendar ICS now",
+
+    "思源智能体": "SiYuan Agent",
+    "旧版 AI": "Legacy AI",
+    "无法加载${normalized === \"agent\" ? \"思源智能体\" : \"旧版 AI\"}运行时": "Failed to load ${normalized === \"agent\" ? \"SiYuan Agent\" : \"Legacy AI\"} runtime",
+
+    "思源数据正在同步": "Syncing SiYuan data…",
+    "同步失败": "Sync failed",
+    "已同步": { "en": "Synced", "exactOnly": true },
+
+    "打开任务管理器": "Open Task Manager",
+    "新建任务窗口": "New Task Window",
+    "打开任务管理器的指定视图、任务或功能面板": "Open a specific view, task, or panel in the Task Manager",
+    "打开任务管理器失败": "Failed to open the Task Manager",
+    "聚焦任务": "Focus Task",
+    "在任务管理器中定位并聚焦一个任务": "Locate and focus a task in the Task Manager",
+    "缺少任务 ID": "Missing task ID",
+    "定位任务失败": "Failed to locate the task",
+
+    "读取任务视图上下文": "Read task view context",
+    "按活动页签注册任务范围；返回当前视图 scopeToken 和可重新筛选的 containerScopeToken；scope 可显式覆盖": "Register a task scope for the active tab; returns the current view scopeToken and a re-filterable containerScopeToken; scope can override explicitly",
+    "任务上下文服务尚未就绪": "Task context service is not ready",
+    "任务范围注册服务尚未就绪": "Task scope registration service is not ready",
+    "无法确定当前思源文档": "Unable to determine the current SiYuan document",
+    "文档任务范围服务尚未就绪": "Document task scope service is not ready",
+    "文档任务范围注册失败": "Failed to register the document task scope",
+    "当前活动页签不是任务管理器或思源笔记": "The active tab is not the Task Manager or a SiYuan document",
+    "任务视图范围服务尚未就绪": "Task view scope service is not ready",
+    "任务范围注册失败": "Failed to register the task scope",
+    "任务容器范围注册失败": "Failed to register the task container scope",
+    "已选任务范围注册失败": "Failed to register the selected task scope",
+    "读取任务视图失败": "Failed to read the task view",
+    "未知前端动作: ${String(name || \"\")}": "Unknown frontend action: ${String(name || \"\")}",
+
+    "打开": { "en": "Open", "exactOnly": true },
+
+    "任务 Dock 已关闭": "Task Dock is turned off",
+    "可以在任务管理器设置里的“视图与布局”重新开启这个侧边栏。": "Re-enable this sidebar under “Views & Layout” in the Task Manager settings.",
+    "任务 Dock 加载中": "Task Dock is loading",
+    "正在等待任务管理器入口挂载。": "Waiting for the Task Manager entry to mount.",
+    "任务 Dock 加载失败": "Failed to load the Task Dock",
+    "未知错误": "Unknown error",
+    "重试": { "en": "Retry", "exactOnly": true },
+
+    "经典图标": { "en": "Classic", "exactOnly": true },
+    "任务收件箱": { "en": "Task Inbox", "exactOnly": true },
+    "任务完成": { "en": "Task Check", "exactOnly": true },
+    "任务列表": { "en": "Task List", "exactOnly": true },
+    "日程任务": { "en": "Scheduled Tasks", "exactOnly": true },
+    "聚焦完成": { "en": "Focus Complete", "exactOnly": true }
+  }
 }

@@ -48,6 +48,9 @@ node tools/i18n/apply.js --dry    # translate the new/changed strings
 
 ## Escape rules for dictionary values
 
+- Entries may be plain strings, or `{ "en": "...", "exactOnly": true }` for
+  short/generic labels that must only replace a whole literal (e.g. `打开`
+  -> Open must not turn `打开设置` into `Open设置`).
 - Exact-match values are inserted verbatim: preserve `${...}` interpolation
   syntax, write escapes in the style of the target literal context.
 - Segment (substring) values are inserted through canonical escaping valid in

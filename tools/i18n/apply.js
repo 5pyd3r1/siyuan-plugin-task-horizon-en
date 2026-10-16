@@ -77,8 +77,13 @@ function loadDictionary(file) {
     const entries = raw.entries && typeof raw.entries === 'object' ? raw.entries : raw;
     const map = new Map();
     for (const [key, value] of Object.entries(entries)) {
-        if (typeof key === 'string' && key && typeof value === 'string' && value) {
-            map.set(key, value);
+        if (typeof key !== 'string' || !key) continue;
+        if (typeof value === 'string' && value) {
+            map.set(key, { en: value, exactOnly: false });
+        } else if (value && typeof value === 'object' && typeof value.en === 'string' && value.en) {
+            // { en, exactOnly } form: exactOnly entries never participate in
+            // substring matching, only full-literal replacement.
+            map.set(key, { en: value.en, exactOnly: value.exactOnly === true });
         }
     }
     return map;
@@ -114,6 +119,7 @@ function buildMatcher(dictionary) {
     let count = 0;
     for (const key of dictionary.keys()) {
         if (!key || key.includes('${')) continue;
+        if (dictionary.get(key).exactOnly) continue;
         const first = key[0];
         let list = byFirstChar.get(first);
         if (!list) { list = []; byFirstChar.set(first, list); }
@@ -153,7 +159,7 @@ function applyToSegment(segment, matcher, stats) {
             }
         }
         if (key) {
-            out += escapeForInsert(matcher.exactKeys.get(key));
+            out += escapeForInsert(matcher.exactKeys.get(key).en);
             noteMatch(stats, key);
             matched.push([i, i + key.length]);
             i += key.length;
@@ -249,7 +255,7 @@ function processFile(rel, source, opts, matcher, exactKeep, spots, stats) {
         if (exact !== undefined) {
             noteMatch(stats, raw);
             noteReplaced();
-            return open + exact + close;
+            return open + exact.en + close;
         }
 
         const matchedLocal = [];

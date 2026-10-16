@@ -20,6 +20,8 @@ const EXCLUDE_TOP = [
     'node_modules', 'docs', 'GUIDE_zh_CN.md', 'REPRO_SYNC.md', 'PRODUCT.md',
     'CHANGELOG.md', 'LICENSE', 'package.zip', 'build.sh', 'build.bat',
     'build.ps1', '.hotreload',
+    // Our tooling additions on the i18n branch - never shipped.
+    'tools', 'i18n',
 ].map((name) => name.toLowerCase());
 
 const TRANSLATE_EXTS = new Set(['.js', '.css']);
