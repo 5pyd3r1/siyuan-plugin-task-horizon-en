@@ -15905,8 +15905,8 @@
             } catch (e) {}
         }
         const subscribed = !!user
-            && (Number(user.userSiYuanProExpireTime) === -1 || Number(user.userSiYuanProExpireTime) > 0)
-            && Number(user.userSiYuanSubscriptionStatus) === 0;
+            && (Number(user.userSiYuanSubscriptionStatus) === 0
+                || Number(user.userSiYuanOneTimePayStatus) === 1);
         return subscribed ? { ok: true, reason: '' } : { ok: false, reason: '微信提醒需要有效的思源订阅' };
     }
 
@@ -41400,9 +41400,12 @@
     }
 
     function isCalendarSubscriptionCloudSubscriber(user) {
-        const status = Number(user?.userSiYuanSubscriptionStatus);
-        const expireTime = Number(user?.userSiYuanProExpireTime);
-        return status === 0 && (expireTime === -1 || expireTime > 0);
+        // Mirror SiYuan's own subscriber check: active subscription OR one-time
+        // (lifetime) purchase. The original check required an active recurring
+        // subscription and a pro expiry time, which wrongly rejects lifetime
+        // accounts (userSiYuanOneTimePayStatus === 1).
+        return Number(user?.userSiYuanSubscriptionStatus) === 0
+            || Number(user?.userSiYuanOneTimePayStatus) === 1;
     }
 
     async function getCalendarSubscriptionCloudUser(run) {
