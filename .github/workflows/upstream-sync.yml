@@ -2,7 +2,7 @@ name: upstream-sync
 
 # Automatic upstream tracking for the English build.
 #
-# Runs daily, on main pushes and on manual dispatch:
+# Runs every 2 hours, on main pushes and on manual dispatch:
 #   * latest upstream (5kyfkr/siyuan-plugin-task-horizon) GitHub release
 #   * tree already contains it and our release exists      -> no-op
 #   * merge + dry-run clean (0 uncovered / 0 stale / 0 raw mismatches)
@@ -17,7 +17,7 @@ name: upstream-sync
 
 on:
   schedule:
-    - cron: '17 5 * * *'
+    - cron: '17 */2 * * *'
   workflow_dispatch:
   push:
     branches: [main]
@@ -51,6 +51,7 @@ jobs:
           git config user.name '5pyd3r1'
           git config user.email '5pyd3r1@users.noreply.github.com'
           git config --global merge.ours.driver true
+          git config merge.renormalize true
       - name: Sync upstream
         id: run
         shell: bash

@@ -236,10 +236,6 @@
     "设置时长": "Set duration",
     "选预设或直接输入": "Pick a preset or type a value",
     "循环设置": "Repeat settings",
-    ">重复方式</div>": ">Repeat mode</div>",
-    ">到期重复</option>": ">On due date</option>",
-    ">完成重复</option>": ">On completion</option>",
-    ">打卡循环</option>": ">Check-in cycle</option>",
     ">FSRS 间隔重复</option>": ">FSRS spaced repetition</option>",
     ">不循环</option>": ">No repeat</option>",
     ">循环频率</div>": ">Repeat frequency</div>",
@@ -5310,7 +5306,6 @@
     "结果": "Result",
     "aria-label=\"复制这条消息\"": "aria-label=\"Copy this message\"",
     "本会话允许": "Allow for this session",
-    "逐项确认": "Confirm each item",
     "上下文 ": "Context ",
     " · 输入 ": " · input ",
     " · 输出 ": " · output ",
@@ -7348,6 +7343,114 @@
     "时间轴顺延 +${deltaDays} 天": "Timeline shift +${deltaDays} d",
     "${result.label}：${usable ? result.count + ' 项' : result.message}${result.status === 'partial' ? '（统计不完整）' : ''}": "${result.label}：${usable ? result.count + ' items' : result.message}${result.status === 'partial' ? ' (incomplete statistics)' : ''}",
     "${result.label}：至少 ${result.count} 项，统计不完整": "${result.label}: at least ${result.count} items (incomplete statistics)",
-    "✅ 刷新完成${syncedLabel}": "✅ Refresh complete${syncedLabel}"
+    "✅ 刷新完成${syncedLabel}": "✅ Refresh complete${syncedLabel}",
+    "超高": {
+      "en": "Very high",
+      "exactOnly": true
+    },
+    "最大": {
+      "en": "Max",
+      "exactOnly": true
+    },
+    "自定义提供商": {
+      "en": "Custom provider",
+      "exactOnly": true
+    },
+    "原模型已不可用，已切换为 ${selected.name}": "The previous model is unavailable; switched to ${selected.name}",
+    "当前没有可用模型，请先在思源设置中配置": "No model is available; configure one in SiYuan settings first",
+    "切换模型：${model.provider} / ${model.name}": "Switch model: ${model.provider} / ${model.name}",
+    "切换模型：未配置，点击前往思源设置": "Switch model: not configured - click to open SiYuan settings",
+    "思考强度：${effort.label}": "Reasoning effort: ${effort.label}",
+    "选择对话预设": {
+      "en": "Choose conversation preset",
+      "exactOnly": true
+    },
+    "当前会话包含推理或工具调用上下文。切换模型后，回答质量、工具调用连续性和缓存命中率可能下降。是否继续切换？": "This conversation includes reasoning or tool-call context. Switching models may reduce answer quality, tool-call continuity and cache hit rate. Continue?",
+    "切换模型": {
+      "en": "Switch model",
+      "exactOnly": true
+    },
+    "模型切换失败：${text(error?.message || error)}": "Model switch failed: ${text(error?.message || error)}",
+    "思考强度保存失败：${text(error?.message || error)}": "Failed to save reasoning effort: ${text(error?.message || error)}",
+    "批准设置更新失败：${text(error?.message || error)}": "Failed to update approval settings: ${text(error?.message || error)}",
+    "请打开思源设置 - 人工智能，配置并启用模型": "Open SiYuan Settings - AI to configure and enable a model",
+    "当前客户端无法打开设置菜单，请重新加载插件": "This client cannot open the settings menu; reload the plugin",
+    "思源模型设置": {
+      "en": "SiYuan model settings",
+      "exactOnly": true
+    },
+    "配置思源模型": {
+      "en": "Configure SiYuan model",
+      "exactOnly": true
+    },
+    "正在保存会话设置，请稍后再切换会话": "Saving session settings; switch sessions in a moment",
+    "本会话自动批准": "Auto-approve for this session",
+    "按批准设置": "Follow approval settings",
+    "请先在思源设置 - 人工智能中配置并启用模型": "Configure and enable a model in SiYuan Settings - AI first",
+    " 完成本期后，按原计划日期计算下一期。": " After this occurrence is completed, the next one is calculated from the original planned date.",
+    "开始 ${__tmFormatTaskDetailShortDate(startValue)}": "Start ${__tmFormatTaskDetailShortDate(startValue)}",
+    "开始取最早，截止取最晚；新子任务不继承日期。": "Starts use the earliest date and due dates the latest; new subtasks do not inherit dates.",
+    "独立设置开始和截止日期。": "Set start and due dates independently.",
+    "手动": {
+      "en": "Manual",
+      "exactOnly": true
+    },
+    "日期模式切换失败：${error.message}": "Failed to switch date mode: ${error.message}",
+    "日期模式": {
+      "en": "Date mode",
+      "exactOnly": true
+    },
+    "日期模式必须为 manual 或 rollup": "Date mode must be manual or rollup",
+    "日期由子任务汇总，请先切换为手动设置": "Dates are rolled up from subtasks; switch to manual dates first",
+    "父任务日期汇总失败": "Parent task date roll-up failed",
+    "请通过日期模式命令启用子任务汇总": "Enable subtask roll-up via the date mode command first",
+    "任务层级存在循环，无法汇总日期": "The task hierarchy contains a cycle; dates cannot be rolled up",
+    "循环和打卡任务不支持子任务日期汇总": "Repeating and check-in tasks do not support subtask date roll-up",
+    "无法读取完整子任务日期": "Could not read the complete subtask dates",
+    "日期由子任务汇总，请先在日期中心切换为手动设置": "Dates are rolled up from subtasks; switch to manual dates in the date hub first",
+    "父任务日期汇总失败：${receipt.dateRollupError}": "Parent task date roll-up failed: ${receipt.dateRollupError}",
+    "父任务日期汇总": {
+      "en": "Parent task date roll-up",
+      "exactOnly": true
+    },
+    "日期模式无效": "Invalid date mode",
+    "日期模式已保存，但任务回读失败，请刷新后查看": "Date mode saved, but the task could not be read back; refresh to check",
+    "任务日期读取失败": "Failed to read task dates",
+    "收集箱仅在独立页签显示": "Inbox is shown only on its dedicated tab",
+    "开启后，文档分组的“全部”页签不显示收集箱文档中的任务；点击页签栏中的收集箱文档查看。": "When enabled, the \"All\" tab of document groups hides tasks from inbox documents; click the inbox document in the tab bar to view them.",
+    "子任务汇总": {
+      "en": "Subtask roll-up",
+      "exactOnly": true
+    },
+    "⚠ 已创建 ${createdTaskIds.length} 个任务，${createFailures.length} 个失败${message ? `: ${message}` : ''}": "⚠ Created ${createdTaskIds.length} tasks, ${createFailures.length} failed${message ? `: ${message}` : ''}",
+    "日程关联文档读取失败": "Failed to read the schedule-linked document",
+    "文档分组同步范围配置不完整，已停止本次发布": "The document group sync scope is incomplete; this publish was stopped",
+    "文档分组同步接口尚未就绪": "The document group sync API is not ready yet",
+    "文档分组同步范围配置无效，已停止本次发布": "The document group sync scope is invalid; this publish was stopped",
+    "文档分组范围接口尚未就绪": "The document group scope API is not ready yet",
+    "读取同步文档分组": "Load synced document groups",
+    "请更新底栏番茄钟以支持按文档分组同步提醒，已保留上次成功文件": "Please update Dock Tomato to support document-group synced reminders; the last successful file was kept",
+    "<div class=\"tm-calendar-settings-label-desc\">暂无文档分组，请先在任务管理器中创建。</div>": "<div class=\"tm-calendar-settings-label-desc\">No document groups yet - create one in Task Horizon first.</div>",
+    "关联日程和提醒按来源文档筛选，独立日程按归属日历筛选；未分组的独立日程不包含在内。": "Linked schedules and reminders are filtered by source document, standalone schedules by their calendar; ungrouped standalone schedules are excluded.",
+    "未选择有效分组，日程、任务全天日程和番茄钟提醒将不再同步。": "No valid group selected; schedules, all-day task schedules and Pomodoro reminders will no longer sync.",
+    "快速周期": "Quick cycle",
+    "循环方式": "Loop type",
+    "到期后重复": "Repeat after due date",
+    "完成后重复": "Repeat after completion",
+    "按计划打卡": "Check in on schedule",
+    "日期模式：": "Date mode: ",
+    ">日期模式</span>": ">Date mode</span>",
+    "aria-label=\"子任务汇总日期\"": "aria-label=\"Subtask roll-up dates\"",
+    "子任务汇总，点击切换为手动设置": "Subtask roll-up - click to switch to manual dates",
+    "手动设置，点击切换为子任务汇总": "Manual dates - click to switch to subtask roll-up",
+    "同步范围": "Sync scope",
+    "应用于日程、任务全天日程和番茄钟提醒；个人节假日由下方开关控制。": "Applies to schedules, all-day task schedules and Pomodoro reminders; personal holidays are controlled by the switch below.",
+    "可多选，重叠内容只同步一次": "Multiple selections; overlapping content syncs once",
+    "同步文档分组": "Sync document groups",
+    "aria-label=\"选择对话预设\"": "aria-label=\"Choose conversation preset\"",
+    "<span>预设</span>": "<span>Preset</span>",
+    "aria-label=\"对话设置\"": "aria-label=\"Conversation settings\"",
+    "子任务的开始晚于截止，请检查子任务日期。": "The subtask starts after its due date; check the subtask dates.",
+    "（已打卡）": "(checked in)"
   }
 }

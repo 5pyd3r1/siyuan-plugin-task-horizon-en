@@ -23,7 +23,7 @@ Switching from the original plugin? Copy `{workspace}/data/storage/petal/siyuan-
 
 Each release maps to an upstream version: `x.y.z-en.N` is the English build of upstream `x.y.z`.
 
-This repository checks upstream daily. When 5kyfkr publishes a new release and the dictionaries already cover every string, the update is merged, rebuilt and published here automatically; it then reaches you through the SiYuan marketplace like any other plugin update. If upstream introduces new interface text, an issue is opened instead until the translation is finished — a partially translated build is never published.
+This repository checks upstream every couple of hours. When 5kyfkr publishes a new release and the dictionaries already cover every string, the update is merged, rebuilt and published here automatically; it then reaches you through the SiYuan marketplace like any other plugin update. If upstream introduces new interface text, an issue is opened instead until the translation is finished — a partially translated build is never published.
 
 ## Notes
 
