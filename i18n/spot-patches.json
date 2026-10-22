@@ -4,16 +4,16 @@
   },
   "entries": {},
   "byLine": {
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5587": "Checking a task means “Good”; you can also choose Again, Hard, Good, or Easy from the task menu.",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5589": "This task will not repeat automatically.",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5591": " The next occurrence is calculated from the actual completion date; no dates are pre-scheduled until then.",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5597": " Check in on the planned dates independently; checking the note marks today as checked in and stays checked for the day. This mode has no permanent completed state - switch the repeat mode or turn repeating off to complete the task.",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6882": "✅ ${label} applied (background write in progress, ${ok} items)",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6883": "⚠ ${label} partially applied: ${ok} succeeded, ${fail} failed",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6884": "❌ Failed to queue ${label}",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6886": "✅ ${label} succeeded (${ok} items)",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6887": "⚠ ${label} finished: ${ok} succeeded, ${fail} failed",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6888": "❌ ${label} failed"
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5588": "Checking a task means “Good”; you can also choose Again, Hard, Good, or Easy from the task menu.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5590": "This task will not repeat automatically.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5592": " The next occurrence is calculated from the actual completion date; no dates are pre-scheduled until then.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5598": " Check in on the planned dates independently; checking the note marks today as checked in and stays checked for the day. This mode has no permanent completed state - switch the repeat mode or turn repeating off to complete the task.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6873": "✅ ${label} applied (background write in progress, ${ok} items)",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6874": "⚠ ${label} partially applied: ${ok} succeeded, ${fail} failed",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6875": "❌ Failed to queue ${label}",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6877": "✅ ${label} succeeded (${ok} items)",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6878": "⚠ ${label} finished: ${ok} succeeded, ${fail} failed",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6879": "❌ ${label} failed"
   },
   "raw": {
     "src/task-horizon/main/30-dialogs-and-ui-foundation.js": {

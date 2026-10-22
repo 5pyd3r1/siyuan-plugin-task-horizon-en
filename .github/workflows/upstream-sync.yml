@@ -164,9 +164,7 @@ jobs:
           TAG: ${{ needs.sync.outputs.tag }}
         run: |
           set -euo pipefail
-          BASE="${TAG#v}"
-          BASE="${BASE%%-en.*}"
-          echo "cleanup: closing open sync issues for upstream v${BASE}"
-          gh issue list --repo "$REPO" --state open --search "\"Upstream sync v${BASE}\" in:title" --json number --jq '.[].number' | while read -r n; do
+          echo "cleanup: closing open upstream-sync issues (resolved by ${TAG})"
+          gh issue list --repo "$REPO" --state open --search "\"Upstream sync v\" in:title" --json number --jq '.[].number' | while read -r n; do
             if [ -n "$n" ]; then gh issue close "$n" --repo "$REPO" --comment "Released ${TAG}."; fi
           done
