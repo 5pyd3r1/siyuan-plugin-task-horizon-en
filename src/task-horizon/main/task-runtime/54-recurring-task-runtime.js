@@ -51,6 +51,18 @@
             occurrenceId: requestedOccurrence, completionId: '', completedAt: '',
             completedOccurrence: false, recurring: !!recurring, advanced: false,
         };
+        if (intent.source === 'task-repeat-native-reset') {
+            const resetDateKey = __tmGetRecurringNativeDoneResetDateKey(task);
+            if (!recurring || !__tmIsRecurringNativeDoneHeld(task)
+                || !__tmIsSameTaskOccurrenceRound(requestedOccurrence, occurrenceId)
+                || !resetDateKey || __tmNormalizeDateOnly(new Date(context.now)) < resetDateKey) {
+                return { patch: {}, receipt: { ...receipt, outcome: 'alreadyApplied' } };
+            }
+            return { patch: {
+                ...context.undoneStatus, done: false, taskCompleteAt: '',
+                repeatState: __tmNormalizeTaskRepeatState({ ...repeatState, pendingNativeDoneReset: false }),
+            }, receipt };
+        }
         if (intent.restorePatch) {
             const restore = intent.restorePatch;
             const clean = (patch) => Object.fromEntries(Object.entries(patch || {}).filter(([key]) => !['markdown', 'taskMarker', 'task_marker', 'title', 'content', 'raw_content'].includes(key)));
@@ -71,24 +83,27 @@
             const restore = intent.restoreState;
             const entry = restore.historyEntry;
             if (entry?.id && history.some(item => item.id === entry.id)) return applied(entry);
-            if (!entry || occurrenceId !== restore.expectedOccurrenceId
+            if (!entry || !__tmIsSameTaskOccurrenceRound(occurrenceId, restore.expectedOccurrenceId)
                 || (entry.ruleSignature && entry.ruleSignature !== __tmGetTaskRepeatScheduleSignature(rule))) throw new Error('任务已有后续修改，不能恢复该次完成');
             return { patch: { ...restore.patch, repeatHistory: __tmNormalizeTaskRepeatHistory([entry, ...history]) },
                 receipt: { ...applied(entry).receipt, outcome: 'committed', reappliedCompletionId: entry.id || entry.completedAt } };
         }
         let restoreId = String(intent.restoreCompletionId || '');
         if (recurring && intent.done === true) {
-            const prior = history.find(entry => entry.occurrenceId === requestedOccurrence);
+            const prior = __tmFindTaskRepeatHistoryEntryByOccurrence(history, requestedOccurrence);
             if (prior) return applied(prior);
         }
-        if (!restoreId && recurring && intent.done === false && previousDone && history[0]?.occurrenceId === occurrenceId) {
+        if (!restoreId && recurring && intent.done === false && previousDone && __tmIsSameTaskOccurrenceRound(history[0]?.occurrenceId, occurrenceId)) {
             restoreId = history[0].id || history[0].completedAt;
         }
         if (recurring && requestedOccurrence !== occurrenceId) {
-            const previous = history.find((entry) => entry.occurrenceId === requestedOccurrence);
+            const previous = __tmFindTaskRepeatHistoryEntryByOccurrence(history, requestedOccurrence);
             if (previous && intent.done === true) return applied(previous);
             if (previous && intent.done === false) restoreId = previous.id || previous.completedAt;
-            else if (!restoreId) throw new Error('任务轮次已变化，请刷新后重试');
+            // The same round can arrive with an id rendered by a different build
+            // (legacy ids used to carry the view-date anchor). Only a round that
+            // really moved on is a conflict; blocking the click is not a repair.
+            else if (!restoreId && !__tmIsSameTaskOccurrenceRound(requestedOccurrence, occurrenceId)) throw new Error('任务轮次已变化，请刷新后重试');
         }
         if (!restoreId && intent.done === false && intent.nativeObserved?.previousDone === true && intent.nativeObserved.targetMarker === ' '
             && repeatState.pendingNativeDoneReset) restoreId = repeatState.lastCompletionId || repeatState.lastCompletedAt;
@@ -204,7 +219,7 @@
         let task = data.baseline || await __tmReadTaskMutationBaseline(data.taskId);
         if (!task?.id) throw new Error('无法读取完整任务状态');
         const rule = __tmGetTaskRepeatRule(task);
-        const occurrenceMatches = !data.occurrenceId || data.occurrenceId === __tmGetTaskOccurrenceId(task);
+        const occurrenceMatches = !data.occurrenceId || __tmIsSameTaskOccurrenceRound(data.occurrenceId, __tmGetTaskOccurrenceId(task));
         if (data.done && !data.previousDone && occurrenceMatches && !task.repeatHistory?.some(entry => entry.id === op.id) && rule.enabled && rule.trigger !== 'checkin') {
             await __tmSettleTomatoAfterTaskDone(task.id, { task, source: data.source, operationId: op.id, occurrenceId: data.occurrenceId, timerContext: data.timerContext, timerOnly: true, throwOnFailure: true });
             task = await __tmReadTaskMutationBaseline(task.id);
@@ -671,12 +686,15 @@
                 return true;
             }
             if (!todayKey || todayKey < resetDateKey) return false;
-            if (typeof window.tmSetDone !== 'function') throw new Error('任务完成写入队列未就绪');
-            const resetResult = await window.tmSetDone(taskId, false, null, {
-                force: true,
+            const setDone = globalThis.__tmRequireTaskMutation?.('setDone');
+            if (typeof setDone !== 'function') throw new Error('任务完成写入队列未就绪');
+            // Reset only the held native marker; the UI entry treats unchecking
+            // a held occurrence as undoing its completion and history.
+            const resetResult = await setDone(taskId, false, {
                 wait: true,
                 suppressHint: true,
                 source: 'task-repeat-native-reset',
+                occurrenceId: __tmGetTaskOccurrenceId(task),
                 recordUndo: false,
                 skipAutoCompleteParent: true,
                 skipInteractionGate: true,
@@ -688,6 +706,7 @@
                 },
             });
             if (resetResult === false) throw new Error('循环任务未能恢复为未完成状态');
+            if (resetResult?.completion?.outcome === 'alreadyApplied') return false;
             try {
                 globalThis.__tmTaskSnapshotService?.scheduleAfterLocalPatch?.(taskId, {
                     done: false,
@@ -959,10 +978,10 @@
                 const opts = __tmRecurringReconcilePending.get(taskId) || {};
                 __tmRecurringReconcilePending.delete(taskId);
                 const todayKey = __tmNormalizeDateOnly(opts.todayKey || new Date());
-                let task = await __tmResolveTaskForRepeat(taskId);
+                const task = await __tmResolveTaskForRepeat(taskId);
                 if (generation !== __tmRecurringReconcileGeneration) break;
                 if (!task?.id) continue;
-                let repeatState = __tmNormalizeTaskRepeatState(task?.repeatState);
+                const repeatState = __tmNormalizeTaskRepeatState(task?.repeatState);
                 const lastEntry = task.repeatHistory?.find(entry => entry.id && entry.id === repeatState.lastCompletionId);
                 if (repeatState.lastRestoredCompletionId) await __tmSynchronizeCompletionLinks(task, { restoredCompletionId: repeatState.lastRestoredCompletionId });
                 if (lastEntry) {
@@ -972,70 +991,11 @@
                     if (!lastEntry.nextStart && !lastEntry.nextDue) continue;
                 }
                 if (repeatState.pendingNativeDoneReset === true) {
-                    const pendingResetRule = __tmGetTaskRepeatRule(task);
-                    const pendingResetDateKey = __tmGetRecurringNativeDoneResetDateKey(task);
-                    const shouldContinueAfterNativeReset = pendingResetRule.enabled
-                        && pendingResetRule.type !== 'none'
-                        && __tmIsTaskNativeDone(task)
-                        && __tmIsRecurringNativeDoneHeld(task)
-                        && !!pendingResetDateKey
-                        && !!todayKey
-                        && todayKey >= pendingResetDateKey;
                     const reset = await __tmResetRecurringNativeDoneIfDue(task, {
                         todayKey,
                         source: 'task-repeat-load-native-reset',
                     });
-                    if (!reset) continue;
-                    changed += 1;
-                    const refreshedTask = await __tmResolveTaskForRepeat(taskId);
-                    if (!shouldContinueAfterNativeReset && !__tmIsTaskNativeDone(refreshedTask || task)) continue;
-                    const refreshedRepeatState = __tmNormalizeTaskRepeatState(
-                        refreshedTask?.repeatState || refreshedTask?.repeat_state || repeatState,
-                    );
-                    task = {
-                        ...task,
-                        ...(refreshedTask?.id ? refreshedTask : {}),
-                        ...(shouldContinueAfterNativeReset ? {
-                            done: false,
-                            taskMarker: ' ',
-                            task_marker: ' ',
-                            taskCompleteAt: '',
-                            task_complete_at: '',
-                        } : {}),
-                        repeatState: __tmNormalizeTaskRepeatState({
-                            ...refreshedRepeatState,
-                            pendingNativeDoneReset: false,
-                        }),
-                    };
-                    repeatState = __tmNormalizeTaskRepeatState(task.repeatState);
-                }
-                const rule = __tmGetTaskRepeatRule(task);
-                if (!rule.enabled || rule.type === 'none') continue;
-                if (rule.trigger === 'checkin' || (typeof __tmIsCheckinTask === 'function' && __tmIsCheckinTask(task))) continue;
-                if (__tmIsTaskNativeDone(task)) {
-                    const kernelCompletedAt = __tmNormalizeTaskCompleteAtValue(task?.taskCompleteAt || task?.task_complete_at || '');
-                    if (!kernelCompletedAt) continue;
-                    const repeatHistory = __tmNormalizeTaskRepeatHistory(task?.repeatHistory || task?.repeat_history || '');
-                    const storedCompletedAt = __tmNormalizeTaskCompleteAtValue(
-                        String(repeatState.lastCompletedAt || '').trim()
-                        || String(repeatHistory[0]?.completedAt || '').trim()
-                    );
-                    const completionTimeDrift = Date.parse(kernelCompletedAt) - Date.parse(storedCompletedAt);
-                    const completedAt = (storedCompletedAt && kernelCompletedAt
-                        && completionTimeDrift >= 0 && completionTimeDrift <= 1000)
-                        ? storedCompletedAt
-                        : kernelCompletedAt;
-                    if (!completedAt) continue;
-                    const alreadyAdvanced = String(repeatState.lastCompletedAt || '').trim() === completedAt
-                        || repeatHistory.some((item) => String(item?.completedAt || '').trim() === completedAt);
-                    if (!alreadyAdvanced && rule.type !== 'fsrs' && !__tmBuildTaskRepeatAdvancePatch(task, rule, { completedAt })) continue;
-                    const advanced = await __tmAdvanceRecurringTaskAfterCompletion(task.id, {
-                        source: 'task-repeat-load-reconcile',
-                        completedAt,
-                        suppressHint: true,
-                    });
-                    if (advanced) changed += 1;
-                    continue;
+                    if (reset) changed += 1;
                 }
             }
             return changed;
@@ -1265,7 +1225,7 @@
                     return { ok: applied === true, applied: applied === true };
                 }
                 const requestedOccurrence = payload.taskOccurrenceId || payload.reminder?.taskRepeatState?.occurrenceId;
-                const knownCompletion = task.repeatHistory?.some(entry => entry.occurrenceId === requestedOccurrence);
+                const knownCompletion = !!__tmFindTaskRepeatHistoryEntryByOccurrence(task.repeatHistory, requestedOccurrence);
                 if (!knownCompletion && payload.dateKey && task.completionTime && payload.dateKey !== task.completionTime) {
                     return { ok: false, applied: false, code: 'CONFLICT', message: '任务已改期，请刷新提醒' };
                 }

@@ -19,12 +19,13 @@
 - Both `due` and `complete` task rules require a committed completion before advancing. Keep the configured rule and existing next-date calculation unchanged.
 - Loading, refreshing, switching groups, or crossing a date boundary must not advance an incomplete occurrence or consume its remaining occurrence count.
 - Each completion advances one occurrence. If the next occurrence is already overdue, it remains incomplete until separately completed.
-- Native checkbox hold/reset and recovery of a previously committed completion remain supported; resetting the held checkbox must not advance dates again. Calendar date previews remain read-only.
+- Native checkbox hold/reset remains supported. Starting the next round clears the held checkbox through a silent mutation without undoing history or changing dates. Loading repairs completion links and due checkbox resets only; it never synthesizes historical completions. Calendar date previews remain read-only.
 
 ## Task completion and cross-plugin recurrence
 
 - `__tmBuildTaskCompletionPlan` in `54-recurring-task-runtime.js` is the pure completion/restore calculation. The existing mutation lane reads a complete baseline, settles the captured focus session when required, and sends one guarded Kernel patch for marker, dates, repeat state and history. Native document handlers adapt confirmed host changes into this same entry point.
 - `repeatState.occurrenceId` identifies the current round; `repeatHistory[].id` identifies a committed completion. A new round may share the same date. Legacy history and deterministic legacy occurrence IDs remain readable; no bulk migration is required.
+- Legacy round identity derives from stored round state only: task id, occurrence count and the last advanced/completed timestamps. A rendered task copy rewrites `repeatRule.anchorDate` to the view date, so the rule anchor must never take part in identity. Compare rounds with `__tmIsSameTaskOccurrenceRound`, which also accepts ids written by the earlier anchor-inclusive format; a stale row for the same round must complete instead of asking for a refresh.
 - Restore validates the latest completion, rule and both current dates. Undo restores only the affected fields and the removed history entry. Deleting a history log does not undo completion. Focus ledger totals are retained.
 - Task reminder bridge v4 advertises `completionReceipt` and `restoreCompletion`. Dock Tomato owns its reminder writes and timer ledger; calendar owns independent schedule recurrence. Follow reminders and linked schedule occurrences consume committed receipts. Their failures are reported separately and repaired by receipt retry or existing load reconciliation.
 - Capture occurrence and Tomato session before awaiting pending writes. Calendar completion/reference writes share the existing completion queue. Cross-module calls happen outside the reminder mutation lock. No new persistent queue or timer ledger is introduced.
