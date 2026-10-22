@@ -151,6 +151,8 @@
             const kind = String(colEl.getAttribute('data-kind') || '').trim();
             const time = String(colEl.getAttribute('data-time') || '').trim();
             if (kind === 'time' || time) return `time:${time || kind}`;
+            const quadrant = String(colEl.getAttribute('data-quadrant') || '').trim();
+            if (kind === 'quadrant' || quadrant) return `quadrant:${quadrant || kind}`;
             const doc = String(colEl.getAttribute('data-doc') || '').trim();
             const heading = String(colEl.getAttribute('data-heading') || '').trim();
             if (kind || doc || heading) return `kind:${kind}|doc:${doc}|heading:${heading}`;
@@ -553,11 +555,12 @@
                     action: `applyFilterRule('${escSq(String(rule?.id || '').trim())}')`
                 }))
         ];
+        const quadrantBoardMode = state.viewMode === 'kanban' && __tmGetKanbanBoardMode() === 'quadrant';
         const groupModeMenuOptions = [
             {
                 value: 'none',
                 label: '不分组',
-                selected: (!state.groupByDocName && !state.groupByTaskName && !state.groupByTime && !state.quadrantEnabled),
+                selected: (!state.groupByDocName && !state.groupByTaskName && !state.groupByTime && (!state.quadrantEnabled || quadrantBoardMode)),
                 action: `tmSwitchGroupMode('none')`
             },
             {
@@ -572,12 +575,6 @@
                 selected: state.groupByTime,
                 action: `tmSwitchGroupMode('time')`
             },
-            {
-                value: 'quadrant',
-                label: '四象限',
-                selected: state.quadrantEnabled,
-                action: `tmSwitchGroupMode('quadrant')`
-            },
             ...(hasTaskModeOption ? [{
                 value: 'task',
                 label: '按任务名',
@@ -585,6 +582,14 @@
                 action: `tmSwitchGroupMode('task')`
             }] : [])
         ];
+        if (!quadrantBoardMode) {
+            groupModeMenuOptions.splice(3, 0, {
+                value: 'quadrant',
+                label: '四象限',
+                selected: state.quadrantEnabled,
+                action: `tmSwitchGroupMode('quadrant')`
+            });
+        }
         const kanbanModeMenuOptions = __tmBuildKanbanModeMenuOptions();
         const {
             renderMode,
@@ -3048,6 +3053,8 @@
         const kind = String(colEl.getAttribute('data-kind') || '').trim();
         const time = String(colEl.getAttribute('data-time') || '').trim();
         if (kind === 'time' || time) return `time:${time || kind}`;
+        const quadrant = String(colEl.getAttribute('data-quadrant') || '').trim();
+        if (kind === 'quadrant' || quadrant) return `quadrant:${quadrant || kind}`;
         const doc = String(colEl.getAttribute('data-doc') || '').trim();
         const heading = String(colEl.getAttribute('data-heading') || '').trim();
         if (kind || doc || heading) return `kind:${kind}|doc:${doc}|heading:${heading}`;
@@ -3507,7 +3514,7 @@
         return true;
     }
 
-    async function __tmReassignCompletedScheduleToRecurringInstance(scheduleId, sourceTask, historyItem) {
+    async function __tmReassignCompletedScheduleToRecurringInstance(scheduleId, sourceTask, historyItem, options = {}) {
         const sid = String(scheduleId || '').trim();
         if (!sid) return false;
         let task = (sourceTask && typeof sourceTask === 'object') ? sourceTask : null;
@@ -3522,7 +3529,7 @@
         const history = __tmNormalizeTaskRepeatHistory([historyItem])[0] || null;
         if (!task?.id || !history) return false;
         const virtualTask = __tmBuildRecurringInstanceTask(task, history, 0);
-        const nextTaskId = String(virtualTask?.id || '').trim();
+        const nextTaskId = String(virtualTask?.id || (!history.nextDue && !history.nextStart ? task.id : '')).trim();
         if (!nextTaskId) return false;
         const calendarApi = globalThis.__tmCalendar;
         if (!calendarApi || typeof calendarApi.reassignScheduleLinkedTask !== 'function') return false;
@@ -3530,6 +3537,9 @@
             const result = await calendarApi.reassignScheduleLinkedTask(sid, nextTaskId, {
                 sourceTaskId: String(task.id || '').trim(),
                 completedAt: String(history.completedAt || '').trim(),
+                completionId: history.id || history.completedAt,
+                occurrenceId: history.occurrenceId || '',
+                occurrenceStartMs: options.occurrenceStartMs,
             });
             return result !== false;
         } catch (e) {

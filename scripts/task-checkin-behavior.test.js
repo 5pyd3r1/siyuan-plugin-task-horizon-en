@@ -113,6 +113,9 @@ const context = vm.createContext({
     __tmIsTaskMarkerClosed: value => value === 'X' || value === '-',
 });
 context.window = context;
+context.__tmRequireTaskMutation = name => name === 'patchTask'
+    ? (id, patch) => context.__tmPersistMetaAndAttrsKernel(id, patch)
+    : () => { throw new Error('unexpected ordinary completion'); };
 vm.runInContext(model.slice(model.indexOf('function __tmParseTaskRepeatJson'), model.indexOf('function __tmGetTaskRepeatWeekdayLabel')), context);
 vm.runInContext(extract(model, '__tmRenderTaskCheckbox'), context);
 vm.runInContext(extract(detail, '__tmToggleTaskTimeHubCheckin'), context);
@@ -262,6 +265,7 @@ async function run() {
 
     const capture = vm.createContext({
         Date: Clock,
+        __tmNormalizeDateOnly: dateKey,
         __TM_NATIVE_DOC_CHECKBOX_PREVIOUS_STATE_TTL_MS: 5000,
         __tmNativeDocCheckboxPreviousStateMap: new Map(),
         __tmReadNativeDocTaskDoneFromDom: () => true,
@@ -277,6 +281,20 @@ async function run() {
     const changed = context.__tmBuildTaskRepeatRuleMetaPatch({ ...task, repeatState: { ...task.repeatState, pendingNativeDoneReset: true } }, task.repeatRule);
     assert.equal(changed.repeatState.pendingNativeDoneReset, false);
     assert.equal(changed.repeatState.checkinHistory.length, 2);
+    assert.equal(changed.startDate, '', 'check-in settings clear the independent start date');
+    assert.equal(changed.completionTime, '', 'check-in settings clear the independent due date');
+    assert.equal(changed.repeatState.lastInstanceStart, '');
+    assert.equal(changed.repeatState.lastInstanceDue, '');
+    assert.equal(changed.repeatRule.anchorDate, task.repeatRule.anchorDate, 'the plan retains its own anchor');
+    context.__tmNormalizeCreateTaskCustomFieldValues = () => ({});
+    context.SettingsStore = { data: {} };
+    vm.runInContext(extract(api, '__tmBuildCreateTaskInDocAttrPatchFromPayload'), context);
+    const createPatch = context.__tmBuildCreateTaskInDocAttrPatchFromPayload({
+        startDate: task.startDate, completionTime: task.completionTime, repeatRule: task.repeatRule,
+    });
+    assert.equal(createPatch.startDate, '', 'queued task creation persists the cleared start date');
+    assert.equal(createPatch.completionTime, '', 'queued task creation persists the cleared due date');
+    assert.equal(createPatch.repeatRule.anchorDate, task.repeatRule.anchorDate);
     for (const nextRule of [rule({ trigger: 'due' }), rule({ enabled: false, type: 'none' })]) {
         task.repeatRule = nextRule;
         assert.equal(context.__tmIsTaskDoneEffective({ ...task, done: true, taskMarker: 'X' }), true);

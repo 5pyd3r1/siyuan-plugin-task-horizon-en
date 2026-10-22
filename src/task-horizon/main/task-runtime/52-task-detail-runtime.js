@@ -1636,6 +1636,7 @@
                 repeat_rule: nextRule,
                 repeatState: nextState,
                 repeat_state: nextState,
+                ...(Object.prototype.hasOwnProperty.call(patch, 'startDate') ? { startDate: normalizeDate(patch.startDate), start_date: normalizeDate(patch.startDate) } : {}),
                 ...(Object.prototype.hasOwnProperty.call(patch, 'completionTime') ? { completionTime: normalizeDate(patch.completionTime), completion_time: normalizeDate(patch.completionTime) } : {}),
             };
         };
@@ -2579,6 +2580,7 @@
                 if (result) {
                     await refreshTask();
                     await notifyChange({}, { kind: 'repeat' });
+                    hubState.editor = '';
                     render();
                 }
                 return;
@@ -3435,7 +3437,7 @@
                     </div>
                     <div class="tm-task-detail-core-meta">
                         <input type="hidden" data-tm-detail="startDate" value="${esc(startValue)}">
-                        <button type="button" class="bc-btn bc-btn--sm tm-task-detail-core-chip ${startValue ? 'has-value' : ''}" data-tm-detail-date-trigger="startDate"${detailTip('开始日期', { ariaLabel: false })}>
+                        <button type="button" class="bc-btn bc-btn--sm tm-task-detail-core-chip ${startValue ? 'has-value' : ''}" data-tm-detail-date-trigger="startDate"${detailTip('开始日期', { ariaLabel: false })}${typeof __tmIsCheckinTask === 'function' && __tmIsCheckinTask(task) ? ' style="display:none"' : ''}>
                             <span class="tm-task-detail-core-chip__face" data-tm-detail-chip-face="startDate">${__tmBuildTaskDetailCoreChipFace('startDate', startValue)}</span>
                         </button>
                         <input type="hidden" data-tm-detail="completionTime" value="${esc(endValue)}">
@@ -4571,6 +4573,10 @@
             try { setTimeout(restore, 30); } catch (e) {}
         };
         const syncMetaChipFaces = () => {
+            const checkin = typeof __tmIsCheckinTask === 'function' && __tmIsCheckinTask(getBoundTask());
+            if (checkin) {
+                for (const field of ['startDate', 'completionTime']) setHiddenInputValue(field, getBoundTask()?.[field] || '');
+            }
             const startValue = readHiddenInputValue('startDate');
             const endValue = readHiddenInputValue('completionTime');
             const durationValue = readHiddenInputValue('duration');
@@ -4587,7 +4593,10 @@
             const startFace = root.querySelector('[data-tm-detail-chip-face="startDate"]');
             if (startFace instanceof HTMLElement) startFace.innerHTML = __tmBuildTaskDetailCoreChipFace('startDate', startValue);
             const startBtn = root.querySelector('[data-tm-detail-date-trigger="startDate"]');
-            if (startBtn instanceof HTMLElement) startBtn.classList.toggle('has-value', !!startValue);
+            if (startBtn instanceof HTMLElement) {
+                startBtn.classList.toggle('has-value', !!startValue);
+                startBtn.style.display = checkin ? 'none' : '';
+            }
 
             const endFace = root.querySelector('[data-tm-detail-chip-face="completionTime"]');
             if (endFace instanceof HTMLElement) endFace.innerHTML = __tmBuildTaskDetailCoreChipFace('completionTime', endValue);
@@ -7618,6 +7627,7 @@
                         }
                         syncMetaChipFaces();
                         syncSerializedSnapshot();
+                        hubState.editor = '';
                         render();
                     }
                     return;
@@ -8808,14 +8818,29 @@
                 if (!subtaskId) return;
                 try { tmShowTaskContextMenu(ev, subtaskId); } catch (e) {}
             });
-            root.querySelectorAll('[data-tm-detail-repeat-history-delete]').forEach((btn) => {
-                if (!(btn instanceof HTMLButtonElement)) return;
-                on(btn, 'click', async (ev) => {
+            on(root, 'click', async (ev) => {
+                    const more = ev.target instanceof Element ? ev.target.closest('[data-tm-repeat-history-more]') : null;
+                    if (more && root.contains(more)) {
+                        ev.preventDefault(); ev.stopPropagation();
+                        if (more.disabled) return;
+                        more.disabled = true;
+                        try {
+                            const current = await __tmResolveTaskForRepeat(getBoundTaskId() || taskId);
+                            if (current) {
+                                more.insertAdjacentHTML('beforebegin', __tmBuildTaskRepeatHistorySectionHtml(current, { offset: Number(more.dataset.tmRepeatHistoryMore), itemsOnly: true }));
+                                more.remove();
+                            }
+                        } catch (error) { hint(`加载记录失败：${error?.message || error}`, 'warning'); }
+                        finally { more.disabled = false; }
+                        return;
+                    }
+                    const btn = ev.target instanceof Element ? ev.target.closest('[data-tm-detail-repeat-history-delete]') : null;
+                    if (!(btn instanceof HTMLButtonElement) || !root.contains(btn)) return;
                     try { ev.preventDefault(); } catch (e) {}
                     try { ev.stopPropagation(); } catch (e) {}
                     const completedAt = String(btn.getAttribute('data-tm-detail-repeat-history-delete') || '').trim();
                     if (!completedAt) return;
-                    const ok = await showConfirm('删除循环记录', '删除后该条循环完成记录会从插件内移除。是否继续？');
+                    const ok = await showConfirm('删除循环记录', '仅删除这条历史记录，不回退当前日期和轮次。撤销完成请取消对应记录的勾选。是否继续？');
                     if (!ok) return;
                     try {
                         await __tmDeleteTaskRepeatHistoryEntry(getBoundTaskId() || taskId, completedAt, { source: 'detail-repeat-history-delete' });
@@ -8828,7 +8853,6 @@
                     } catch (e) {
                         try { hint(`❌ 删除失败: ${String(e?.message || e || '')}`, 'error'); } catch (e2) {}
                     }
-                });
             });
             root.querySelectorAll('[data-tm-detail-checkin-toggle]').forEach((btn) => {
                 if (!(btn instanceof HTMLButtonElement)) return;
@@ -10384,6 +10408,8 @@ return true;
             touched = true;
         };
         const syncTimeHubChip = () => {
+            const startBtn = panel.querySelector('[data-tm-detail-date-trigger="startDate"]');
+            if (startBtn instanceof HTMLElement) startBtn.style.display = typeof __tmIsCheckinTask === 'function' && __tmIsCheckinTask(task) ? 'none' : '';
             const trigger = panel.querySelector('[data-tm-detail-time-hub-trigger]');
             const face = panel.querySelector('[data-tm-detail-chip-face="timeHub"]');
             if (!(trigger instanceof HTMLElement) && !(face instanceof HTMLElement)) return;

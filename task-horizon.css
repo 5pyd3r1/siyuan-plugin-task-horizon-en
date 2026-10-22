@@ -19420,6 +19420,19 @@ th[data-col] {
     animation: none !important;
 }
 
+.tm-task-checkbox.tm-task-checkbox--canceled[type="checkbox"]:checked::after,
+.tm-modal .tm-task-detail-subtask-main input.tm-task-checkbox.tm-task-checkbox--canceled[type="checkbox"]:checked::after,
+.tm-task-detail-shell .tm-task-detail-subtask-main input.tm-task-checkbox.tm-task-checkbox--canceled[type="checkbox"]:checked::after,
+#tm-task-detail-overlay .tm-task-detail-subtask-main input.tm-task-checkbox.tm-task-checkbox--canceled[type="checkbox"]:checked::after {
+    left: 50% !important;
+    top: 50% !important;
+    width: 60% !important;
+    height: 0 !important;
+    border-right: none !important;
+    transform: translate(-50%, -50%) !important;
+    animation: none !important;
+}
+
 .tm-priority-high {
     color: var(--tm-danger-color) !important;
     font-weight: 600;
@@ -20694,6 +20707,11 @@ th[data-col] {
 }
 
 .tm-repeat-actions {
+    position: sticky;
+    bottom: -22px;
+    z-index: 2;
+    background: var(--tm-bg-color);
+    padding-block: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
@@ -21481,6 +21499,7 @@ th[data-col] {
 
 /* 字段设置实时预览：复用真实视图类名，仅做静态化与尺寸约束 */
 .tm-field-preview {
+    min-width: 0;
     margin-top: 12px;
 }
 
@@ -21493,6 +21512,7 @@ th[data-col] {
 }
 
 .tm-field-preview__stage {
+    min-width: 0;
     pointer-events: none;
     user-select: none;
 }
@@ -21580,6 +21600,11 @@ th[data-col] {
     width: max-content;
     max-width: 100%;
     z-index: auto;
+}
+
+.tm-field-preview .sy-custom-props-floatbar__row {
+    flex-wrap: wrap;
+    overflow: visible;
 }
 
 .tm-field-preview__chip--empty {
@@ -21753,7 +21778,9 @@ th[data-col] {
 }
 
 .tm-settings-chip-setting {
+    min-width: 0;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
 }
 
@@ -21776,7 +21803,9 @@ th[data-col] {
 }
 
 .tm-settings-chip-stack {
+    min-width: 0;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
 }
 

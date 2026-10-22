@@ -103,7 +103,7 @@
     const __TM_TASK_SNAPSHOT_MAX_SINGLE_BYTES = 20 * 1024 * 1024;
     // The calendar task index now stores repeat history so recurring task
     // instances can be projected during the first calendar paint.
-    const __TM_TASK_INDEX_VERSION = 6;
+    const __TM_TASK_INDEX_VERSION = 7;
     const __TM_TASK_INDEX_MAX_BYTES = 24 * 1024 * 1024;
     const __TM_TASK_INDEX_MAX_DOCS = 1200;
     const __TM_TASK_INDEX_MAX_SINGLE_DOC_BYTES = 10 * 1024 * 1024;
@@ -3806,6 +3806,12 @@
             if (next === undefined) delete out[key];
             else out[key] = next;
         });
+        // An omitted large field is not an empty field. Reject this document's
+        // fast path rather than restoring incomplete recurrence as real state.
+        if (source.incomplete === true || ['repeatRule', 'repeatState', 'repeatHistory'].some((key) => {
+            const value = source[key] || source[key.replace(/[A-Z]/g, (letter) => '_' + letter.toLowerCase())];
+            return __tmCompactTaskIndexValue(value) !== undefined && out[key] === undefined;
+        })) out.incomplete = true;
         return out;
     }
 
@@ -3925,6 +3931,7 @@
             headingLevel: String(item.headingLevel || SettingsStore?.data?.taskHeadingLevel || 'h2').trim() || 'h2',
             level: Math.max(0, Math.round(Number(item.level || 0) || 0)),
             priorityScore: Number.isFinite(Number(item.priorityScore)) ? Number(item.priorityScore) : undefined,
+            ...(item.incomplete === true ? { incomplete: true } : {}),
             repeatRule: __tmCloneTaskSnapshotValue(item.repeatRule, 0),
             repeat_rule: __tmCloneTaskSnapshotValue(item.repeatRule, 0),
             repeatState: __tmCloneTaskSnapshotValue(item.repeatState, 0),
@@ -4344,6 +4351,7 @@
     function __tmIsUsableTaskIndexDoc(entry, options = {}) {
         const item = (entry && typeof entry === 'object') ? entry : null;
         if (!item || !__tmIsLikelyBlockId(item.id)) return false;
+        if (item.incomplete === true || (Array.isArray(item.blocks) && item.blocks.some((block) => block?.incomplete === true))) return false;
         if (!Array.isArray(item.blocks) && !Array.isArray(item.tasks)) return false;
         const updatedAt = Number(item.updatedAt || 0);
         if (!updatedAt) return false;
@@ -12242,9 +12250,12 @@
             else if (key === 'tomatoEstimateCount') result = Number(__tmGetTaskTomatoEstimateCount(task) || 0);
             else if (key === 'tomatoCount') result = Number(__tmGetTaskTomatoCount(task) || 0);
             else if (key === 'startDate') result = task?.startDate ?? task?.start_date;
-            else if (key === 'completionTime') result = task?.completionTime ?? task?.completion_time;
-            // Keep explicit start/due filters on stored values. Only this virtual
-            // field follows the current check-in occurrence.
+            else if (key === 'completionTime') result = typeof __tmIsCheckinTask === 'function' && __tmIsCheckinTask(task)
+                ? __tmGetTaskCheckinCurrentDate(task, opts.nowDate)
+                : (task?.completionTime ?? task?.completion_time);
+            // Check-in tasks expose their current planned day through both the
+            // due-date field and the task-date field, so existing due filters
+            // can find the occurrence due today without changing stored dates.
             else if (key === 'taskDate') result = typeof __tmIsCheckinTask === 'function' && __tmIsCheckinTask(task)
                 ? __tmGetTaskCheckinCurrentDate(task, opts.nowDate)
                 : (task?.completionTime || task?.completion_time || task?.startDate || task?.start_date || '');
@@ -12779,7 +12790,7 @@
             const taskTs = this.getTaskTimeValue(task, runtime.fieldInfo || runtime.field, opts);
             const timeRuntime = runtime?.timeRuntime || null;
             if (operator === 'range_overlap_today') {
-                if (runtime.field === 'taskDate' && typeof __tmIsCheckinTask === 'function' && __tmIsCheckinTask(task)) {
+                if (['taskDate', 'completionTime'].includes(runtime.field) && typeof __tmIsCheckinTask === 'function' && __tmIsCheckinTask(task)) {
                     return taskTs >= Number(timeRuntime?.todayStartTs || 0) && taskTs < Number(timeRuntime?.tomorrowStartTs || 0);
                 }
                 const startTs = this.getTaskTimeValue(task, 'startDate', opts);

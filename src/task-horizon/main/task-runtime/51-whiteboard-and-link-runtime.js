@@ -4748,11 +4748,45 @@ return false;
         return String(
             col.getAttribute('data-status')
             || col.getAttribute('data-time')
+            || col.getAttribute('data-quadrant')
             || col.getAttribute('data-doc')
             || col.getAttribute('data-heading')
             || col.getAttribute('data-col-key')
             || ''
         ).trim();
+    }
+
+    function __tmGetKanbanQuadrantProjectionId(task) {
+        const taskLike = (task && typeof task === 'object') ? task : null;
+        if (!taskLike) return '__unmatched__';
+        if (typeof __tmCreateTaskCardGroupingContext === 'function') {
+            return String(__tmCreateTaskCardGroupingContext().resolveQuadrantRule(taskLike)?.id || '__unmatched__').trim() || '__unmatched__';
+        }
+        const priority = String(taskLike.priority || '').trim().toLowerCase();
+        const importance = (priority === 'a' || priority === '高' || priority === 'high')
+            ? 'high'
+            : ((priority === 'b' || priority === '中' || priority === 'medium')
+                ? 'medium'
+                : ((priority === 'c' || priority === '低' || priority === 'low') ? 'low' : 'none'));
+        let diffDays = NaN;
+        try { diffDays = Number(__tmGetTaskTimePriorityInfo(taskLike)?.diffDays); } catch (e) {}
+        const timeRange = !Number.isFinite(diffDays)
+            ? 'nodate'
+            : (diffDays < 0
+                ? 'overdue'
+                : (diffDays <= 7 ? 'within7days' : (diffDays <= 15 ? 'within15days' : (diffDays <= 30 ? 'within30days' : 'beyond30days'))));
+        const rules = Array.isArray(SettingsStore.data?.quadrantConfig?.rules) ? SettingsStore.data.quadrantConfig.rules : [];
+        const matched = rules.find((rule) => {
+            if (!Array.isArray(rule?.importance) || !rule.importance.includes(importance)) return false;
+            if (Array.isArray(rule?.timeRanges) && rule.timeRanges.includes(timeRange)) return true;
+            return Number.isFinite(diffDays) && Array.isArray(rule?.timeRanges) && rule.timeRanges.some((range) => {
+                const raw = String(range || '').trim();
+                if (!raw.startsWith('beyond') || raw === 'beyond30days') return false;
+                const days = parseInt(raw.replace('beyond', '').replace('days', ''), 10);
+                return Number.isFinite(days) && diffDays > days;
+            });
+        });
+        return String(matched?.id || '__unmatched__').trim() || '__unmatched__';
     }
 
     function __tmGetKanbanTimeProjectionKey(task) {
@@ -4790,6 +4824,12 @@ return false;
             if (target instanceof HTMLElement) return target;
             return String(source.getAttribute('data-time') || '').trim() === timeKey ? source : null;
         }
+        if (kind === 'quadrant') {
+            const quadrantId = __tmGetKanbanQuadrantProjectionId(task);
+            const target = root.querySelector(`.tm-kanban-col[data-kind="quadrant"][data-quadrant="${CSS.escape(quadrantId)}"]`);
+            if (target instanceof HTMLElement) return target;
+            return String(source.getAttribute('data-quadrant') || '').trim() === quadrantId ? source : null;
+        }
         if (kind === 'doc') {
             const docId = String(task?.root_id || task?.docId || '').trim();
             const target = docId
@@ -4815,10 +4855,12 @@ return false;
     function __tmGetKanbanPinnedProjectionGroupKey(column) {
         const columnId = __tmGetKanbanProjectionColumnId(column);
         if (!columnId) return '';
+        const quadrantBoardMode = typeof __tmGetKanbanBoardMode === 'function'
+            && __tmGetKanbanBoardMode() === 'quadrant';
         let kind = 'ungrouped';
         if (state.groupByDocName) kind = 'doc';
         else if (state.groupByTime) kind = 'time';
-        else if (state.quadrantEnabled) kind = 'quadrant';
+        else if (state.quadrantEnabled && !quadrantBoardMode) kind = 'quadrant';
         else if (state.groupByTaskName) kind = 'task';
         return `kanban_${columnId}_${kind}_pinned`;
     }
@@ -4880,6 +4922,8 @@ return false;
     function __tmGetKanbanTaskProjectionGroupSignature(task) {
         const taskLike = (task && typeof task === 'object') ? task : null;
         if (!taskLike) return '';
+        const quadrantBoardMode = typeof __tmGetKanbanBoardMode === 'function'
+            && __tmGetKanbanBoardMode() === 'quadrant';
         if (state.groupByDocName) {
             const docId = String(taskLike.root_id || taskLike.docId || '').trim();
             const headingLevel = __tmNormalizeHeadingLevel(SettingsStore.data.taskHeadingLevel || 'h2');
@@ -4889,32 +4933,8 @@ return false;
         }
         if (state.groupByTime) return `time:${__tmGetKanbanTimeProjectionKey(taskLike)}`;
         if (state.groupByTaskName) return `task:${String(taskLike.content || '').trim()}`;
-        if (state.quadrantEnabled) {
-            const priority = String(taskLike.priority || '').trim().toLowerCase();
-            const importance = (priority === 'a' || priority === '高' || priority === 'high')
-                ? 'high'
-                : ((priority === 'b' || priority === '中' || priority === 'medium')
-                    ? 'medium'
-                    : ((priority === 'c' || priority === '低' || priority === 'low') ? 'low' : 'none'));
-            let diffDays = NaN;
-            try { diffDays = Number(__tmGetTaskTimePriorityInfo(taskLike)?.diffDays); } catch (e) {}
-            const timeRange = !Number.isFinite(diffDays)
-                ? 'nodate'
-                : (diffDays < 0
-                    ? 'overdue'
-                    : (diffDays <= 7 ? 'within7days' : (diffDays <= 15 ? 'within15days' : (diffDays <= 30 ? 'within30days' : 'beyond30days'))));
-            const rules = Array.isArray(SettingsStore.data?.quadrantConfig?.rules) ? SettingsStore.data.quadrantConfig.rules : [];
-            const matched = rules.find((rule) => {
-                if (!Array.isArray(rule?.importance) || !rule.importance.includes(importance)) return false;
-                if (Array.isArray(rule?.timeRanges) && rule.timeRanges.includes(timeRange)) return true;
-                return Number.isFinite(diffDays) && Array.isArray(rule?.timeRanges) && rule.timeRanges.some((range) => {
-                    const raw = String(range || '').trim();
-                    if (!raw.startsWith('beyond') || raw === 'beyond30days') return false;
-                    const days = parseInt(raw.replace('beyond', '').replace('days', ''), 10);
-                    return Number.isFinite(days) && diffDays > days;
-                });
-            });
-            return `quadrant:${String(matched?.id || '__unmatched__').trim() || '__unmatched__'}`;
+        if (state.quadrantEnabled || quadrantBoardMode) {
+            return `quadrant:${__tmGetKanbanQuadrantProjectionId(taskLike)}`;
         }
         return 'ungrouped';
     }
@@ -4923,6 +4943,8 @@ return false;
         const taskLike = (task && typeof task === 'object') ? task : null;
         const columnId = __tmGetKanbanProjectionColumnId(column);
         if (!taskLike || !columnId) return [];
+        const quadrantBoardMode = typeof __tmGetKanbanBoardMode === 'function'
+            && __tmGetKanbanBoardMode() === 'quadrant';
         if (state.groupByDocName) {
             const docId = String(taskLike.root_id || taskLike.docId || '__unknown__').trim() || '__unknown__';
             const headingLevel = __tmNormalizeHeadingLevel(SettingsStore.data.taskHeadingLevel || 'h2');
@@ -4937,7 +4959,7 @@ return false;
             const safeContent = String(taskLike.content || '').replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_');
             return [`kanban_${columnId}_task_${safeContent}`];
         }
-        if (state.quadrantEnabled) {
+        if (state.quadrantEnabled && !quadrantBoardMode) {
             const signature = __tmGetKanbanTaskProjectionGroupSignature(taskLike);
             const quadrantId = String(signature.split(':').slice(1).join(':') || '__unmatched__').trim() || '__unmatched__';
             return [`kanban_${columnId}_quadrant_${quadrantId}`];
@@ -4976,7 +4998,10 @@ return false;
         const source = sourceColumn instanceof HTMLElement ? sourceColumn : null;
         const target = targetColumn instanceof HTMLElement ? targetColumn : null;
         if (!(card instanceof HTMLElement) || !source || !target) return null;
-        const grouped = !!(state.groupByDocName || state.groupByTaskName || state.groupByTime || state.quadrantEnabled);
+        const quadrantBoardMode = typeof __tmGetKanbanBoardMode === 'function'
+            && __tmGetKanbanBoardMode() === 'quadrant';
+        const grouped = !!(state.groupByDocName || state.groupByTaskName || state.groupByTime
+            || (state.quadrantEnabled && !quadrantBoardMode));
         if (!grouped) return target.querySelector(':scope > .tm-kanban-col-body');
 
         const targetTask = __tmTaskStateKernel.getTask(card.getAttribute('data-id'));
@@ -7875,6 +7900,7 @@ return false;
         }
         const effectiveTask = projectedTask || taskLike;
         const taskDone = __tmIsTaskClosedForDisplay(effectiveTask);
+        const taskCanceled = typeof __tmIsTaskCanceled === 'function' && __tmIsTaskCanceled(effectiveTask);
         let touched = false;
         let checkbox = null;
         for (const taskId of taskIds) {
@@ -7885,9 +7911,10 @@ return false;
             checkbox = root.querySelector('.tm-task-checkbox');
         }
         if (checkbox instanceof HTMLInputElement) {
+            checkbox.classList.toggle('tm-task-checkbox--canceled', taskCanceled);
             if (typeof __tmIsCheckinTask === 'function' && __tmIsCheckinTask(effectiveTask)) {
                 const checkinDate = __tmNormalizeDateOnly(new Date());
-                checkbox.checked = __tmIsTaskCheckinChecked(effectiveTask, checkinDate);
+                checkbox.checked = taskCanceled || __tmIsTaskCheckinChecked(effectiveTask, checkinDate);
                 checkbox.disabled = false;
                 checkbox.title = __tmGetTaskCheckinTodayHint(effectiveTask);
             } else {
@@ -8938,6 +8965,8 @@ return false;
                 patch: { ...plan.normalizedPatch },
                 projectionPatch: { ...plan.projectionPatch },
                 inheritedDateFields: opts.inheritedDateFields || [],
+                occurrenceId: opts.occurrenceId || (typeof __tmGetTaskOccurrenceId === 'function' ? __tmGetTaskOccurrenceId(taskLike) : ''),
+                timerContext: opts.timerContext || globalThis.__tomatoTimerV2?.getSettlementContext?.() || null,
                 statusBefore: plan.statusBefore && typeof plan.statusBefore === 'object'
                     ? { ...plan.statusBefore }
                     : null,
@@ -12753,10 +12782,13 @@ return false;
         `;
     }
 
-    function __tmBuildTaskRepeatHistorySectionHtml(task) {
+    function __tmBuildTaskRepeatHistorySectionHtml(task, options = {}) {
         const history = __tmNormalizeTaskRepeatHistory(task?.repeatHistory || task?.repeat_history || '');
         if (!history.length) return '';
-        const itemsHtml = history.map((item, index) => {
+        const offset = Math.max(0, Number(options.offset) || 0);
+        const limit = 50;
+        const itemsHtml = history.slice(offset, offset + limit).map((item, pageIndex) => {
+            const index = offset + pageIndex;
             const completedAt = String(item?.completedAt || '').trim();
             const occurrenceNumber = __tmResolveTaskRepeatHistoryOccurrenceNumber(task, item, index);
             const totalOccurrences = __tmNormalizeTaskRepeatMaxOccurrences(
@@ -12774,18 +12806,21 @@ return false;
                 : (sourceDue ? `截止 ${__tmFormatTaskTimeCompact(sourceDue)}` : (sourceStart ? `开始 ${__tmFormatTaskTimeCompact(sourceStart)}` : '未记录日期'));
             const nextText = nextStart && nextDue
                 ? `${__tmFormatTaskTimeCompact(nextStart)} - ${__tmFormatTaskTimeCompact(nextDue)}`
-                : (nextDue ? `截止 ${__tmFormatTaskTimeCompact(nextDue)}` : (nextStart ? `开始 ${__tmFormatTaskTimeCompact(nextStart)}` : '未推进'));
+                : (nextDue ? `截止 ${__tmFormatTaskTimeCompact(nextDue)}` : (nextStart ? `开始 ${__tmFormatTaskTimeCompact(nextStart)}` : (item.id ? '计划已结束' : '未记录下一轮')));
             return `
                 <div class="tm-task-detail-history-item">
                     <div class="tm-task-detail-history-head">
                         <div class="tm-task-detail-history-main">${esc([occurrenceText, completedAt ? `完成于 ${__tmFormatTaskTime(completedAt)}` : '已完成'].filter(Boolean).join(' · '))}</div>
-                        <button type="button" class="tm-task-detail-history-delete" data-tm-detail-repeat-history-delete="${esc(completedAt || String(index))}">删除</button>
+                        <button type="button" class="tm-task-detail-history-delete" data-tm-detail-repeat-history-delete="${esc(item.id || completedAt || String(index))}">删除记录</button>
                     </div>
                     <div class="tm-task-detail-history-sub">本次：${esc(sourceText)}</div>
                     <div class="tm-task-detail-history-sub">已推进到：${esc(nextText)}</div>
                 </div>
             `;
         }).join('');
+        const more = offset + limit < history.length
+            ? `<button type="button" class="b3-button b3-button--outline" data-tm-repeat-history-more="${offset + limit}">再显示 ${Math.min(limit, history.length - offset - limit)} 条记录</button>` : '';
+        if (options.itemsOnly) return itemsHtml + more;
         return `
             <section class="tm-task-detail-section" data-tm-detail-collapsible-section>
                 <div class="tm-task-detail-section-head">
@@ -12797,7 +12832,7 @@ return false;
                         <span class="tm-task-detail-section-count">${history.length}</span>
                     </div>
                 </div>
-                <div class="tm-task-detail-history-list">${itemsHtml}</div>
+                <div class="tm-task-detail-history-list">${itemsHtml}${more}</div>
             </section>
         `;
     }
