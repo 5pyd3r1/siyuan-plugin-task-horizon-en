@@ -36,6 +36,7 @@ jobs:
     timeout-minutes: 20
     outputs:
       tag: ${{ steps.run.outputs.tag }}
+      released: ${{ steps.run.outputs.released }}
     steps:
       - name: Checkout main
         uses: actions/checkout@v4
@@ -97,6 +98,7 @@ jobs:
           if [ -n "$EXISTING" ]; then
             if gh release view "$EXISTING" --repo "$REPO" >/dev/null 2>&1; then
               echo "sync: ${EXISTING} already released - nothing to do"
+              echo "released=${EXISTING}" >> "$GITHUB_OUTPUT"
             else
               echo "sync: ${EXISTING} tag exists without a release - rebuilding it"
               echo "tag=${EXISTING}" >> "$GITHUB_OUTPUT"
@@ -151,7 +153,7 @@ jobs:
 
   cleanup:
     needs: [sync, release]
-    if: needs.sync.outputs.tag != ''
+    if: always() && needs.sync.result == 'success' && (needs.sync.outputs.released != '' || (needs.sync.outputs.tag != '' && needs.release.result == 'success'))
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -161,10 +163,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-          TAG: ${{ needs.sync.outputs.tag }}
+          VERSION: ${{ needs.sync.outputs.released || needs.sync.outputs.tag }}
         run: |
           set -euo pipefail
-          echo "cleanup: closing open upstream-sync issues (resolved by ${TAG})"
-          gh issue list --repo "$REPO" --state open --search "\"Upstream sync v\" in:title" --json number --jq '.[].number' | while read -r n; do
-            if [ -n "$n" ]; then gh issue close "$n" --repo "$REPO" --comment "Released ${TAG}."; fi
-          done
+          echo "cleanup: closing open upstream-sync issues (upstream ${VERSION} is published)"
+          gh issue list --repo "$REPO" --state open --limit 100 --json number,title \
+            --jq '.[] | select(.title | startswith("Upstream sync v")) | .number' \
+            | while read -r n; do
+                if [ -n "$n" ]; then gh issue close "$n" --repo "$REPO" --comment "Resolved by ${VERSION}."; fi
+              done
