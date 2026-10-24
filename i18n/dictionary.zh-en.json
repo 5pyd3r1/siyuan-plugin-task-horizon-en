@@ -7513,6 +7513,8 @@
     ">本次：": ">This occurrence: ",
     ">已推进到：": ">Advanced to: ",
     " · 已打卡": " · Checked in",
-    ">记录于 ": ">Recorded at "
+    ">记录于 ": ">Recorded at ",
+    "此状态用于“勾选完成时状态”，请先选择其他状态再删除": "This status is used as the “Status when checked complete”; choose another status before deleting it.",
+    "此状态用于“未完成状态默认状态”，请先选择其他状态再删除": "This status is used as the “Default unfinished status”; choose another status before deleting it."
   }
 }
