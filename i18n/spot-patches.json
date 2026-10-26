@@ -4,16 +4,16 @@
   },
   "entries": {},
   "byLine": {
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5588": "Checking a task means “Good”; you can also choose Again, Hard, Good, or Easy from the task menu.",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5590": "This task will not repeat automatically.",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5592": " The next occurrence is calculated from the actual completion date; no dates are pre-scheduled until then.",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5598": " Check in on the planned dates independently; checking the note marks today as checked in and stays checked for the day. This mode has no permanent completed state - switch the repeat mode or turn repeating off to complete the task.",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6873": "✅ ${label} applied (background write in progress, ${ok} items)",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6874": "⚠ ${label} partially applied: ${ok} succeeded, ${fail} failed",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6875": "❌ Failed to queue ${label}",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6877": "✅ ${label} succeeded (${ok} items)",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6878": "⚠ ${label} finished: ${ok} succeeded, ${fail} failed",
-    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6879": "❌ ${label} failed"
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5605": "Checking a task means “Good”; you can also choose Again, Hard, Good, or Easy from the task menu.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5607": "This task will not repeat automatically.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5609": " The next occurrence is calculated from the actual completion date; no dates are pre-scheduled until then.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:5615": " Check in on the planned dates independently; checking the note marks today as checked in and stays checked for the day. This mode has no permanent completed state - switch the repeat mode or turn repeating off to complete the task.",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6890": "✅ ${label} applied (background write in progress, ${ok} items)",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6891": "⚠ ${label} partially applied: ${ok} succeeded, ${fail} failed",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6892": "❌ Failed to queue ${label}",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6894": "✅ ${label} succeeded (${ok} items)",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6895": "⚠ ${label} finished: ${ok} succeeded, ${fail} failed",
+    "src/task-horizon/main/30-dialogs-and-ui-foundation.js:6896": "❌ ${label} failed"
   },
   "raw": {
     "src/task-horizon/main/30-dialogs-and-ui-foundation.js": {
@@ -348,7 +348,7 @@
         "count": 1
       },
       "const triggerText = rule.trigger === 'complete' ? '完成后' : (rule.trigger === 'checkin' ? '打卡' : '到期后');": {
-        "new": "const triggerText = rule.trigger === 'complete' ? 'After completion' : (rule.trigger === 'checkin' ? 'On check-in' : 'After due');",
+        "new": "const triggerText = rule.trigger === 'complete' ? 'After completion: ' : (rule.trigger === 'checkin' ? 'Check-in' : 'When due: ');",
         "count": 1
       },
       "['周日', '周一', '周二', '周三', '周四', '周五', '周六'][weekday]).join('、')": {
@@ -458,6 +458,32 @@
       "|| '日'": {
         "new": "|| 'Day'",
         "count": 1
+      }
+    },
+    "kernel.js": {
+      "raw === '打卡'": {
+        "new": "raw === '\\u6253\\u5361'",
+        "count": 1
+      },
+      "dates.join('、') + '日'": {
+        "new": "dates.join(', ')",
+        "count": 1
+      },
+      "\" aria-label=\"每月' + (day === -1 ? title : title + '日')": {
+        "new": "\" aria-label=\"Day ' + (day === -1 ? title : title)",
+        "count": 1
+      }
+    },
+    "src/task-horizon/main/20-api-and-runtime-services.js": {
+      "monthWeek[1] === '最后一个'": {
+        "new": "monthWeek[1] === '\\u6700\\u540e\\u4e00\\u4e2a'",
+        "count": 1
+      }
+    },
+    "src/task-horizon/main/settings/62-settings-columns-and-rules.js": {
+      "const unitName = unit === 'minutes' ? '分钟' : '小时';": {
+        "new": "const unitName = unit === 'minutes' ? '分钟' : 'hours';",
+        "count": 2
       }
     }
   }

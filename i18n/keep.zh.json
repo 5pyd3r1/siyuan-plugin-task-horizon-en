@@ -1333,6 +1333,140 @@
         "src/task-horizon/main/shell/80-shell-lifecycle.js",
         "src/task-horizon/main/task-runtime/53c-document-loader-runtime.js"
       ]
+    },
+    {
+      "text": "廿",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "卅",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "十",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "正",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "一",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "二",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "三",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "四",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "五",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "六",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "七",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "八",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "九",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "十一",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "冬",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "十二",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "腊",
+      "files": [
+        "kernel.js"
+      ]
+    },
+    {
+      "text": "天",
+      "files": [
+        "kernel.js",
+        "src/task-horizon/main/06a-duration-utils.js"
+      ]
+    },
+    {
+      "text": "时",
+      "files": [
+        "kernel.js",
+        "src/task-horizon/main/06a-duration-utils.js"
+      ]
+    },
+    {
+      "text": "隔",
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
+    },
+    {
+      "text": "(?:[一二三四五六日天](?![十百]|\\\\s*(?:点|[:：]))|[1-7](?!\\\\d|\\\\s*(?:点|[:：])))",
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
+    },
+    {
+      "text": "^\\\\s*(?:的)?\\\\s*((?:周|星期|礼拜)?${dayToken}(?:[、,，和及到至~～\\\\s]*(?:周|星期|礼拜)?${dayToken})*)",
+      "files": [
+        "src/task-horizon/main/20-api-and-runtime-services.js"
+      ]
     }
   ]
 }
