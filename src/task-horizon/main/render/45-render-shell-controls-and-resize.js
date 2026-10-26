@@ -1637,6 +1637,8 @@
     }
 
     window.tmClose = function(event) {
+        try { state.whiteboardToolDragCleanup?.(); } catch (e) {}
+        if (state.whiteboardTraversal) window.tmWhiteboardExitTraversal?.();
         try { __tmCleanupKanbanLaneAppearance(); } catch (e) {}
         if (event) {
             event.stopPropagation();

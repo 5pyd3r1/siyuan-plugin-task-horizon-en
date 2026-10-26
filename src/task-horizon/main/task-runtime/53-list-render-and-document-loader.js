@@ -219,7 +219,7 @@
             const allChildren = Array.isArray(task?.children) ? task.children : [];
             let completed = 0;
             for (let i = 0; i < allChildren.length; i += 1) {
-                if (__tmIsTaskCompletedForProjection(allChildren[i])) completed += 1;
+                if (__tmIsTaskCompletedForProjection(allChildren[i]) || __tmIsTaskCanceled(allChildren[i])) completed += 1;
             }
             const stats = {
                 total: allChildren.length,
@@ -290,8 +290,8 @@
             const titleInlineBadgeClass = (completedTodayBadgeHtml || recurringInstanceBadgeHtml)
                 ? ' tm-task-content-clickable--inline-badges'
                 : '';
-            const remarkSearchSnippetHtml = hasContentCol && !colSet.has('remark') && typeof __tmBuildTaskRemarkSearchSnippet === 'function'
-                ? __tmBuildTaskRemarkSearchSnippet(task, state.searchKeyword)
+            const remarkSearchSnippetHtml = hasContentCol && typeof __tmBuildTaskSearchSnippet === 'function'
+                ? __tmBuildTaskSearchSnippet(task, state.searchKeyword, { excludeFields: colSet.has('remark') ? ['remark'] : [] })
                 : '';
             const taskTextSearchRemarkClass = remarkSearchSnippetHtml ? ' tm-task-text--with-search-remark' : '';
 

@@ -3599,6 +3599,18 @@
     background: var(--b3-theme-hover, var(--tm-hover-bg));
 }
 
+@media (pointer: coarse) {
+    .tm-home-project-card {
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+    }
+
+    .tm-home-project-context-menu button {
+        min-height: 44px;
+    }
+}
+
 .tm-home-projects-noh2-hint {
     font-size: 11px;
     color: var(--tm-home-text-muted);
@@ -4323,6 +4335,8 @@
         const raw = String(task?.duration ?? task?.custom_duration ?? "").trim();
         if (!raw) return 0;
         const fmt = String(ctx?.durationFormat || "hours").trim() === "minutes" ? "minutes" : "hours";
+        const shared = globalThis.__tmDuration?.parse?.(raw, fmt);
+        if (shared != null) return shared > 0 ? shared : 0;
         const numericToMinutes = (num) => {
             if (!Number.isFinite(num) || num <= 0) return 0;
             return fmt === "minutes" ? num : num * 60;
@@ -6053,8 +6067,12 @@
     }
 
     function isProjectCardCompleted(entity, manuallyCompleted = false) {
+        if (manuallyCompleted === true) return true;
+        const total = Number(entity?.total);
+        const done = Number(entity?.done);
+        if (Number.isFinite(total) && Number.isFinite(done)) return total > 0 && done >= total;
         const progress = Math.max(0, Math.min(100, Math.round(toNumber(entity?.progress, 0))));
-        return manuallyCompleted === true || progress >= 100;
+        return progress >= 100;
     }
 
     function renderProjectTimingStatusHtml(entity, todayKey, isCompleted = false) {
@@ -6241,7 +6259,7 @@
                 doneTasks += toNumber(section?.agg?.done, 0);
             });
         }
-        const collapsedPct = totalTasks ? Math.min(100, Math.max(0, Math.round((doneTasks / totalTasks) * 100))) : 0;
+        const collapsedPct = totalTasks ? Math.min(doneTasks < totalTasks ? 99 : 100, Math.max(0, Math.round((doneTasks / totalTasks) * 100))) : 0;
         const headActions = `
             <div class="tm-home-projects-head-actions">
                 ${collapsed ? `<span class="tm-home-projects-collapsed-summary">${totalTasks} 任务 · 完成 ${collapsedPct}%</span>` : ""}
@@ -6450,6 +6468,13 @@
         menu.id = "tm-home-project-context-menu";
         menu.className = "tm-home-project-context-menu";
         menu.setAttribute("role", "menu");
+        // The body-mounted menu must sit above the fullscreen host's stacking context.
+        let menuZIndex = 10001;
+        for (let ancestor = runtime.root; ancestor instanceof Element; ancestor = ancestor.parentElement) {
+            const zIndex = Number.parseInt(window.getComputedStyle(ancestor).zIndex, 10);
+            if (Number.isFinite(zIndex)) menuZIndex = Math.max(menuZIndex, zIndex + 1);
+        }
+        menu.style.zIndex = String(menuZIndex);
         const item = document.createElement("button");
         item.type = "button";
         item.setAttribute("role", "menuitem");
@@ -6760,21 +6785,22 @@
             const source = event?.target instanceof Element ? event.target : null;
             const card = source?.closest?.(".tm-home-project-card[data-tm-home-project-kind][data-tm-home-project-id]");
             if (!(card instanceof Element)) return;
+            if (runtime.projectLongPressSuppressClick?.card === card
+                && Date.now() <= Number(runtime.projectLongPressSuppressClick.expiresAt || 0)) {
+                try { event.preventDefault?.(); event.stopPropagation?.(); } catch (e) {}
+                return;
+            }
             if (runtime.projectLongPressCard === card && runtime.projectLongPressPointerId !== null) {
                 const point = runtime.projectLongPressPoint || { x: event.clientX, y: event.clientY };
-                clearHomepageProjectLongPress(false);
-                runtime.projectLongPressSuppressClick = { card, expiresAt: Date.now() + 1200 };
+                clearTimeout(runtime.projectLongPressTimer);
+                runtime.projectLongPressTimer = 0;
+                runtime.projectLongPressSuppressClick = { card, expiresAt: Infinity };
                 openHomepageProjectContextMenu({
                     clientX: point.x,
                     clientY: point.y,
                     preventDefault: () => event.preventDefault?.(),
                     stopPropagation: () => event.stopPropagation?.(),
                 }, card.getAttribute("data-tm-home-project-kind"), card.getAttribute("data-tm-home-project-id"));
-                return;
-            }
-            if (runtime.projectLongPressSuppressClick?.card === card
-                && Date.now() <= Number(runtime.projectLongPressSuppressClick.expiresAt || 0)) {
-                try { event.preventDefault?.(); event.stopPropagation?.(); } catch (e) {}
                 return;
             }
             openHomepageProjectContextMenu(
@@ -6789,7 +6815,10 @@
                 clearHomepageProjectLongPress(true);
                 return;
             }
-            if (event?.isPrimary === false) return;
+            if (event?.isPrimary === false) {
+                clearHomepageProjectLongPress(true);
+                return;
+            }
             const source = event.target instanceof Element ? event.target : null;
             const card = source?.closest?.(".tm-home-project-card[data-tm-home-project-kind][data-tm-home-project-id]");
             if (!(card instanceof Element)) return;
@@ -6800,10 +6829,14 @@
             runtime.projectLongPressPoint = { x: Number(event.clientX) || 0, y: Number(event.clientY) || 0 };
             runtime.projectLongPressTimer = setTimeout(() => {
                 if (runtime.projectLongPressPointerId !== pointerId || runtime.projectLongPressCard !== card) return;
+                if (!card.isConnected) {
+                    clearHomepageProjectLongPress(true);
+                    return;
+                }
                 runtime.projectLongPressTimer = 0;
                 const point = runtime.projectLongPressPoint || { x: 0, y: 0 };
-                runtime.projectLongPressSuppressClick = { card, expiresAt: Date.now() + 1200 };
-                openHomepageProjectContextMenu({ ...point, preventDefault() {}, stopPropagation() {} },
+                runtime.projectLongPressSuppressClick = { card, expiresAt: Infinity };
+                openHomepageProjectContextMenu({ clientX: point.x, clientY: point.y, preventDefault() {}, stopPropagation() {} },
                     card.getAttribute("data-tm-home-project-kind"), card.getAttribute("data-tm-home-project-id"));
             }, 520);
         };
@@ -6816,10 +6849,12 @@
                 clearHomepageProjectLongPress(true);
                 return;
             }
-            runtime.projectLongPressPoint = { x, y };
         };
         runtime.projectPointerUpHandler = (event) => {
             if (runtime.projectLongPressPointerId === null || event?.pointerId !== runtime.projectLongPressPointerId) return;
+            if (runtime.projectLongPressSuppressClick?.card === runtime.projectLongPressCard) {
+                runtime.projectLongPressSuppressClick.expiresAt = Date.now() + 1200;
+            }
             clearHomepageProjectLongPress(false);
         };
         runtime.root.addEventListener("pointerdown", runtime.projectPointerDownHandler);

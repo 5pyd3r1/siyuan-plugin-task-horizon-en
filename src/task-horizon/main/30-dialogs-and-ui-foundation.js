@@ -904,6 +904,7 @@
     }
 
     function __tmHasActiveDocTabContentFilter(rule) {
+        if (globalThis.__tmDateFilter?.active()) return true;
         if (String(state.searchKeyword || '').trim()) return true;
         if (__tmIsAllRuleLike(rule)) return false;
         return !!(rule && Array.isArray(rule.conditions) && rule.conditions.length > 0);
@@ -3718,6 +3719,8 @@ return Number(state.contextInteractionQuietUntil || 0);
             String(state.currentRule || '').trim(),
             ruleSignature,
             String(state.searchKeyword || '').trim(),
+            globalThis.__tmDateFilter?.signature() || '',
+            __tmGetTaskSearchFields().join(','),
             String(state.docTabsArchiveMode === true ? 1 : 0),
             String(SettingsStore?.data?.docTabsManualArchiveOnly ? 1 : 0),
             String(state.groupByDocName ? 1 : 0),
@@ -5263,11 +5266,25 @@ return Number(state.contextInteractionQuietUntil || 0);
         });
     }
 
+    function __tmNormalizeDurationInputValue(value) {
+        const raw = String(value == null ? '' : value).trim();
+        if (!raw) return '';
+        if (typeof globalThis.__tmDuration?.parse !== 'function') return raw;
+        const unit = globalThis.__tmDuration?.getUnit?.()
+            || (String(SettingsStore?.data?.durationFormat || 'hours').trim() === 'minutes' ? 'minutes' : 'hours');
+        const minutes = globalThis.__tmDuration.parse(raw, unit);
+        if (minutes == null) return '';
+        return globalThis.__tmDuration.toStorage(minutes, unit);
+    }
+
     function showDurationPrompt(title, defaultValue) {
-        const initialValue = __tmNormalizeDurationPresetValue(defaultValue);
+        const initialValue = String(defaultValue == null ? '' : defaultValue).trim();
         const presets = __tmGetDurationPresetOptions();
+        const promptUnit = globalThis.__tmDuration?.getUnit?.()
+            || (String(SettingsStore?.data?.durationFormat || 'hours').trim() === 'minutes' ? 'minutes' : 'hours');
+        const promptPlaceholder = promptUnit === 'minutes' ? '例如：90 或 1h30m' : '例如：1.5 或 1h30m';
         if (!presets.length) {
-            return showPrompt(title, '例如：30 或 30m', initialValue);
+            return showPrompt(title, promptPlaceholder, initialValue);
         }
         return new Promise((resolve) => {
             const existing = document.querySelector('.tm-prompt-modal');
@@ -5282,7 +5299,7 @@ return Number(state.contextInteractionQuietUntil || 0);
                         ${__tmBuildDurationPresetOptionsHtml(initialValue, presets)}
                     </div>
                     <div class="tm-duration-preset-helper">选预设或直接输入</div>
-                    <input class="tm-prompt-input tm-duration-editor-input" data-tm-duration-prompt-input type="text" value="${esc(initialValue)}" placeholder="例如：30 或 30m">
+                    <input class="tm-prompt-input tm-duration-editor-input" data-tm-duration-prompt-input type="text" value="${esc(initialValue)}" placeholder="${esc(promptPlaceholder)}">
                     <div class="tm-prompt-buttons">
                         <button class="tm-prompt-btn tm-prompt-btn-secondary" id="tm-duration-cancel">取消</button>
                         <button class="tm-prompt-btn tm-prompt-btn-secondary" id="tm-duration-clear">清空</button>
@@ -5308,7 +5325,7 @@ return Number(state.contextInteractionQuietUntil || 0);
             const commit = (value) => {
                 removeFromStack();
                 modal.remove();
-                resolve(__tmNormalizeDurationPresetValue(value));
+                resolve(__tmNormalizeDurationInputValue(value));
             };
             const focusInput = () => {
                 try {
@@ -6948,13 +6965,13 @@ return Number(state.contextInteractionQuietUntil || 0);
             let hasCommonValue = true;
             targetIds.forEach((id, index) => {
                 const task = globalThis.__tmTaskBoundary?.getTask?.(id) || null;
-                const value = __tmNormalizeDurationPresetValue(task?.duration || task?.custom_duration || '');
+                const value = __tmNormalizeDurationInputValue(task?.duration || task?.custom_duration || '');
                 if (index === 0) defaultValue = value;
                 else if (value !== defaultValue) hasCommonValue = false;
             });
             const next = await showDurationPrompt('批量修改时长', hasCommonValue ? defaultValue : '');
             if (next === null) return;
-            const duration = __tmNormalizeDurationPresetValue(next);
+            const duration = String(next || '').trim();
             await __tmApplyBatchAttrPatch({ duration }, {
                 source: 'multi-duration',
                 actionLabel: duration ? '批量修改时长' : '批量清空时长'
@@ -10638,6 +10655,8 @@ return Number(state.contextInteractionQuietUntil || 0);
 
         const currentRule = __tmGetCurrentRule();
         const archiveMode = state.docTabsArchiveMode === true;
+        const dateFilter = globalThis.__tmDateFilter;
+        const dateFilterActive = dateFilter?.active() === true;
         const currentGroupId = String(SettingsStore?.data?.currentGroupId || 'all').trim() || 'all';
         const rule = __tmGetArchiveModeFilterRule(currentRule, archiveMode);
         const customOrderProjection = __tmRuleUsesCustomOrderSort(rule)
@@ -10847,8 +10866,15 @@ return Number(state.contextInteractionQuietUntil || 0);
 
         if (state.searchKeyword) {
             const keyword = state.searchKeyword;
-            matchedForTabs = matchedForTabs.filter((task) => __tmTaskMatchesSearch(task, keyword));
-            matched = taskScopeMatchesTabs ? matchedForTabs : matched.filter((task) => __tmTaskMatchesSearch(task, keyword));
+            const searchFields = __tmGetTaskSearchFields();
+            matchedForTabs = matchedForTabs.filter((task) => __tmTaskMatchesSearch(task, keyword, searchFields));
+            matched = taskScopeMatchesTabs ? matchedForTabs : matched.filter((task) => __tmTaskMatchesSearch(task, keyword, searchFields));
+        }
+
+        dateFilter?.setCandidates(matched);
+        if (dateFilterActive) {
+            matchedForTabs = matchedForTabs.filter((task) => dateFilter.matches(task));
+            matched = taskScopeMatchesTabs ? matchedForTabs : matched.filter((task) => dateFilter.matches(task));
         }
 
         const filteredDocIdsForTabs = new Set();
@@ -10915,7 +10941,7 @@ return Number(state.contextInteractionQuietUntil || 0);
             return pinned.concat(rest);
         };
 
-        const directAllScope = taskScopeMatchesTabs && !hasRuleConditions && !String(state.searchKeyword || '').trim();
+        const directAllScope = taskScopeMatchesTabs && !hasRuleConditions && !String(state.searchKeyword || '').trim() && !dateFilterActive;
         if (directAllScope) {
             const visibleAllTasks = excludeCompleted ? tasksForTabs : matchedForTabs;
             const sortedVisibleTasks = keepDocFlowOrder
@@ -10983,7 +11009,7 @@ return Number(state.contextInteractionQuietUntil || 0);
                 if (!t || !isTaskVisibleByCompletion(t)) return;
                 const isMatched = matchedSet.has(t.id);
                 const isAncestor = ancestorSet.has(t.id);
-                const show = isMatched || isAncestor || ancestorMatched;
+                const show = isMatched || isAncestor || (!dateFilterActive && ancestorMatched);
                 if (show && !added.has(t.id)) {
                     added.add(t.id);
                     ordered.push(t);
@@ -11496,6 +11522,9 @@ return Number(state.contextInteractionQuietUntil || 0);
                 }
             } catch (e) {}
         }
+        if (String(state.activeDocId || 'all') !== String(resolvedDocId)) {
+            globalThis.__tmDateFilter?.clearForContextChange?.();
+        }
         state.activeDocId = resolvedDocId;
         try { __tmResetArchiveCompletedRootGroupCollapse(); } catch (e) {}
         try { __tmResetViewRenderWindow(state.viewMode, 0); } catch (e) {}
@@ -11585,6 +11614,9 @@ return Number(state.contextInteractionQuietUntil || 0);
             } catch (e) {}
         }
         const activeId = __tmBuildDocTabCustomGroupActiveId(gid);
+        if (String(state.activeDocId || 'all') !== String(activeId || 'all')) {
+            globalThis.__tmDateFilter?.clearForContextChange?.();
+        }
         state.activeDocId = activeId || 'all';
         try { __tmResetArchiveCompletedRootGroupCollapse(); } catch (e) {}
         try { __tmResetViewRenderWindow(state.viewMode, 0); } catch (e) {}
@@ -14344,6 +14376,11 @@ return Number(state.contextInteractionQuietUntil || 0);
         state.searchBarPortalPositionHandler = handler;
         try { window.addEventListener('resize', handler, { passive: true }); } catch (e) {}
         try { document.addEventListener('scroll', handler, true); } catch (e) {}
+        state.searchBarDismissFieldsHandler = (event) => {
+            const scope = document.querySelector('#tmInlineSearchbarPortal .tm-search-fields');
+            if (scope && !scope.contains(event.target)) window.tmToggleSearchScope?.(null, false);
+        };
+        document.addEventListener('pointerdown', state.searchBarDismissFieldsHandler, true);
     }
 
     function __tmUnbindInlineSearchBarPortalPositionEvents() {
@@ -14351,6 +14388,8 @@ return Number(state.contextInteractionQuietUntil || 0);
         if (!handler) return;
         try { window.removeEventListener('resize', handler); } catch (e) {}
         try { document.removeEventListener('scroll', handler, true); } catch (e) {}
+        document.removeEventListener('pointerdown', state.searchBarDismissFieldsHandler, true);
+        state.searchBarDismissFieldsHandler = null;
         state.searchBarPortalPositionHandler = null;
     }
 
@@ -14362,10 +14401,10 @@ return Number(state.contextInteractionQuietUntil || 0);
                     class="tm-inline-searchbar__input"
                     type="search"
                     value="${esc(String(value || ''))}"
-                    placeholder="搜索任务或备注"
+                    placeholder="输入关键词"
                     autocomplete="off"
                     spellcheck="false"
-                    aria-label="搜索任务或备注"
+                    aria-label="搜索关键词"
                     oninput="tmInputInlineSearch(event)"
                     onkeydown="return tmHandleInlineSearchKeydown(event)"
                 >
@@ -14375,14 +14414,30 @@ return Number(state.contextInteractionQuietUntil || 0);
                 <button class="tm-btn tm-btn-info bc-btn bc-btn--sm tm-inline-searchbar__btn tm-inline-searchbar__btn--icon" type="button" onclick="tmClearInlineSearch(event)"${__tmBuildTooltipAttrs('清除搜索', { side: 'bottom' })}>
                     <span class="tm-inline-searchbar__icon">${__tmPhosphorBoldSvg('x-circle', { size: 14, className: 'tm-inline-searchbar__icon-svg' })}</span>
                 </button>
+                <div class="tm-search-fields" onkeydown="if(event.key === 'Escape')tmToggleSearchScope(event,false)">
+                    <button type="button" class="tm-btn tm-btn-info bc-btn bc-btn--sm tm-inline-searchbar__btn tm-inline-searchbar__btn--icon tm-search-fields__trigger" aria-expanded="false" aria-controls="tmSearchScopePanel" onclick="tmToggleSearchScope(event)"${__tmBuildTooltipAttrs('搜索范围', { side: 'bottom' })}>
+                        <span class="tm-inline-searchbar__icon">${__tmPhosphorBoldSvg('dots-three', { size: 14, className: 'tm-inline-searchbar__icon-svg' })}</span>
+                    </button>
+                    <div id="tmSearchScopePanel" class="tm-search-fields__panel" hidden>
+                        <div class="tm-search-fields__heading"><span>搜索范围</span><button type="button" class="tm-search-fields__reset" onclick="tmResetSearchFields(event)">恢复默认</button></div>
+                        <div data-tm-search-field-options></div>
+                        <div class="tm-search-fields__hint">在勾选的范围中搜索</div>
+                    </div>
+                </div>
                 <button class="tm-btn tm-btn-info bc-btn bc-btn--sm tm-inline-searchbar__btn tm-inline-searchbar__btn--icon" type="button" onclick="tmCloseInlineSearch(event)"${__tmBuildTooltipAttrs('关闭搜索条', { side: 'bottom' })}>
                     <span class="tm-inline-searchbar__icon">${__tmPhosphorBoldSvg('x', { size: 14, className: 'tm-inline-searchbar__icon-svg' })}</span>
                 </button>
+                <div class="tm-inline-searchbar__status" role="status" hidden></div>
             </form>
         `;
     }
 
     function __tmRemoveInlineSearchBarPortal() {
+        const bar = document.getElementById('tmInlineSearchbarPortal');
+        if (state.floatingTooltipTarget && bar?.contains(state.floatingTooltipTarget)) __tmHideFloatingTooltip();
+        state.searchRequest = null;
+        state.searchLoading = false;
+        state.searchLoadError = false;
         __tmCancelInlineSearchLiveTimer();
         __tmUnbindInlineSearchBarPortalPositionEvents();
         try { document.getElementById('tmInlineSearchbarPortal')?.remove?.(); } catch (e) {}
@@ -14424,6 +14479,29 @@ return Number(state.contextInteractionQuietUntil || 0);
         if (input instanceof HTMLInputElement && document.activeElement !== input && options?.syncValue !== false) {
             try { input.value = String(state.searchKeyword || ''); } catch (e) {}
         }
+        const fields = __tmGetTaskSearchFields();
+        const fieldOptions = __tmGetTaskSearchFieldOptions();
+        const list = bar.querySelector('[data-tm-search-field-options]');
+        const signature = JSON.stringify(fieldOptions);
+        if (list.dataset.signature !== signature) {
+            list.innerHTML = fieldOptions.map((field) => `<label class="tm-search-fields__option"><input type="checkbox" value="${esc(field.id)}" onchange="tmToggleSearchField(event)"><span>${esc(field.name)}</span></label>`).join('');
+            list.dataset.signature = signature;
+        }
+        list.querySelectorAll('input').forEach((checkbox) => { checkbox.checked = fields.includes(checkbox.value); });
+        const status = bar.querySelector('.tm-inline-searchbar__status');
+        status.hidden = !state.searchLoading && !state.searchLoadError;
+        status.textContent = state.searchLoading ? '正在加载搜索内容…' : '';
+        if (state.searchLoadError) {
+            status.textContent = '搜索内容加载失败，结果可能不完整。';
+            const retry = document.createElement('button');
+            retry.type = 'button';
+            retry.className = 'tm-search-fields__reset';
+            retry.textContent = '重试';
+            retry.onclick = () => window.tmSearch(__tmGetInlineSearchInput()?.value ?? state.searchKeyword);
+            status.appendChild(retry);
+        }
+        bar.setAttribute('aria-busy', state.searchLoading ? 'true' : 'false');
+        __tmBindFloatingTooltips(bar);
         __tmBindInlineSearchBarPortalPositionEvents();
         __tmPositionInlineSearchBarPortal();
         if (options?.focus === true) {
@@ -14510,6 +14588,9 @@ return Number(state.contextInteractionQuietUntil || 0);
         try { event?.stopPropagation?.(); } catch (e) {}
         __tmCancelInlineSearchLiveTimer();
         state.searchKeyword = '';
+        state.searchRequest = null;
+        state.searchLoading = false;
+        state.searchLoadError = false;
         state.searchBarOpen = false;
         state.searchBarFocusAfterRender = false;
         state.searchBarSelectAfterRender = true;
@@ -14531,13 +14612,89 @@ return Number(state.contextInteractionQuietUntil || 0);
         return true;
     };
 
-    window.tmSearch = function(keyword) {
+    window.tmToggleSearchScope = function(event, forceOpen) {
+        event?.preventDefault();
+        event?.stopPropagation();
+        const bar = document.getElementById('tmInlineSearchbarPortal');
+        const panel = bar?.querySelector('#tmSearchScopePanel');
+        const trigger = bar?.querySelector('.tm-search-fields__trigger');
+        if (!panel || !trigger) return;
+        const open = typeof forceOpen === 'boolean' ? forceOpen : panel.hidden;
+        panel.hidden = !open;
+        trigger.setAttribute('aria-expanded', String(open));
+        if (event?.key === 'Escape') trigger.focus();
+    };
+
+    function __tmApplyTaskSearchFields(fields) {
+        SettingsStore.data.taskSearchFields = __tmGetTaskSearchFields(fields);
+        SettingsStore.save().catch(() => hint('搜索范围保存失败'));
+        const input = __tmGetInlineSearchInput();
+        window.tmSearch(input instanceof HTMLInputElement ? input.value : state.searchKeyword);
+    }
+
+    window.tmToggleSearchField = function(event) {
+        const checkbox = event.target;
+        const fields = new Set(__tmGetTaskSearchFields());
+        if (checkbox.checked) fields.add(checkbox.value);
+        else fields.delete(checkbox.value);
+        if (!fields.size) {
+            checkbox.checked = true;
+            hint('请至少选择一项搜索范围');
+            return;
+        }
+        __tmApplyTaskSearchFields(Array.from(fields));
+    };
+
+    window.tmResetSearchFields = function(event) {
+        event?.preventDefault();
+        __tmApplyTaskSearchFields(['content', 'remark']);
+    };
+
+    window.tmSearch = async function(keyword) {
+        __tmCancelInlineSearchLiveTimer();
         const next = String(keyword || '').trim();
         state.searchKeyword = next;
+        const request = {};
+        state.searchRequest = request;
+        state.searchLoading = false;
+        state.searchLoadError = false;
+        const fieldIds = next ? __tmGetTaskSearchFields().map(__tmParseCustomFieldColumnKey).filter(Boolean) : [];
+        const taskMap = globalThis.__tmTaskStore?.getFlatMap?.() || state.flatTasks || {};
+        const needsLoad = fieldIds.length && Object.values(taskMap).some((task) => task.__tmLoadedAllCustomFields !== true
+            && fieldIds.some((id) => !(task.__tmLoadedCustomFieldIds || []).includes(id)));
         if (next) {
             state.searchBarOpen = true;
+        }
+        state.searchLoading = !!needsLoad;
+        window.__tmSyncInlineSearchBarPortal?.({ syncValue: false });
+        if (needsLoad) {
+            try {
+                let result;
+                for (let attempt = 0; attempt < 2; attempt += 1) {
+                    const signature = fieldIds.join(',');
+                    let load = state.searchFieldLoad;
+                    const currentMap = globalThis.__tmTaskStore?.getFlatMap?.() || state.flatTasks;
+                    if (!load || load.taskMap !== currentMap || load.signature !== signature) {
+                        load = { taskMap: currentMap, signature, promise: __tmHydrateMissingRuntimeCustomFields(fieldIds) };
+                        state.searchFieldLoad = load;
+                    }
+                    result = await load.promise.finally(() => {
+                        if (state.searchFieldLoad === load) state.searchFieldLoad = null;
+                    });
+                    if (state.searchRequest !== request) return;
+                    if (result?.queryComplete !== false) break;
+                }
+                state.searchLoadError = result?.queryComplete === false;
+            } catch (e) {
+                if (state.searchRequest !== request) return;
+                state.searchLoadError = true;
+            }
+            state.searchLoading = false;
             window.__tmSyncInlineSearchBarPortal?.({ syncValue: false });
         }
+        state.listDomRenderSignature = '';
+        state.listRenderSignature = '';
+        __tmInvalidateFilteredTaskDerivedStateCache();
         __tmScheduleRender({ withFilters: true });
     };
 
@@ -14596,6 +14753,7 @@ return Number(state.contextInteractionQuietUntil || 0);
             try { __tmHideMobileMenu(); } catch (e) {}
             return;
         }
+        globalThis.__tmDateFilter?.clearForContextChange?.();
         SettingsStore.data.currentGroupId = nextGroupId;
         __tmApplyCompletedVisibilityToRuntime();
         state.openToken = (Number(state.openToken) || 0) + 1;
@@ -18748,6 +18906,9 @@ return Number(state.contextInteractionQuietUntil || 0);
         })();
         return `<svg class="${__tmEscAttr(className)}" viewBox="0 0 24 24" width="${size}" height="${size}" aria-hidden="true"${styleAttr}><g fill="none" stroke="currentColor" stroke-width="2.45" stroke-linecap="round" stroke-linejoin="round">${body}</g></svg>`;
     }
+
+    // Phosphor 2.1.1 assets/bold/export-bold.svg。
+    __tmPhosphorBoldPaths['export'] = 'M220,112v96a20,20,0,0,1-20,20H56a20,20,0,0,1-20-20V112A20,20,0,0,1,56,92H76a12,12,0,0,1,0,24H60v88H196V116H180a12,12,0,0,1,0-24h20A20,20,0,0,1,220,112ZM96.49,72.49,116,53v83a12,12,0,0,0,24,0V53l19.51,19.52a12,12,0,1,0,17-17l-40-40a12,12,0,0,0-17,0l-40,40a12,12,0,1,0,17,17Z';
 
     function __tmPhosphorBoldSvg(iconName, options = {}) {
         const normalizedName = __tmNormalizeLucideIconName(iconName);

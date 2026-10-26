@@ -315,7 +315,7 @@
                 const allChildren = task.children || [];
                 const totalChildren = allChildren.length;
                 const completedChildren = allChildren.filter((child) => (
-                    typeof __tmIsTaskDoneEffective === 'function' ? __tmIsTaskDoneEffective(child) : !!child?.done
+                    typeof __tmIsTaskClosedForDisplay === 'function' ? __tmIsTaskClosedForDisplay(child) : !!child?.done
                 )).length;
                 const progressPercent = totalChildren > 0 ? Math.round((completedChildren / totalChildren) * 100) : 0;
                 const taskDone = typeof __tmIsTaskClosedForDisplay === 'function'
@@ -871,7 +871,8 @@
                 const allChildren = id ? getKanbanChildTasksByParentId(id) : (Array.isArray(task?.children) ? task.children : []);
                 const stats = {
                     total: allChildren.length,
-                    completed: allChildren.reduce((sum, child) => sum + (isKanbanTaskCompleted(child) ? 1 : 0), 0),
+                    completed: allChildren.reduce((sum, child) => sum + ((isKanbanTaskCompleted(child)
+                        || (typeof __tmIsTaskCanceled === 'function' && __tmIsTaskCanceled(child))) ? 1 : 0), 0),
                 };
                 stats.remaining = Math.max(0, stats.total - stats.completed);
                 if (id) directChildStatsMemo.set(id, stats);
@@ -1347,10 +1348,10 @@
                 const docChipHtml = (isAllTabsView && !headingMode && docName)
                     ? `<span class="tm-kanban-chip tm-kanban-chip--muted tm-kanban-chip--doc" style="cursor:default;" title="${esc(docName)}"><span class="tm-icon-label">${__tmRenderDocIcon(docId, { fallbackText: '📄', size: 14 })}<span>${esc(docName)}</span></span></span>`
                     : '';
-                const remarkSearchSnippetHtml = !kanbanCardFields.has('remark') && typeof __tmBuildTaskRemarkSearchSnippet === 'function'
-                    ? __tmBuildTaskRemarkSearchSnippet(task, state.searchKeyword)
+                const remarkSearchSnippetHtml = typeof __tmBuildTaskSearchSnippet === 'function'
+                    ? __tmBuildTaskSearchSnippet(task, state.searchKeyword, { excludeFields: kanbanCardFields.has('remark') ? ['remark'] : [] })
                     : '';
-                const remarkHtml = kanbanCardFields.has('remark') ? __tmRenderTaskCardRemark(task) : remarkSearchSnippetHtml;
+                const remarkHtml = (kanbanCardFields.has('remark') ? __tmRenderTaskCardRemark(task) : '') + remarkSearchSnippetHtml;
                 const multiSelectCls = __tmIsTaskMultiSelected(id) ? ' tm-task-row--multi-selected' : '';
                 const cardDragAttrs = useKanbanCustomCardGesture
                     ? 'draggable="false"'
@@ -2238,7 +2239,7 @@
                 const progressPercent = showColumnProgress ? __tmGetProjectProgressPercent(columnProgress, progressDocId) : 0;
                 const progressLabel = columnProgress.total ? `项目进度 ${progressPercent}%` : '暂无任务';
                 const progressTextHtml = showColumnProgress ? `<span class="tm-kanban-col-completion" title="${esc(progressLabel)}">${progressPercent}%</span>` : '';
-                const progressBarHtml = showColumnProgress ? `<div class="tm-kanban-col-progress" data-progress-doc="${esc(progressDocId)}" data-progress-key="${esc(c.id)}" data-progress-none-label="${esc(noHeadingLabel)}" role="progressbar" aria-label="${esc(c.name)}完成进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progressPercent}" aria-valuetext="${esc(progressLabel)}" title="${esc(progressLabel)}" style="--tm-kanban-completion:${progressPercent / 100}"><span></span></div>` : '';
+                const progressBarHtml = showColumnProgress ? `<div class="tm-kanban-col-progress" data-progress-doc="${esc(progressDocId)}" data-progress-key="${esc(c.id)}" data-progress-total="${columnProgress.total}" data-progress-done="${columnProgress.done}" data-progress-none-label="${esc(noHeadingLabel)}" role="progressbar" aria-label="${esc(c.name)}完成进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progressPercent}" aria-valuetext="${esc(progressLabel)}" title="${esc(progressLabel)}" style="--tm-kanban-completion:${progressPercent / 100}"><span></span></div>` : '';
                 const docIdForTitle = String(c?.docId || c?.id || '').trim();
                 const headingDocId = String(c?.docId || '').trim();
                 const headingIdForCreate = String(c?.headingId || '__none__').trim() || '__none__';
