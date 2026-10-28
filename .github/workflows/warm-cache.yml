@@ -44,8 +44,12 @@ jobs:
         run: |
           version=$(grep -oP 'task-horizon-playwright-\K[0-9]+(\.[0-9]+)*' .github/workflows/release.yml | head -n 1)
           if [ -z "$version" ]; then
-            echo "::error::release.yml no longer contains a task-horizon-playwright-<version> cache key"
-            exit 1
+            # This fork replaces release.yml with its own pipeline, so the
+            # upstream Playwright cache is never read here. Skip cleanly
+            # instead of failing every push.
+            echo "warm-cache: no upstream Playwright cache key - skipping"
+            echo "skip=1" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "key=${RUNNER_OS}-task-horizon-playwright-$version" >> "$GITHUB_OUTPUT"
@@ -53,6 +57,7 @@ jobs:
 
       - name: Restore Playwright cache
         id: restore
+        if: steps.identity.outputs.skip != '1'
         uses: actions/cache@v4
         with:
           path: |
@@ -62,7 +67,7 @@ jobs:
           key: ${{ steps.identity.outputs.key }}
 
       - name: Install Playwright and Chromium
-        if: steps.restore.outputs.cache-hit != 'true'
+        if: steps.identity.outputs.skip != '1' && steps.restore.outputs.cache-hit != 'true'
         env:
           DEPS_DIR: ${{ steps.identity.outputs.deps }}
           PLAYWRIGHT_VERSION: ${{ steps.identity.outputs.version }}
@@ -75,7 +80,7 @@ jobs:
       # be cached directly, so pack them into a user-owned archive that the
       # release run unpacks before verifying.
       - name: Stage system fonts
-        if: steps.restore.outputs.cache-hit != 'true'
+        if: steps.identity.outputs.skip != '1' && steps.restore.outputs.cache-hit != 'true'
         run: |
           mkdir -p "$HOME/.cache/task-horizon-fonts"
           sudo tar czf "$HOME/.cache/task-horizon-fonts/fonts.tgz" -C / usr/share/fonts etc/fonts
@@ -85,6 +90,7 @@ jobs:
       # Fails before a broken entry is saved, and catches a path or key that no
       # longer matches what scripts/verify-release.ps1 expects.
       - name: Verify the cached layout
+        if: steps.identity.outputs.skip != '1'
         env:
           DEPS_DIR: ${{ steps.identity.outputs.deps }}
         run: |

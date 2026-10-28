@@ -18,6 +18,7 @@
 /README_zh_CN.md merge=ours
 /.gitignore merge=ours
 /.github/workflows/release.yml merge=ours
+/.github/workflows/warm-cache.yml merge=ours
 
 # Binary assets
 *.png binary
