@@ -11,6 +11,7 @@
     "table-responsive-resize-behavior.test.js",
     "theme-appearance-refresh-behavior.test.js",
     "shortcut-navigation.test.js",
+    "remark-undo-history.test.js",
     "doc-group-scope-read-failure-behavior.test.js",
     "kernel-contract.test.js",
     "duration-utils.test.js",
@@ -20,6 +21,7 @@
     "parent-task-date-rollup.test.js",
     "kernel-settings-persistence.test.js",
     "task-lifecycle-contract.test.js",
+    "task-public-api-behavior.test.js",
     "task-create-heading-group.test.js",
     "completion-archive-document-integration.test.js",
     "subtask-dom-transaction-contract.test.js",
@@ -36,6 +38,7 @@
     "task-snapshot-pool-behavior.test.js",
     "task-snapshot-write-consistency-contract.test.js",
     "task-index-write-consistency-contract.test.js",
+    "task-index-commit-refresh-behavior.test.js",
     "document-loader-ordering-atomicity-contract.test.js",
     "task-store-overlay-consistency-contract.test.js",
     "task-write-barrier-contract.test.js",
@@ -73,6 +76,7 @@
     "calendar-subscription-core.test.js",
     "calendar-subscription-publication.test.js",
     "calendar-side-event-opacity.test.js",
+    "calendar-chrome-icons-contract.test.js",
     "scheduled-events.test.js",
     "schedule-notification-record-retention.test.js",
     "agent-scheduled-actions.test.js",
@@ -109,6 +113,7 @@
     "task-move-placement-browser.test.js",
     "quick-add-keyboard-browser.test.js",
     "calendar-schedule-editor-device-browser.test.js",
-    "duration-picker-browser.test.js"
+    "duration-picker-browser.test.js",
+    "remark-undo-history-browser.test.js"
   ]
 }

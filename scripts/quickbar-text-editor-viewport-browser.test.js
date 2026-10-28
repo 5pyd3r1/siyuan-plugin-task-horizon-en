@@ -17,6 +17,9 @@ function segment(startMarker, endMarker) {
 const styles = segment('style.textContent = `', '`.trim();').slice('style.textContent = `'.length);
 const editorSetup = segment('// 输入编辑器', '// 状态变量');
 const remarkIcons = segment('function renderQuickbarRemarkIcon(', 'async function saveRawTaskAttrWithUndo(');
+const iconSource = fs.readFileSync(path.join(root, 'src/task-horizon/main/30-dialogs-and-ui-foundation.js'), 'utf8');
+const sharedHistoryIcons = iconSource.slice(iconSource.indexOf('    function __tmNormalizeLucideIconName('),
+    iconSource.indexOf('    function __tmRenderInlineIcon('));
 const tooltipBuilder = segment('function buildTooltipAttrs(', 'function getFloatbarCoreIconName(');
 const basecoat = fs.readFileSync(path.join(root, 'src/basecoat/basecoat.css'), 'utf8');
 const tooltipStyles = basecoat.slice(basecoat.indexOf('[data-tooltip] {'), basecoat.indexOf('.bc-toast-viewport {'));
@@ -33,7 +36,7 @@ async function settle(page) {
 
 async function checkRemarkTooltips(page, width) {
     const buttons = page.locator('[data-remark-toolbar] [data-tooltip]');
-    assert.equal(await buttons.count(), 8, 'formatting and close buttons retain their descriptions');
+    assert.equal(await buttons.count(), 12, 'history, formatting and close buttons retain their descriptions');
     for (let index = 0; index < await buttons.count(); index++) {
         const button = buttons.nth(index);
         assert.equal(await button.getAttribute('data-side'), 'bottom', 'remark tooltips open below the toolbar');
@@ -117,14 +120,17 @@ async function checkViewport(browser, width, height, keyboardHeight, hasVisualVi
         const page = await context.newPage();
         const errors = [];
         page.on('pageerror', error => errors.push(error.message));
-        await page.setContent(`<!doctype html><meta name="viewport" content="width=device-width, initial-scale=1">
+        const fixtureHtml = `<!doctype html><meta name="viewport" content="width=device-width, initial-scale=1">
             <style>${tooltipStyles}</style><style>${styles}</style><style>
                 :root{--b3-theme-background:#202126;--b3-theme-surface:#2d2e35;--b3-theme-on-surface:#e6dbcb;
                     --b3-theme-primary:#df857d;--b3-border-color:#625854;--b3-dialog-shadow:0 4px 16px #15161966;
                     --popover:#303139;--popover-foreground:#f4ede3;--border:#625854;--radius:8px}
                 body{margin:0;min-height:1600px;font:14px system-ui;background:var(--b3-theme-background)}
                 #anchor{position:absolute;left:${width - 85}px;top:${Math.round(height * 0.65)}px;width:40px;height:28px}
-            </style><button id="anchor">备注</button>`);
+            </style><button id="anchor">备注</button>`;
+        // 使用本地拦截页面提供有效来源，保留编辑器真实的偏好存储读取。
+        await page.route('http://quickbar.test/**', route => route.fulfill({ contentType: 'text/html', body: fixtureHtml }));
+        await page.goto('http://quickbar.test/');
         await page.addScriptTag({ content: `(() => {
             const listenerRecords = [];
             const track = (target, types) => {
@@ -146,12 +152,17 @@ async function checkViewport(browser, width, height, keyboardHeight, hasVisualVi
             window.moveViewport = (metrics, event = 'resize') => { Object.assign(viewport, metrics); viewport.dispatchEvent(new Event(event)); };
             const esc = value => String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
             ${tooltipBuilder}
+            const __tmEscAttr = esc;
+            ${sharedHistoryIcons}
             ${remarkIcons}
             ${editorSetup}
             let currentBlockId = 'remark-test', currentProps = {}, quickbarTextEditorAutoSave = null, inputEditorViewportCleanup = null;
             window.remarkToolCalls = [];
             const recordTool = (tool, textarea) => window.remarkToolCalls.push({ tool, selection: [textarea.selectionStart, textarea.selectionEnd] });
             const getRemarkMarkdownTools = () => ({
+                getHistoryState: () => ({ canUndo: true, canRedo: true }),
+                bindUndoHistory: textarea => textarea.dispatchEvent(new Event('tm-remark-history-change', { bubbles: true })),
+                adjustIndent: (textarea, outdent) => recordTool(outdent ? 'outdent' : 'indent', textarea),
                 wrapSelection: (textarea, marker) => recordTool('wrap:' + marker, textarea),
                 insertLinkTemplate: textarea => recordTool('link', textarea),
                 toggleLinePrefix: (textarea, prefix) => recordTool('prefix:' + prefix, textarea),
@@ -174,6 +185,7 @@ async function checkViewport(browser, width, height, keyboardHeight, hasVisualVi
             window.hideEditor = hideAllPopups;
             window.openRemark();
         })();` });
+        assert.deepEqual(errors, [], 'editor setup must complete without browser errors');
         await settle(page);
         assertVisible(await geometry(page), 'before keyboard');
         await checkRemarkTooltips(page, width);
@@ -206,16 +218,16 @@ async function checkViewport(browser, width, height, keyboardHeight, hasVisualVi
         await settle(page);
         assert.equal(await textarea.evaluate(element => element.scrollTop), 200, 'scrolling the draft must not reset its position');
         assert.equal(await page.locator('[data-remark-toolbar]').isVisible(), true, 'formatting tools are always visible above the remark');
-        assert.equal(await page.locator('[data-remark-tool] svg').count(), 7, 'all existing Markdown tools use icons');
+        assert.equal(await page.locator('[data-remark-tool] svg').count(), 11, 'history and Markdown tools use icons');
         const toolbar = await page.locator('[data-remark-toolbar]').boundingBox();
         assert.ok(toolbar.y + toolbar.height <= boxes.textarea.top + 1, 'formatting tools sit above the input');
         assertVisible(await geometry(page), 'integrated formatting tools');
         await textarea.evaluate(element => { element.focus(); element.setSelectionRange(2, 5); });
-        for (const tool of ['bold', 'italic', 'code', 'link', 'bullet', 'ordered', 'quote']) {
+        for (const tool of ['outdent', 'indent', 'bold', 'italic', 'code', 'link', 'bullet', 'ordered', 'quote']) {
             await page.locator(`[data-remark-tool="${tool}"]`).click();
         }
         assert.deepEqual(await page.evaluate(() => window.remarkToolCalls),
-            ['wrap:**', 'wrap:*', 'wrap:`', 'link', 'prefix:- ', 'ordered', 'prefix:> ']
+            ['outdent', 'indent', 'wrap:**', 'wrap:*', 'wrap:`', 'link', 'prefix:- ', 'ordered', 'prefix:> ']
                 .map(tool => ({ tool, selection: [2, 5] })), 'format buttons preserve selection and call the existing Markdown API');
 
         await textarea.evaluate(element => {
