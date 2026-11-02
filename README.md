@@ -1,3 +1,15 @@
+> [!WARNING]
+> **Retired (2026-11-02).** Upstream Task Horizon now ships native English since v3.3.5, so this English fork is no longer maintained and will not receive further updates.
+>
+> **Switch to the official plugin:**
+> 1. Disable or uninstall **Task Horizon (English)** (`siyuan-plugin-task-horizon-en`) in SiYuan.
+> 2. Install the official **Task Horizon** (`siyuan-plugin-task-horizon`) from the SiYuan bazaar.
+> 3. If the UI is not English, set the UI language in the plugin settings.
+>
+> The fork stores its data separately in `data/storage/petal/siyuan-plugin-task-horizon-en`. To carry tasks over, back up both plugin data folders, then copy the `task-*.json` files into `data/storage/petal/siyuan-plugin-task-horizon` before enabling the official plugin. Existing releases remain downloadable; this repository will be archived.
+
+---
+
 # Task Horizon — English (unofficial)
 
 **Unofficial English version of [Task Horizon](https://github.com/5kyfkr/siyuan-plugin-task-horizon)**, the task-management plugin for [SiYuan](https://b3log.org/siyuan/) created by [5kyfkr](https://github.com/5kyfkr).

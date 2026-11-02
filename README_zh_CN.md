@@ -1,3 +1,15 @@
+> [!WARNING]
+> **本英文分支已停止维护（2026-11-02）。** 上游 Task Horizon 自 v3.3.5 起已内置英文界面，因此本分支不再更新。
+>
+> **请改用官方插件：**
+> 1. 在思源中禁用或卸载 **Task Horizon (English)**（`siyuan-plugin-task-horizon-en`）。
+> 2. 从思源集市安装官方 **Task Horizon**（`siyuan-plugin-task-horizon`）。
+> 3. 如界面不是英文，请在插件设置中切换界面语言。
+>
+> 本分支的数据单独存放在 `data/storage/petal/siyuan-plugin-task-horizon-en`。如需迁移，请先备份两个插件的数据目录，再在启用官方插件前把 `task-*.json` 复制到 `data/storage/petal/siyuan-plugin-task-horizon`。历史版本仍可下载，仓库将归档。
+
+---
+
 # 任务管理器（非官方英文版）
 
 **这是 [任务管理器 Task Horizon](https://github.com/5kyfkr/siyuan-plugin-task-horizon) 的英文构建版**——由 [5kyfkr](https://github.com/5kyfkr) 为[思源笔记](https://b3log.org/siyuan/)开发的任务管理插件。
